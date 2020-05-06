@@ -13,6 +13,7 @@ class PodcastController{
     }
 
     public function showPodcasts($idColumnist){
-        
+        $podcasts = $this->model->getPodcasts($idColumnist);
+        $this->view->showPodcasts($podcasts);
     }
 }
