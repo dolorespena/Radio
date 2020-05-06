@@ -16,13 +16,16 @@
 
     // decide que camino tomar según TABLA DE RUTEO
     switch ($parametros[0]) {
-        case 'columnistas': //Muestra Lista de todos los pagos y el formulario
-            $controller = new ColumnistsController;
-            $controller->showColumnists();
-            break;
-        
-        
+        case 'columnistas': 
+            if (empty($parametros[1])){
+                $controller = new ColumnistsController;
+                $controller->showColumnists();
+            }
+            else {
+                $controller = new PodcastController;
+                $controller->showPodcasts($idColumnist);
+            }
+        break;
     }
-
 
 ?>
