@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2020 a las 15:44:01
+-- Tiempo de generación: 07-05-2020 a las 23:00:49
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -67,6 +67,13 @@ CREATE TABLE `podcast` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Volcado de datos para la tabla `podcast`
+--
+
+INSERT INTO `podcast` (`id_podcast`, `nombre`, `descripcion`, `url_audio`, `fecha`, `duracion`, `tag`, `invitado`, `id_columnista_fk`) VALUES
+(1, 'No piensen por nosotros', 'Seguramente muchas veces hemos escuchado la palabra \"narcisita\". Analizaremos su origen y su historia de amor detrás. Para ver que no siempre pensar en uno mismo es pecado.', 'audio/no-piensen-por-nosotros.ogg', '2020-03-17', 8, 'narcisismo', NULL, 8);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -97,7 +104,7 @@ ALTER TABLE `columnista`
 -- AUTO_INCREMENT de la tabla `podcast`
 --
 ALTER TABLE `podcast`
-  MODIFY `id_podcast` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_podcast` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

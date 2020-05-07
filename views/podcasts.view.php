@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
-
 <?php
 
 Class PodcastsView{
@@ -26,7 +14,7 @@ Class PodcastsView{
             echo ("<h2>" . $podcast->nombre . "</h2>"); // Título del Podcast
             echo("<p>" . $podcast->fecha . " - " . $podcast->duracion . " min</p>"); //Fecha y duración
             echo("<p>" . $podcast->descripcion . "</p>"); // Descripcion del podcast
-            echo("<audio controls autoplay><source src='"  . BASE_URL . $podcast->url_audio . "' type='audio/ogg; codecs=vorbis'>Your browser does not support the element.</audio>");
+            echo("<audio controls autoplay><source src='" . BASE_URL . $podcast->url_audio . "'type='audio/ogg; codecs=vorbis'>Your browser does not support the element.</audio>");
         
         }
     }
@@ -39,6 +27,7 @@ Class PodcastsView{
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta http-equiv="Content-Type" content="text/html">
                 <title>Columnistas</title>
             </head>
             <body>
