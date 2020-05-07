@@ -10,8 +10,6 @@ Class PodcastsModel{
         $sentencia = $db->prepare("SELECT col.nombre AS columnista, pod.* FROM podcast pod JOIN columnista col ON col.id_columnista=pod.id_columnista_fk WHERE pod.id_columnista_fk= ?"); // Sólo una tabla
         $sentencia->execute([$idColumnist]); // ejecuta
         $podcasts = $sentencia->fetchAll(PDO::FETCH_OBJ); // obtiene la respuesta
-        var_dump($podcasts);
-        die();
         
         return $podcasts;
     }
