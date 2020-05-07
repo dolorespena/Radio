@@ -13,7 +13,7 @@ class ColumnistsController{
     }
 
     public function showColumnists(){
-        // Pido las tareas al MODELO
+        // Pido los columnistas al MODELO
         $columnists = $this->model->getAll();
 
         // Actualizo la VISTA
