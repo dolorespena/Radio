@@ -14,9 +14,12 @@ Class PodcastsView{
             echo ("<h2>" . $podcast->nombre . "</h2>"); // Título del Podcast
             echo("<p>" . $podcast->fecha . " - " . $podcast->duracion . " min</p>"); //Fecha y duración
             echo("<p>" . $podcast->descripcion . "</p>"); // Descripcion del podcast
-            echo("<audio controls autoplay><source src='" . BASE_URL . $podcast->url_audio . "'type='audio/ogg; codecs=vorbis'>Your browser does not support the element.</audio>");
+            echo("<audio controls autoplay><source src='" . BASE_URL . $podcast->url_audio . "' ");
+            echo ("type='audio/ogg' codecs='vorbis'>Your browser does not support the element.</audio>"); 
         
         }
+
+        echo ("</body></html>");
     }
 
     private function showheader(){
@@ -30,10 +33,7 @@ Class PodcastsView{
                 <meta http-equiv="Content-Type" content="text/html">
                 <title>Columnistas</title>
             </head>
-            <body>
-                
-            </body>
-        </html>');
+            <body>');
 
 
 
