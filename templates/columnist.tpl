@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{$title}</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    {include file="header.tpl"}
+{include file={'header.tpl'}
+    <table><tr>
+        {foreach  item=columnist from=$columnists}
+            <td><img src={$base_url_img}></td>
+            <td><a href={$base_url_columnist}{$idColumnist}>{$columnist->nombre}</a></td>
+            <td>{$columnist->profesion}</td>
+            <td>{$columnist->descripcion}</td>
+        {/foreach}
+    </tr></table>
+{include file='footer.tpl'}
 
-
-    {include file="footer.tpl"}
-</body>
-</html>
