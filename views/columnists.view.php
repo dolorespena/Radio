@@ -11,7 +11,7 @@ Class ColumnistsView{
         $smarty->assign('title', 'Columnistas');
         $smarty->assign('columnist', $columnists);
         $smarty->assign('base_url', BASE_URL);
-        $smarty->assign('base_url_columnist','columnistas/');
+        $smarty->assign('url_columnist','columnistas/');
             
         $smarty->display('columnist.tpl');
 

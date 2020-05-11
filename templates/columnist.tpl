@@ -1,11 +1,15 @@
-{include file={'header.tpl'}
-    <table><tr>
-        {foreach  item=columnist from=$columnists}
-            <td><img src={$base_url_img}></td>
-            <td><a href={$base_url_columnist}{$idColumnist}>{$columnist->nombre}</a></td>
+{include 'header.tpl'}
+    <table>
+        {foreach $columnists item=columnist}
+        <tr>
+            <td><img src="{$base_url}{$columnist->url_imagen}"></td>
+            <td><a href= "{$base_url}{$url_columnist}{$columnist->id_columnista}"></a></td>
             <td>{$columnist->profesion}</td>
             <td>{$columnist->descripcion}</td>
+        </tr>
+            
         {/foreach}
-    </tr></table>
+      
+    </table>
 {include file='footer.tpl'}
 

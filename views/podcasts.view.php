@@ -10,7 +10,7 @@ Class PodcastsView{
        $smarty = new Smarty();
 
        $smarty->assign('base_url', BASE_URL);
-       $smarty->assign('titulo', 'Columnistas');
+       $smarty->assign('title', 'Columnistas');
 
        $smarty->assign('podcasts', $podcasts);
        $smarty->assign('columnista',$podcasts[0]->columnista);
