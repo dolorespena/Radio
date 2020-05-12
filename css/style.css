@@ -1,3 +1,50 @@
 html{
     font-family: sans-serif;
 }
+header{
+    background-color: #00ABF8;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.logo img{
+    width: 50%;
+    padding: 10px;
+}
+.menu{
+    padding: 10px;
+}
+.menu a{
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    text-decoration: none;
+}
+.menu a:hover{
+    background-color: #ff4994;
+}
+.table_columnist{
+    padding: 20px;
+}
+.table_columnist tr{
+    background-color: #f6f700;
+    align-items: center;
+}
+td{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+td a{
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    
+}
+td img{
+    width: 200px;
+}
+.footer{
+    background-color: #00ABF8;
+    height: 30px;
+}
