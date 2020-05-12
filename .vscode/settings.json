@@ -1,0 +1,9 @@
+{
+    "[json]": {
+    },
+    
+    "emmet.includeLanguages": {
+        "smarty": "html"
+      }
+    
+}
