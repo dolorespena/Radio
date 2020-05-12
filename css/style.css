@@ -4,12 +4,19 @@ html{
 header{
     background-color: #00ABF8;
     padding: 10px;
+    margin: 10px auto;
     display: flex;
-    justify-content: center;
+
+}
+.container{
+   display: flex;
+   flex-direction: column;
 }
 .logo img{
     width: 50%;
     padding: 10px;
+    
+
 }
 .menu{
     padding: 10px;
@@ -23,12 +30,16 @@ header{
 .menu a:hover{
     background-color: #ff4994;
 }
-.table_columnist{
-    padding: 20px;
-}
+.table_columnist tbody{
+    margin: 0 auto;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+}    
 .table_columnist tr{
     background-color: #f6f700;
-    align-items: center;
+    margin: 15px;
+    flex-wrap: wrap;
 }
 td{
     padding: 10px;
@@ -39,10 +50,10 @@ td a{
     text-decoration: none;
     color: black;
     font-size: large;
-    
+     
 }
 td img{
-    width: 200px;
+    width: 250px;
 }
 .footer{
     background-color: #00ABF8;
