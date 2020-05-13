@@ -9,7 +9,7 @@
         <h2 class="titulo-podcast"> {$podcast->nombre} </h2> {* Título del Podcast*}
         <p class= "bajada-podcast"> {$podcast->fecha}  - {$podcast->duracion} min </p> {*Fecha y duración*}
         <p class= "descripcion-podcast"> {$podcast->descripcion} </p> {*Descripcion del podcast*}
-        <audio controls autoplay><source src= "{$base_url}{$podcast->url_audio}"
+        <audio controls ><source src= "{$base_url}{$podcast->url_audio}"
         type='audio/ogg' codecs='vorbis'>Your browser does not support the element.</audio> 
     </div> {* cierre box-podcast *}
 {/foreach}
