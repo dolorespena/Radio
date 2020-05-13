@@ -1,0 +1,28 @@
+.table_columnist tbody{
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}    
+.table_columnist tr{
+    background-color: #f6f700;
+    margin: 15px;
+    flex-wrap: wrap;
+}
+td{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+td a{
+    text-decoration: none;
+    color: black;
+    font-size: large;     
+}
+td a:hover{
+    color: #8136a2;
+}
+td img{
+    width: 250px;
+    padding: 10px;
+}

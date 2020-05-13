@@ -4,22 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html">
-    <link rel="stylesheet" href="{$base_url}css/normalize.css" >
-    <link rel="stylesheet" href="{$base_url}css/style.css" >
+    <link rel="stylesheet" href="{$base_url}css/headerFooterStyle.css" >
+    <link rel="stylesheet" href="{$base_url}css/columnistStyle.css" >
+    <link rel="stylesheet" href="{$base_url}css/podcastStyle.css" >
     <title>{$title}</title>
-    
 </head>
 <body>
     <header id="header">
-        <div class="container">
-            <div class="logo">
-                <img src="{$base_url}img/profile/logo.png">
-            </div>
+            <img src="{$base_url}img/profile/logo.png">
             <div class="menu">
                 <a href="">Columnistas</a>
                 <a href="">Programación</a>
                 <a href="">Noticias</a>
                 <a href="">Contacto</a>
             </div>
-        </div>
     </header>
+    

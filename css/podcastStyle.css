@@ -1,0 +1,37 @@
+
+.contenedor-ppal-podcasts{
+    max-width: 65%;
+    margin: 0 auto;
+}
+
+.titulo-ppal-podcasts{
+    text-align: center;
+}
+
+.box-podcast{
+    background-color: #a65cc8;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.titulo-podcast{
+    color: #f6f700;
+    font-size: 1.6rem;
+    margin-top: 0;
+    line-height: 2rem;
+}
+
+.bajada-podcast{
+    font-size: 0.9rem;
+    color: azure;
+    font-style: italic;
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+}
+
+.descripcion-podcast{
+    font-size: 1rem;
+    color: white;
+    line-height: 1.5rem;
+    text-align: justify;
+}
