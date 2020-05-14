@@ -27,6 +27,13 @@
                 $controller = new PodcastController;
                 $controller->showPodcasts($parametros[1]);
             }
+
+        break;
+
+        case 'admin': 
+            $controller = new AdminController;
+            $controller->showAdmin();
+
         break;
     }
 
