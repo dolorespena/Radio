@@ -1,7 +1,7 @@
-
 .contenedor-ppal-podcasts{
     max-width: 65%;
     margin: 0 auto;
+    background-color:  #f6f700;
 }
 
 .titulo-ppal-podcasts{
@@ -9,13 +9,14 @@
 }
 
 .box-podcast{
-    background-color: #a65cc8;
+    border: solid 30px #f6f700;
+    background-color: white;
     padding: 1rem;
     margin-bottom: 1rem;
 }
 
 .titulo-podcast{
-    color: #f6f700;
+    color: #8136a2;
     font-size: 1.6rem;
     margin-top: 0;
     line-height: 2rem;
@@ -23,7 +24,7 @@
 
 .bajada-podcast{
     font-size: 0.9rem;
-    color: azure;
+    color: black;
     font-style: italic;
     margin-bottom: 0.2rem;
     margin-top: 0.2rem;
@@ -31,7 +32,7 @@
 
 .descripcion-podcast{
     font-size: 1rem;
-    color: white;
+    color: black;
     line-height: 1.5rem;
     text-align: justify;
 }
