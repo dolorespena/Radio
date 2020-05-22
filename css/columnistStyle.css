@@ -9,20 +9,20 @@
     margin: 15px;
     flex-wrap: wrap;
 }
-td{
+.table_columnist td{
     padding: 10px;
     display: flex;
     justify-content: center;
 }
-td a{
+.table_columnist td a{
     text-decoration: none;
     color: black;
     font-size: large;     
 }
-td a:hover{
+.table_columnist td a:hover{
     color: #8136a2;
 }
-td img{
+.table_columnist td img{
     width: 250px;
     padding: 10px;
 }
