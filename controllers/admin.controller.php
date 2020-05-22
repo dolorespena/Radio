@@ -2,11 +2,13 @@
 
 class AdminController{
 
-    private $model;
+    private $modelColumnists;
+    private $modelPodcast;
     private $view;
 
     public function __construct() {
-        $this->model = new AdminModel();
+        $this->modelColumnists = new ColumnistsModel();
+        $this->modelPodcasts = new PodcastsModel();
         $this->view = new AdminView();
     }
 
