@@ -2,6 +2,7 @@
    
     require_once 'controllers/columnists.controller.php';
     require_once 'controllers/podcasts.controller.php';
+    require_once 'controllers/admin.controller.php';
 
 
     // definimos la base url de forma dinamica

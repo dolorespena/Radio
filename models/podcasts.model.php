@@ -2,6 +2,19 @@
 
 Class PodcastsModel{
 
+    public function getAll(){
+        // 1. abro la conexión con MySQL 
+        $db = new PDO('mysql:host=localhost;'.'dbname=db_radio;charset=utf8', 'root', '');
+        
+        // 2. enviamos la consulta (3 pasos)
+        $sentencia = $db->prepare("SELECT * FROM podcast"); // Sólo una tabla
+        $sentencia->execute(); // ejecuta
+        $podcasts = $sentencia->fetchAll(PDO::FETCH_OBJ); // obtiene la respuesta
+        
+        return $podcasts;
+    }
+
+
     public function getPodcasts($idColumnist){
         // 1. abro la conexión con MySQL 
         $db = new PDO('mysql:host=localhost;'.'dbname=db_radio;charset=utf8', 'root', '');
