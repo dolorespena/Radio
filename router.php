@@ -2,7 +2,7 @@
    
     require_once 'controllers/columnists.controller.php';
     require_once 'controllers/podcasts.controller.php';
-
+    require_once 'controllers/auth.controller.php';
 
     // definimos la base url de forma dinamica
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -30,9 +30,14 @@
 
         break;
 
-        case 'admin': 
-            $controller = new AdminController;
-            $controller->showAdmin();
+        case 'login': 
+            $controller = new AuthController;
+            $controller->showLogin();
+
+        break;
+        case 'verify': 
+            $controller = new AuthController;
+            $controller->verify();
 
         break;
     }

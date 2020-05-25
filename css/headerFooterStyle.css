@@ -30,8 +30,29 @@ header img{
     background-color: #ff4994;
 }
 
-.footer{
+footer{
     background-color: #00ABF8;
-    height: 30px;
+    display: flex;
+    justify-content: space-between;
 }
 
+form{
+    padding: 10px;
+    width: 200px;
+    flex-direction: column;
+    text-align: center;
+}
+form input{
+    margin: 5px 0;
+}
+form button{
+    background-color: #ff4994;
+    color: white;
+    padding: 5px;
+}
+footer img{
+    height: 20%;
+    width: 20%;
+    padding: 10px;
+    margin-left: 20px;
+}
