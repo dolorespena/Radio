@@ -62,11 +62,37 @@
 
         break;
 
+        case 'edit':
+            if ($parametros[1] == 'columnist'){
+                $controller = new ColumnistsController;
+                $controller->editColumnist($parametros[2]);
+            }
+            if ($parametros[1] == 'podcast'){
+                $controller = new PodcastsController;
+                $controller->editPodcast($parametros[2]); 
+            }
+
+        break;
+
+
         case 'login': 
             $controller = new AuthController;
             $controller->showLogin();
 
         break;
+
+        case 'update':
+            if ($parametros[1] == 'columnist'){
+                $controller = new ColumnistsController;
+                $controller->updateColumnist($parametros[2]);
+            }
+            if ($parametros[1] == 'podcast'){
+                $controller = new PodcastsController;
+                $controller->updatePodcast($parametros[2]); 
+            }
+
+        break;
+
 
         case 'verify': 
             $controller = new AuthController;

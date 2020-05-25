@@ -15,7 +15,7 @@
             <td>{$columnist->nombre}</td>
             <td>{$columnist->profesion}</td>
             <td>{$columnist->descripcion}</td>
-            <td><a href="edit/columnist/{$columnist->id_columnista}">Ver</a></td>
+            <td><a href="edit/columnist/{$columnist->id_columnista}">Editar</a></td>
             <td><a href="delete/columnist/{$columnist->id_columnista}">Eliminar</a></td>
         </tr>      
     {/foreach}
@@ -35,7 +35,7 @@
             <td>{$podcast->nombre}</td>
             <td>{$podcast->fecha}</td>
             <td>{$podcast->columnista}</td>
-            <td><a href="edit/podcast/{$podcast->id_podcast}">Ver</a></td>
+            <td><a href="edit/podcast/{$podcast->id_podcast}">Editar</a></td>
             <td><a href="delete/podcast/{$podcast->id_podcast}">Eliminar</a></td>
         </tr>      
     {/foreach}

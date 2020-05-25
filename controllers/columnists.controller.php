@@ -52,5 +52,36 @@ class ColumnistsController{
        
     }
 
+    public function editColumnist($idColumnist){
+
+        $old = $this->model->getColumnist($idColumnist);
+        $this->view->showEditColumnist($old);
+
+    }
+
+    public function updateColumnist($idColumnist){
+
+        $nombre = $_POST['nombre'];
+        $profesion = $_POST['profesion'];
+        $descripcion = $_POST['descripcion'];
+        $imagen = $_POST['imagen'];
+
+        // verifica los datos obligatorios
+        if (!empty($nombre) || !empty($profesion) ||  !empty($descripcion) || !empty($imagen)) {
+            // inserta en la DB y redirige
+            $success = $this->model->updateColumnist($idColumnist, $nombre, $profesion, $descripcion, $imagen);
+            if ($success){
+                header('Location: ' . BASE_URL . 'admin');
+            }
+            else {
+                $this->view->showError("Error al actualizar la tabla"); //FALTA HACER FUNCION
+            }
+        } else {
+            $this->view->showError("ERROR! Faltan datos obligatorios"); //FALTA HACER FUNCION
+        }
+
+
+    }
+
 
 }
