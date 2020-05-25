@@ -9,20 +9,31 @@
     margin: 15px;
     flex-wrap: wrap;
 }
-td{
+.table_columnist td{
     padding: 10px;
     display: flex;
     justify-content: center;
 }
+<<<<<<< HEAD
 .resaltado:hover{
     background-color: #ff4994;
 }
 td a{
+=======
+.table_columnist td a{
+>>>>>>> a6667f4446ce9c778e1e146c975c92cb4d118f4f
     text-decoration: none;
     color: black;
     font-size: large;     
 }
+<<<<<<< HEAD
 td img{
+=======
+.table_columnist td a:hover{
+    color: #8136a2;
+}
+.table_columnist td img{
+>>>>>>> a6667f4446ce9c778e1e146c975c92cb4d118f4f
     width: 250px;
     padding: 10px;
 }
