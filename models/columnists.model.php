@@ -24,4 +24,15 @@ Class ColumnistsModel{
 
     }
 
+    public function deleteColumnist($idColumnist){
+
+        // 1. abro la conexión con MySQL 
+        $db = new PDO('mysql:host=localhost;'.'dbname=db_radio;charset=utf8', 'root', '');
+
+        // 2. enviamos la consulta
+        $sentencia = $db->prepare("DELETE FROM columnista WHERE id_columnista = ?"); // prepara la consulta
+        $success = $sentencia->execute([$idColumnist]); // ejecuta
+        return $success;
+    }
+
 }

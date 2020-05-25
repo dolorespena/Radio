@@ -22,7 +22,6 @@ class ColumnistsController{
 
     public function addColumnist(){
 
-
          // toma los valores enviados por el usuario
          $nombre = $_POST['nombre'];
          $profesion = $_POST['profesion'];
@@ -39,4 +38,19 @@ class ColumnistsController{
          }
      
     }
+
+    public function deleteColumnist($idColumnist){
+        
+        $success = $this->model->deleteColumnist($idColumnist);
+
+        if ($success){
+            header('Location: ' . BASE_URL . 'admin');
+        }
+        else {
+            $this->view->showError("Debes eliminar todos los podcasts de este columnista previamente"); //FALTA HACER FUNCION
+        }
+       
+    }
+
+
 }

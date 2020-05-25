@@ -19,18 +19,7 @@
 
     // decide que camino tomar según TABLA DE RUTEO
     switch ($parametros[0]) {
-        case 'columnistas': 
-            if (empty($parametros[1])){
-                $controller = new ColumnistsController;
-                $controller->showColumnists();
-            }
-            else {
-                $controller = new PodcastsController;
-                $controller->showPodcasts($parametros[1]);
-            }
-
-        break;
-
+        
         case 'add': 
             if ($parametros[1] == 'columnist'){
                 $controller = new ColumnistsController;
@@ -49,6 +38,29 @@
 
         break;
 
+        case 'columnistas': 
+            if (empty($parametros[1])){
+                $controller = new ColumnistsController;
+                $controller->showColumnists();
+            }
+            else {
+                $controller = new PodcastsController;
+                $controller->showPodcasts($parametros[1]);
+            }
+
+        break;
+
+        case 'delete':
+            if ($parametros[1] == 'columnist'){
+                $controller = new ColumnistsController;
+                $controller->deleteColumnist($parametros[2]);
+            }
+            if ($parametros[1] == 'podcast'){
+                $controller = new PodcastsController;
+                //$controller->deletePodcast$parametros[2]; --> Falta hacer la función
+            }
+
+        break;
 
         case 'login': 
             $controller = new AuthController;
