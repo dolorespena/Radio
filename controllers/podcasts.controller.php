@@ -4,12 +4,16 @@ require_once 'models/podcasts.model.php';
 require_once 'views/podcasts.view.php';
 
 class PodcastsController{
+    
+    private $modelColumnists; //Chanchada que tendremos que corregir
     private $model;
     private $view;
 
     public function __construct() {
+        $this->modelColumnists = new ColumnistsModel(); // Parte de la chanchada a corregir
         $this->model = new PodcastsModel();
         $this->view = new PodcastsView();
+        
     }
 
     public function showPodcasts($idColumnist){
@@ -37,6 +41,43 @@ class PodcastsController{
             $this->view->showError("ERROR! Faltan datos obligatorios"); //FALTA HACER FUNCION
         }
         
+    }
+
+    public function editPodcast($idPodcast){
+
+        $old = $this->model->getPodcast($idPodcast);
+        $listColumnists = $this->modelColumnists->getAll(); // No respeta el modelo MVC
+
+        $this->view->showEditPodcast($old,$listColumnists);
+
+    }
+
+    public function updatePodcast($idPodcast){
+
+        $nombre = $_POST['nombre'];
+        $columnista = $_POST['columnista'];
+        $descripcion = $_POST['descripcion'];
+        $audio = $_POST['audio'];
+        $fecha = $_POST['fecha'];
+        $duracion = $_POST['duracion'];
+        $etiqueta = $_POST['etiqueta'];
+        $invitado = $_POST['invitado'];
+
+        // verifica los datos obligatorios
+        if (!empty($nombre) || !empty($columnista) ||  !empty($descripcion) || !empty($audio) || !empty($fecha) || !empty($duracion) || !empty($etiqueta)) {
+            // inserta en la DB y redirige
+            $success = $this->model->updatePodcast($idPodcast, $nombre, $columnista, $descripcion, $audio, $fecha, $duracion, $etiqueta, $invitado);
+            if ($success){
+                header('Location: ' . BASE_URL . 'admin');
+            }
+            else {
+                $this->view->showError("Error al actualizar la tabla"); //FALTA HACER FUNCION
+            }
+        } else {
+            $this->view->showError("ERROR! Faltan datos obligatorios"); //FALTA HACER FUNCION
+        }
+
+
     }
 
     public function deletePodcast($idPodcast){

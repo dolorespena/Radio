@@ -14,6 +14,18 @@ Class PodcastsModel{
         return $podcasts;
     }
 
+    public function getPodcast($idPodcast){
+
+        $db = new PDO('mysql:host=localhost;'.'dbname=db_radio;charset=utf8', 'root', '');
+        
+         // 2. enviamos la consulta (3 pasos)
+         $sentencia = $db->prepare("SELECT * FROM podcast  WHERE id_podcast = ?"); // prepara la consulta
+         $sentencia->execute([$idPodcast]); // ejecuta
+         $podcast = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
+         
+         return $podcast;   
+    }
+
 
     public function getPodcasts($idColumnist){
         // 1. abro la conexión con MySQL 
@@ -35,6 +47,17 @@ Class PodcastsModel{
         $sentencia = $db->prepare("INSERT INTO podcast (nombre, id_columnista_fk, descripcion, url_audio, fecha, duracion, tag, invitado) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"); // prepara la consulta
         $sentencia->execute([$nombre, $columnista, $descripcion, $audio, $fecha, $duracion, $etiqueta, $invitado]); // ejecuta
 
+    }
+
+    public function updatePodcast($idPodcast, $nombre, $columnista, $descripcion, $audio, $fecha, $duracion, $etiqueta, $invitado){
+
+        // 1. abro la conexión con MySQL 
+        $db = new PDO('mysql:host=localhost;'.'dbname=db_radio;charset=utf8', 'root', '');
+
+        // 2. enviamos la consulta
+        $sentencia = $db->prepare("UPDATE podcast SET nombre = ?, id_columnista_fk = ?, descripcion = ? , url_audio = ?, fecha = ?, duracion = ?, tag = ?, invitado = ? WHERE podcast.id_podcast = ?"); // prepara la consulta
+        $success = $sentencia->execute([$nombre, $columnista, $descripcion, $audio, $fecha, $duracion, $etiqueta, $invitado, $idPodcast]); // ejecuta
+        return $success;
     }
 
     public function deletePodcast($idPodcast){
