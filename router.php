@@ -27,7 +27,7 @@
             }
             if ($parametros[1] == 'podcast'){
                 $controller = new PodcastsController;
-                //$controller->addPodcast(); --> Falta hacer la función
+                $controller->addPodcast(); 
             }
 
         break;
