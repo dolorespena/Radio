@@ -38,4 +38,11 @@ class PodcastsController{
         }
         
     }
+
+    public function deletePodcast($idPodcast){
+
+        $this->model->deletePodcast($idPodcast);
+        header('Location: ' . BASE_URL . 'admin');
+
+    }
 }

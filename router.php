@@ -57,7 +57,7 @@
             }
             if ($parametros[1] == 'podcast'){
                 $controller = new PodcastsController;
-                //$controller->deletePodcast$parametros[2]; --> Falta hacer la función
+                $controller->deletePodcast($parametros[2]); 
             }
 
         break;

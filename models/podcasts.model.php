@@ -37,4 +37,15 @@ Class PodcastsModel{
 
     }
 
+    public function deletePodcast($idPodcast){
+
+         // 1. abro la conexión con MySQL 
+         $db = new PDO('mysql:host=localhost;'.'dbname=db_radio;charset=utf8', 'root', '');
+
+         // 2. enviamos la consulta
+         $sentencia = $db->prepare("DELETE FROM podcast WHERE id_podcast = ?"); // prepara la consulta
+         $sentencia->execute([$idPodcast]); // ejecuta
+
+    }
+
 }
