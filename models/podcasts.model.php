@@ -7,7 +7,7 @@ Class PodcastsModel{
         $db = new PDO('mysql:host=localhost;'.'dbname=db_radio;charset=utf8', 'root', '');
         
         // 2. enviamos la consulta (3 pasos)
-        $sentencia = $db->prepare("SELECT * FROM podcast"); // Sólo una tabla
+        $sentencia = $db->prepare("SELECT pod.*, col.nombre AS columnista FROM podcast pod JOIN columnista col ON col.id_columnista=pod.id_columnista_fk ORDER BY fecha desc"); // Sólo una tabla
         $sentencia->execute(); // ejecuta
         $podcasts = $sentencia->fetchAll(PDO::FETCH_OBJ); // obtiene la respuesta
         

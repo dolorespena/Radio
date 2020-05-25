@@ -34,9 +34,85 @@
         <tr>
             <td>{$podcast->nombre}</td>
             <td>{$podcast->fecha}</td>
-            <td>{$podcast->id_columnista_fk}</td>
+            <td>{$podcast->columnista}</td>
             <td><a href="editar/podcast/{$podcast->id_podcast}">Ver</a></td>
             <td><a href="eliminar/podcast/{$podcast->id_podcast}">Eliminar</a></td>
         </tr>      
     {/foreach}
 </table>
+
+<form action="agregar/carrera/" method="post">
+    
+    <fieldset>
+        <legend>Agregar Podcast</legend>
+
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre">
+
+        <label for="profesion">Profesión</label>
+        <input type="text" name="profesion">
+
+        <label for="descripcion">Descripcion</label>
+        <input type="text" name="descripcion">
+
+        <label for="imagen"></label>
+        <select name='cant_anios'>
+            <option value='img/profile/muestra1.jpg'>Imagen 1</option>
+            <option value='img/profile/muestra2.jpg'>Imagen 2</option>
+            <option value='img/profile/muestra3.jpg'>Imagen 3</option>
+            <option value='img/profile/muestra4.jpg'>Imagen 4</option>
+            <option value='img/profile/muestra5.jpg'>Imagen 5</option>
+            <option value='img/profile/muestra6.jpg'>Imagen 6</option>
+            <option value='img/profile/muestra7.jpg'>Imagen 7</option>  
+        </select>
+
+        <button type='submit'>Añadir</button>
+    </fieldset>
+</form>
+
+<form action="agregar/carrera/" method="post">
+    
+    <fieldset>
+        <legend>Agregar Columnista</legend>
+
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre">
+
+        <label for="columnista">Columnista</label>
+        <select name="columnista" id="columnista">
+        {foreach from=$columnists item=columnist}
+            <option value={$columnist->id_columnista}>{$columnist->nombre}</option>         
+        {/foreach} 
+        </select>
+
+        <label for="descripcion">Descripcion</label>
+        <textarea name="descripcion" id="descripcion"></textarea>
+
+        <label for="audio">Audio</label>
+        <select name='audio'>
+            <option value='audio/muestra1.ogg'>Audio 1</option>
+            <option value='audio/muestra2.ogg'>Audio 2</option>
+            <option value='audio/muestra3.ogg'>Audio 3</option>
+            <option value='audio/muestra4.ogg'>Audio 4</option>
+            <option value='audio/muestra5.ogg'>Audio 5</option>
+            <option value='audio/muestra6.ogg'>Audio 6</option>
+            <option value='audio/muestra7.ogg'>Audio 7</option>  
+        </select>
+
+        <label for="fecha">Fecha</label>
+        <input type="date" name="fecha" id="fecha">
+
+        <label for="duracion">Duración</label>
+        <input type="number" name="duracion" id="duracion" min=1>
+
+        <label for="etiqueta">Etiqueta</label>
+        <input type="text" name="etiqueta">
+
+        <label for="invitado">Invitado</label>
+        <input type="text" name="invitado" placeholder="(opcional)">
+
+        <button type='submit'>Añadir</button>
+    </fieldset>
+</form>
+
+{include 'footer.tpl'}
