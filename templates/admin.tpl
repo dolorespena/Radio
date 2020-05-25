@@ -15,8 +15,8 @@
             <td>{$columnist->nombre}</td>
             <td>{$columnist->profesion}</td>
             <td>{$columnist->descripcion}</td>
-            <td><a href="editar/columnista/{$columnist->id_columnista}">Ver</a></td>
-            <td><a href="eliminar/columnista/{$columnist->id_columnista}">Eliminar</a></td>
+            <td><a href="edit/columnist/{$columnist->id_columnista}">Ver</a></td>
+            <td><a href="delete/columnist/{$columnist->id_columnista}">Eliminar</a></td>
         </tr>      
     {/foreach}
 </table>
@@ -35,16 +35,16 @@
             <td>{$podcast->nombre}</td>
             <td>{$podcast->fecha}</td>
             <td>{$podcast->columnista}</td>
-            <td><a href="editar/podcast/{$podcast->id_podcast}">Ver</a></td>
-            <td><a href="eliminar/podcast/{$podcast->id_podcast}">Eliminar</a></td>
+            <td><a href="edit/podcast/{$podcast->id_podcast}">Ver</a></td>
+            <td><a href="delete/podcast/{$podcast->id_podcast}">Eliminar</a></td>
         </tr>      
     {/foreach}
 </table>
 
-<form action="agregar/carrera/" method="post">
+<form action="add/columnist/" method="post">
     
     <fieldset>
-        <legend>Agregar Podcast</legend>
+        <legend>Agregar Columnista</legend>
 
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre">
@@ -56,7 +56,7 @@
         <input type="text" name="descripcion">
 
         <label for="imagen"></label>
-        <select name='cant_anios'>
+        <select name='imagen'>
             <option value='img/profile/muestra1.jpg'>Imagen 1</option>
             <option value='img/profile/muestra2.jpg'>Imagen 2</option>
             <option value='img/profile/muestra3.jpg'>Imagen 3</option>
@@ -70,10 +70,10 @@
     </fieldset>
 </form>
 
-<form action="agregar/carrera/" method="post">
+<form action="add/podcast/" method="post">
     
     <fieldset>
-        <legend>Agregar Columnista</legend>
+        <legend>Agregar Podcast</legend>
 
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre">
@@ -115,4 +115,4 @@
     </fieldset>
 </form>
 
-{include 'footer.tpl'}
+

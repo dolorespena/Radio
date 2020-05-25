@@ -14,4 +14,14 @@ Class ColumnistsModel{
          return $columnists;   
     }
 
+    public function insertColumnist($nombre, $profesion, $descripcion, $imagen){
+        // 1. abro la conexión con MySQL 
+        $db = new PDO('mysql:host=localhost;'.'dbname=db_radio;charset=utf8', 'root', '');
+
+        // 2. enviamos la consulta
+        $sentencia = $db->prepare("INSERT INTO columnista (nombre, profesion, descripcion, url_imagen) VALUES(?, ?, ?, ?)"); // prepara la consulta
+        $sentencia->execute([$nombre, $profesion, $descripcion, $imagen]); // ejecuta
+
+    }
+
 }

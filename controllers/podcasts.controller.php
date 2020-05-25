@@ -3,7 +3,7 @@
 require_once 'models/podcasts.model.php';
 require_once 'views/podcasts.view.php';
 
-class PodcastController{
+class PodcastsController{
     private $model;
     private $view;
 

@@ -17,4 +17,8 @@ Class ColumnistsView{
 
         
     }
+
+    public function showError($message){ // Ultra provisiorio - hay que hacer view del error
+        echo($message);
+    }
 }

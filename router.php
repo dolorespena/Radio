@@ -2,12 +2,8 @@
    
     require_once 'controllers/columnists.controller.php';
     require_once 'controllers/podcasts.controller.php';
-<<<<<<< HEAD
     require_once 'controllers/auth.controller.php';
-=======
     require_once 'controllers/admin.controller.php';
-
->>>>>>> a6667f4446ce9c778e1e146c975c92cb4d118f4f
 
     // definimos la base url de forma dinamica
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -29,17 +25,37 @@
                 $controller->showColumnists();
             }
             else {
-                $controller = new PodcastController;
+                $controller = new PodcastsController;
                 $controller->showPodcasts($parametros[1]);
             }
 
         break;
+
+        case 'add': 
+            if ($parametros[1] == 'columnist'){
+                $controller = new ColumnistsController;
+                $controller->addColumnist();
+            }
+            if ($parametros[1] == 'podcast'){
+                $controller = new PodcastsController;
+                //$controller->addPodcast(); --> Falta hacer la función
+            }
+
+        break;
+
+        case 'admin':
+            $controller = new AdminController;
+            $controller->showAdmin();
+
+        break;
+
 
         case 'login': 
             $controller = new AuthController;
             $controller->showLogin();
 
         break;
+
         case 'verify': 
             $controller = new AuthController;
             $controller->verify();
