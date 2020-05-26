@@ -26,10 +26,22 @@ class AuthController{
         $user =$this->model->getUser($username);
 
         if ($user && password_verify($password, $user->password)){
-            echo "usuario logeado";
+           //abro sesion y guardo al usuario
+           session_start();
+           $_SESSION['ID_USER'] = $user->id_user;
+           $_SESSION['USERNAME'] = $user->username;
         }else{
-            echo "datos invalidos";
+            $this->view->showFormLogin("Datos ingresados inválidos");
         }
+    }
+    
+    //verifica que existe un usuario logueado
+    private function checkloged(){
+        session_start();
+        if (isset($_SESSION['ID_USER'])){
+            header('Locarion: ' . BASE_URL . 'login');
+        }
+
     }
 
     

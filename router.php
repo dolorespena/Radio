@@ -3,10 +3,7 @@
     require_once 'controllers/columnists.controller.php';
     require_once 'controllers/podcasts.controller.php';
     require_once 'controllers/auth.controller.php';
-<<<<<<< HEAD
-=======
     require_once 'controllers/admin.controller.php';
->>>>>>> 387c2d1b0489beb049efa915e4756ae99b4f8294
 
     // definimos la base url de forma dinamica
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
