@@ -15,8 +15,8 @@
             <td>{$columnist->nombre}</td>
             <td>{$columnist->profesion}</td>
             <td>{$columnist->descripcion}</td>
-            <td><a href="edit/columnist/{$columnist->id_columnista}">Editar</a></td>
-            <td><a href="delete/columnist/{$columnist->id_columnista}">Eliminar</a></td>
+            <td><a href="admin/edit/columnist/{$columnist->id_columnista}">Editar</a></td>
+            <td><a href="admin/delete/columnist/{$columnist->id_columnista}">Eliminar</a></td>
         </tr>      
     {/foreach}
 </table>
@@ -35,13 +35,13 @@
             <td>{$podcast->nombre}</td>
             <td>{$podcast->fecha}</td>
             <td>{$podcast->columnista}</td>
-            <td><a href="edit/podcast/{$podcast->id_podcast}">Editar</a></td>
-            <td><a href="delete/podcast/{$podcast->id_podcast}">Eliminar</a></td>
+            <td><a href="admin/edit/podcast/{$podcast->id_podcast}">Editar</a></td>
+            <td><a href="admin/delete/podcast/{$podcast->id_podcast}">Eliminar</a></td>
         </tr>      
     {/foreach}
 </table>
 
-<form action="add/columnist/" method="post">
+<form action="admin/add/columnist/" method="post">
     
     <fieldset>
         <legend>Agregar Columnista</legend>
@@ -70,7 +70,7 @@
     </fieldset>
 </form>
 
-<form action="add/podcast/" method="post">
+<form action="admin/add/podcast/" method="post">
     
     <fieldset>
         <legend>Agregar Podcast</legend>
@@ -97,7 +97,7 @@
             <option value='audio/muestra5.ogg'>Audio 5</option>
             <option value='audio/muestra6.ogg'>Audio 6</option>
             <option value='audio/muestra7.ogg'>Audio 7</option>  
-        </select>
+        </select><br>
 
         <label for="fecha">Fecha</label>
         <input type="date" name="fecha" id="fecha">

@@ -20,22 +20,58 @@
     // decide que camino tomar según TABLA DE RUTEO
     switch ($parametros[0]) {
         
-        case 'add': 
-            if ($parametros[1] == 'columnist'){
-                $controller = new ColumnistsController;
-                $controller->addColumnist();
-            }
-            if ($parametros[1] == 'podcast'){
-                $controller = new PodcastsController;
-                $controller->addPodcast(); 
-            }
-
-        break;
-
         case 'admin':
-            $controller = new AdminController;
-            $controller->showAdmin();
 
+            if (empty($parametros[1])){
+                $controller = new AdminController;
+                $controller->showAdmin();
+
+            }
+            else {
+                if ($parametros[1] == 'add'){
+                    if ($parametros[2] == 'columnist'){
+                        $controller = new AdminController;
+                        $controller->addColumnist();
+                    }
+                    if ($parametros[2] == 'podcast'){
+                        $controller = new AdminController;
+                        $controller->addPodcast(); 
+                    }
+                }
+                if ($parametros[1] == 'delete'){
+                    if ($parametros[2] == 'columnist'){
+                        $controller = new AdminController;
+                        $controller->deleteColumnist($parametros[3]);
+                    }
+                    if ($parametros[2] == 'podcast'){
+                        $controller = new AdminController;
+                        $controller->deletePodcast($parametros[3]); 
+                    }
+                }
+                if ($parametros[1] == 'edit'){
+                    if ($parametros[2] == 'columnist'){
+                        $controller = new AdminController;
+                        $controller->editColumnist($parametros[3]);
+                    }
+                    if ($parametros[2] == 'podcast'){
+                        $controller = new AdminController;
+                        $controller->editPodcast($parametros[3]); 
+                    }
+                }
+                if ($parametros[1] == 'update'){
+                    if ($parametros[1] == 'columnist'){
+                        $controller = new AdminController;
+                        $controller->updateColumnist($parametros[2]);
+                    }
+                    if ($parametros[1] == 'podcast'){
+                        $controller = new AdminController;
+                        $controller->updatePodcast($parametros[2]); 
+                    }
+
+                }
+
+            }
+            
         break;
 
         case 'columnistas': 
@@ -50,49 +86,11 @@
 
         break;
 
-        case 'delete':
-            if ($parametros[1] == 'columnist'){
-                $controller = new ColumnistsController;
-                $controller->deleteColumnist($parametros[2]);
-            }
-            if ($parametros[1] == 'podcast'){
-                $controller = new PodcastsController;
-                $controller->deletePodcast($parametros[2]); 
-            }
-
-        break;
-
-        case 'edit':
-            if ($parametros[1] == 'columnist'){
-                $controller = new ColumnistsController;
-                $controller->editColumnist($parametros[2]);
-            }
-            if ($parametros[1] == 'podcast'){
-                $controller = new PodcastsController;
-                $controller->editPodcast($parametros[2]); 
-            }
-
-        break;
-
-
         case 'login': 
             $controller = new AuthController;
             $controller->showLogin();
 
         break;
-
-        case 'update':
-            if ($parametros[1] == 'columnist'){
-                $controller = new ColumnistsController;
-                $controller->updateColumnist($parametros[2]);
-            }
-            if ($parametros[1] == 'podcast'){
-                $controller = new PodcastsController;
-                $controller->updatePodcast($parametros[2]); 
-            }
-
-        break;
-
 
         case 'verify': 
             $controller = new AuthController;

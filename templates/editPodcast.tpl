@@ -11,7 +11,7 @@
 
 <h1>{$title}</h1>
 
-<form action="update/podcast/{$old->id_podcast}" method="post">
+<form action="admin/update/podcast/{$old->id_podcast}" method="post">
     
     <fieldset>
         <legend>Agregar Podcast</legend>

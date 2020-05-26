@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="{$base_url}css/podcastStyle.css" >
     <link rel="stylesheet" href="{$base_url}css/login.css" >
     <title>{$title}</title>
-    <base href="{$base_url}"
+    <base href="{$base_url}">
 </head>
 <body>
     <header id="header">
             <img src="{$base_url}img/profile/logo.png">
             <div class="menu">
-                <a href="http://localhost/web2/radio/">Columnistas</a>
+                <a href="{$base_url}">Columnistas</a>
                 <a href="">Programación</a>
                 <a href="">Noticias</a>
                 <a href="">Contacto</a>
