@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-05-2020 a las 23:49:41
+-- Tiempo de generación: 25-05-2020 a las 16:05:35
 -- Versión del servidor: 10.1.33-MariaDB
 -- Versión de PHP: 7.2.6
 
@@ -126,13 +126,23 @@ ALTER TABLE `podcast`
 -- AUTO_INCREMENT de la tabla `columnista`
 --
 ALTER TABLE `columnista`
-  MODIFY `id_columnista` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_columnista` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `podcast`
 --
 ALTER TABLE `podcast`
   MODIFY `id_podcast` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `podcast`
+--
+ALTER TABLE `podcast`
+  ADD CONSTRAINT `id_columinst_fk-id_columnist` FOREIGN KEY (`id_columnista_fk`) REFERENCES `columnista` (`id_columnista`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
