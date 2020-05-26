@@ -13,7 +13,7 @@
     <header id="header">
             <img src="{$base_url}img/profile/logo.png">
             <div class="menu">
-                <a href="">Columnistas</a>
+                <a href="http://localhost/web2/radio/">Columnistas</a>
                 <a href="">Programación</a>
                 <a href="">Noticias</a>
                 <a href="">Contacto</a>

@@ -7,9 +7,7 @@
                 <td>{$columnist->profesion}</td>
                 <td>{$columnist->descripcion}</td>
             </tr>
-
         {/foreach}
-
     </table>
 {include 'footer.tpl'}
 
