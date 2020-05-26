@@ -1,6 +1,6 @@
 {include 'header.tpl'}
 
-    <form method="POST" action="verify" >
+    <form method="POST" action="verify" class="formlogin">
         <input type='email' name='username' placeholder = 'E-mail'>
         <input type="password" name='password' placeholder = 'Contraseña'>
        

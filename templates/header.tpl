@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="{$base_url}css/headerFooterStyle.css" >
     <link rel="stylesheet" href="{$base_url}css/columnistStyle.css" >
     <link rel="stylesheet" href="{$base_url}css/podcastStyle.css" >
+    <link rel="stylesheet" href="{$base_url}css/login.css" >
     <title>{$title}</title>
+    <base href="{$base_url}"
 </head>
 <body>
     <header id="header">
