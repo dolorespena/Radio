@@ -26,6 +26,7 @@ class AdminController{
 
     public function addColumnist(){
 
+        $this->checklogged();
         // toma los valores enviados por el usuario
         $nombre = $_POST['nombre'];
         $profesion = $_POST['profesion'];
@@ -44,49 +45,54 @@ class AdminController{
    }
 
    public function deleteColumnist($idColumnist){
-       
-       $success = $this->modelColumnists->deleteColumnist($idColumnist);
 
-       if ($success){
-           header('Location: ' . BASE_URL . 'admin');
-       }
-       else {
-           $this->view->showError("Debes eliminar todos los podcasts de este columnista previamente"); //FALTA HACER FUNCION
-       }
+        $this->checklogged();   
+        $success = $this->modelColumnists->deleteColumnist($idColumnist);
+
+        if ($success){
+            header('Location: ' . BASE_URL . 'admin');
+        }
+        else {
+            $this->view->showError("Debes eliminar todos los podcasts de este columnista previamente"); //FALTA HACER FUNCION
+        }
       
    }
 
    public function editColumnist($idColumnist){
 
-       $old = $this->modelColumnists->getColumnist($idColumnist);
-       $this->view->showEditColumnist($old);
+        $this->checklogged();
+        $old = $this->modelColumnists->getColumnist($idColumnist);
+        $this->view->showEditColumnist($old);
 
    }
 
    public function updateColumnist($idColumnist){
 
-       $nombre = $_POST['nombre'];
-       $profesion = $_POST['profesion'];
-       $descripcion = $_POST['descripcion'];
-       $imagen = $_POST['imagen'];
+        $this->checklogged();   
+        $nombre = $_POST['nombre'];
+        $profesion = $_POST['profesion'];
+        $descripcion = $_POST['descripcion'];
+        $imagen = $_POST['imagen'];
 
-       // verifica los datos obligatorios
-       if (!empty($nombre) || !empty($profesion) ||  !empty($descripcion) || !empty($imagen)) {
-           // inserta en la DB y redirige
-           $success = $this->modelColumnists->updateColumnist($idColumnist, $nombre, $profesion, $descripcion, $imagen);
-           if ($success){
-               header('Location: ' . BASE_URL . 'admin');
-           }
-           else {
-               $this->view->showError("Error al actualizar la tabla"); //FALTA HACER FUNCION
-           }
-       } else {
-           $this->view->showError("ERROR! Faltan datos obligatorios"); //FALTA HACER FUNCION
-       }
+        // verifica los datos obligatorios
+        if (!empty($nombre) || !empty($profesion) ||  !empty($descripcion) || !empty($imagen)) {
+            // inserta en la DB y redirige
+            $success = $this->modelColumnists->updateColumnist($idColumnist, $nombre, $profesion, $descripcion, $imagen);
+            if ($success){
+                header('Location: ' . BASE_URL . 'admin');
+            }
+            else {
+                $this->view->showError("Error al actualizar la tabla"); //FALTA HACER FUNCION
+            }
+        } else {
+            $this->view->showError("ERROR! Faltan datos obligatorios"); //FALTA HACER FUNCION
+        }
 
    }
 
     public function addPodcast(){
+
+        $this->checklogged();
         // toma los valores enviados por el usuario
         $nombre = $_POST['nombre'];
         $columnista = $_POST['columnista'];
@@ -109,6 +115,7 @@ class AdminController{
 
     public function editPodcast($idPodcast){
 
+        $this->checklogged();
         $old = $this->modelPodcasts->getPodcast($idPodcast);
         $listColumnists = $this->modelColumnists->getAll(); 
 
@@ -117,6 +124,7 @@ class AdminController{
 
     public function updatePodcast($idPodcast){
 
+        $this->checklogged();
         $nombre = $_POST['nombre'];
         $columnista = $_POST['columnista'];
         $descripcion = $_POST['descripcion'];
@@ -143,6 +151,7 @@ class AdminController{
 
     public function deletePodcast($idPodcast){
 
+        $this->checklogged();
         $this->modelPodcasts->deletePodcast($idPodcast);
         header('Location: ' . BASE_URL . 'admin');
 
@@ -151,7 +160,7 @@ class AdminController{
      private function checklogged(){
         session_start();
         if (!isset($_SESSION['ID_USER'])){
-            header('Locarion: ' . BASE_URL . 'login');
+            header('Location: ' . BASE_URL . 'login');
             die();
         }
     }
