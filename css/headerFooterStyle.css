@@ -50,6 +50,14 @@ form button{
     color: white;
     padding: 5px;
 }
+.login-outlogin a{
+    text-decoration: none;
+    background-color: #ff4994;
+    color: white;
+    padding: 7px;
+    justify-content: center;
+    align-content: center;
+}
 footer img{
     height: 20%;
     width: 20%;

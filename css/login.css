@@ -1,7 +1,19 @@
+.divformLogin{
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+}
+
 .formlogin{
     height: 200px;
     background-color: white;
     margin: 20 auto;
     padding: 10px;
-    box-shadow: 0px 10px 10px rgb(41, 41, 41);
+    box-shadow: 0px 10px 10px rgb(158, 158, 158);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form input{
+    margin-bottom: 15px;
 }
