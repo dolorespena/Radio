@@ -11,13 +11,14 @@ class AdminController{
     private $view;
 
     public function __construct() {
+        
         $this->modelColumnists = new ColumnistsModel();
         $this->modelPodcasts = new PodcastsModel();
         $this->view = new AdminView();
     }
 
     public function showAdmin(){
-
+        $this->checklogged();
         $columnists = $this->modelColumnists->getAll();
         $podcasts = $this->modelPodcasts->getAll();
         $this->view->showAdmin($columnists, $podcasts);
@@ -104,7 +105,6 @@ class AdminController{
         } else {
             $this->view->showError("ERROR! Faltan datos obligatorios"); //FALTA HACER FUNCION
         }
-        
     }
 
     public function editPodcast($idPodcast){
@@ -113,7 +113,6 @@ class AdminController{
         $listColumnists = $this->modelColumnists->getAll(); 
 
         $this->view->showEditPodcast($old,$listColumnists);
-
     }
 
     public function updatePodcast($idPodcast){
@@ -140,8 +139,6 @@ class AdminController{
         } else {
             $this->view->showError("ERROR! Faltan datos obligatorios"); //FALTA HACER FUNCION
         }
-
-
     }
 
     public function deletePodcast($idPodcast){
@@ -149,5 +146,13 @@ class AdminController{
         $this->modelPodcasts->deletePodcast($idPodcast);
         header('Location: ' . BASE_URL . 'admin');
 
+    }
+     //verifica que existe un usuario logueado
+     private function checklogged(){
+        session_start();
+        if (!isset($_SESSION['ID_USER'])){
+            header('Locarion: ' . BASE_URL . 'login');
+            die();
+        }
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'views/auth.view.php';
+require_once 'views/admin.view.php';
 require_once 'models/user.model.php';
 
 class AuthController{
@@ -30,19 +31,13 @@ class AuthController{
            session_start();
            $_SESSION['ID_USER'] = $user->id_user;
            $_SESSION['USERNAME'] = $user->username;
+           header('Location: ' . BASE_URL . 'admin');
         }else{
             $this->view->showFormLogin("Datos ingresados inválidos");
         }
     }
     
-    //verifica que existe un usuario logueado
-    private function checkloged(){
-        session_start();
-        if (isset($_SESSION['ID_USER'])){
-            header('Locarion: ' . BASE_URL . 'login');
-        }
-
-    }
+   
 
     
 }
