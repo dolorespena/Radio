@@ -11,14 +11,14 @@ class AdminController{
     private $view;
 
     public function __construct() {
-        
+
+        $this->checklogged();
         $this->modelColumnists = new ColumnistsModel();
         $this->modelPodcasts = new PodcastsModel();
         $this->view = new AdminView();
     }
 
     public function showAdmin(){
-        $this->checklogged();
         $columnists = $this->modelColumnists->getAll();
         $podcasts = $this->modelPodcasts->getAll();
         $this->view->showAdmin($columnists, $podcasts);
@@ -26,7 +26,6 @@ class AdminController{
 
     public function addColumnist(){
 
-        $this->checklogged();
         // toma los valores enviados por el usuario
         $nombre = $_POST['nombre'];
         $profesion = $_POST['profesion'];
@@ -45,8 +44,7 @@ class AdminController{
    }
 
    public function deleteColumnist($idColumnist){
-
-        $this->checklogged();   
+   
         $success = $this->modelColumnists->deleteColumnist($idColumnist);
 
         if ($success){
@@ -60,15 +58,13 @@ class AdminController{
 
    public function editColumnist($idColumnist){
 
-        $this->checklogged();
         $old = $this->modelColumnists->getColumnist($idColumnist);
         $this->view->showEditColumnist($old);
 
    }
 
    public function updateColumnist($idColumnist){
-
-        $this->checklogged();   
+   
         $nombre = $_POST['nombre'];
         $profesion = $_POST['profesion'];
         $descripcion = $_POST['descripcion'];
@@ -92,7 +88,6 @@ class AdminController{
 
     public function addPodcast(){
 
-        $this->checklogged();
         // toma los valores enviados por el usuario
         $nombre = $_POST['nombre'];
         $columnista = $_POST['columnista'];
@@ -115,7 +110,6 @@ class AdminController{
 
     public function editPodcast($idPodcast){
 
-        $this->checklogged();
         $old = $this->modelPodcasts->getPodcast($idPodcast);
         $listColumnists = $this->modelColumnists->getAll(); 
 
@@ -124,7 +118,6 @@ class AdminController{
 
     public function updatePodcast($idPodcast){
 
-        $this->checklogged();
         $nombre = $_POST['nombre'];
         $columnista = $_POST['columnista'];
         $descripcion = $_POST['descripcion'];
@@ -151,7 +144,6 @@ class AdminController{
 
     public function deletePodcast($idPodcast){
 
-        $this->checklogged();
         $this->modelPodcasts->deletePodcast($idPodcast);
         header('Location: ' . BASE_URL . 'admin');
 

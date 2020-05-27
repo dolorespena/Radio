@@ -92,6 +92,12 @@
 
         break;
 
+        case 'logout':
+            $controller = new AuthController;
+            $controller->logout();
+
+        break;
+
         case 'verify': 
             $controller = new AuthController;
             $controller->verify();

@@ -12,6 +12,10 @@ Class ColumnistsView{
         $smarty->assign('base_url', BASE_URL);
         $smarty->assign('columnists', $columnists);        
         $smarty->assign('url_columnist','columnistas/');
+        $smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
+        var_dump(!empty($_SESSION['ID_USER']));  
+        die();    
+     
             
         $smarty->display('columnist.tpl');
 
