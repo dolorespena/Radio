@@ -59,13 +59,13 @@
                     }
                 }
                 if ($parametros[1] == 'update'){
-                    if ($parametros[1] == 'columnist'){
+                    if ($parametros[2] == 'columnist'){
                         $controller = new AdminController;
-                        $controller->updateColumnist($parametros[2]);
+                        $controller->updateColumnist($parametros[3]);
                     }
-                    if ($parametros[1] == 'podcast'){
+                    if ($parametros[2] == 'podcast'){
                         $controller = new AdminController;
-                        $controller->updatePodcast($parametros[2]); 
+                        $controller->updatePodcast($parametros[3]); 
                     }
 
                 }
