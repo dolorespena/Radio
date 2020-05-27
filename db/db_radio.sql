@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2020 a las 16:05:35
--- Versión del servidor: 10.1.33-MariaDB
--- Versión de PHP: 7.2.6
+-- Tiempo de generación: 27-05-2020 a las 19:11:49
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -101,6 +101,26 @@ INSERT INTO `podcast` (`id_podcast`, `nombre`, `descripcion`, `url_audio`, `fech
 (28, 'El origen de la filosofía', 'Vamos a tratar de ver el origen de la filosofía, la analizaremos etimologícamente, y a partir de ahí, un ejercicio continuo de preguntas incesante.', 'audio/sztajnszrajber-origen.ogg', '2020-05-08', 11, 'Filosofía', NULL, 10),
 (29, 'Los filósofos presocráticos', 'Observamos el perfil de los primeros pensadores, como Tales de Mileto, con la filosofía aún relacionada con el mito. Describiremos sus características que forjaron sun identidad.', 'audio/sztajnszrajber-presocratico.ogg', '2020-05-07', 10, 'Filosofía Presocrática', NULL, 10);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `username` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id_user`, `username`, `password`) VALUES
+(1, 'admin1@admin.com', '$2y$10$1lwD7kKtOZKKRLLv.EbLseMhfQqfdkU7nCiCcAl5OjcBPoRwB33WK'),
+(2, 'user1@user.com', '$2y$10$nBROcHG6T2ac7CIZlVZ0iOkruCeOPjv3.NWOOMlO.MuNgGsPbVrGO');
+
 --
 -- Índices para tablas volcadas
 --
@@ -119,6 +139,12 @@ ALTER TABLE `podcast`
   ADD KEY `id_columnista_fk` (`id_columnista_fk`);
 
 --
+-- Indices de la tabla `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -126,13 +152,19 @@ ALTER TABLE `podcast`
 -- AUTO_INCREMENT de la tabla `columnista`
 --
 ALTER TABLE `columnista`
-  MODIFY `id_columnista` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_columnista` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `podcast`
 --
 ALTER TABLE `podcast`
   MODIFY `id_podcast` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT de la tabla `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -142,7 +174,7 @@ ALTER TABLE `podcast`
 -- Filtros para la tabla `podcast`
 --
 ALTER TABLE `podcast`
-  ADD CONSTRAINT `id_columinst_fk-id_columnist` FOREIGN KEY (`id_columnista_fk`) REFERENCES `columnista` (`id_columnista`);
+  ADD CONSTRAINT `id_columinst_fk-id_columnist` FOREIGN KEY (`id_columnista_fk`) REFERENCES `columnista` (`id_columnista`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
