@@ -9,6 +9,7 @@ class AdminView{
         $smarty->assign('base_url', BASE_URL);
         $smarty->assign('columnists', $columnists);  
         $smarty->assign('podcasts', $podcasts); 
+        $smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
             
         $smarty->display('admin.tpl');
     }
@@ -21,6 +22,7 @@ class AdminView{
         $smarty->assign('base_url', BASE_URL);
         $smarty->assign('old', $old);        
         $smarty->assign('url_columnist','columnistas/');
+        $smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
             
         $smarty->display('editColumnist.tpl');
         
@@ -33,7 +35,8 @@ class AdminView{
         $smarty->assign('title', 'Editar Podcast');
         $smarty->assign('base_url', BASE_URL);
         $smarty->assign('old', $old);  
-        $smarty->assign('listColumnists', $listColumnists);        
+        $smarty->assign('listColumnists', $listColumnists);
+        $smarty->assign('esAdmin', !empty($_SESSION['ID_USER'])); 
      
         $smarty->display('editPodcast.tpl');
 
