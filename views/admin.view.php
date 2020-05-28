@@ -10,6 +10,8 @@ class AdminView{
         $smarty->assign('columnists', $columnists);  
         $smarty->assign('podcasts', $podcasts); 
         $smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
+        
+      
             
         $smarty->display('admin.tpl');
     }

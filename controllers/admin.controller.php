@@ -35,7 +35,7 @@ class AdminController{
         $imagen = $_POST['imagen'];
 
         // verifica los datos obligatorios
-        if (!empty($nombre) || !empty($profesion) ||  !empty($descripcion) || !empty($imagen)) {
+        if (!empty($nombre) && !empty($profesion) &&  !empty($descripcion) && !empty($imagen)) {
             // inserta en la DB y redirige
             $this->modelColumnists->insertColumnist($nombre, $profesion, $descripcion, $imagen);
             header('Location: ' . BASE_URL . 'admin');
@@ -73,7 +73,7 @@ class AdminController{
         $imagen = $_POST['imagen'];
 
         // verifica los datos obligatorios
-        if (!empty($nombre) || !empty($profesion) ||  !empty($descripcion) || !empty($imagen)) {
+        if (!empty($nombre) && !empty($profesion) &&  !empty($descripcion) && !empty($imagen)) {
             // inserta en la DB y redirige
             $success = $this->modelColumnists->updateColumnist($idColumnist, $nombre, $profesion, $descripcion, $imagen);
             if ($success){
@@ -101,7 +101,7 @@ class AdminController{
         $invitado = $_POST['invitado'];
 
         // verifica los datos obligatorios
-        if (!empty($nombre) || !empty($columnista) ||  !empty($descripcion) || !empty($audio) || !empty($fecha) || !empty($duracion) || !empty($etiqueta)) {
+        if (!empty($nombre) && !empty($columnista) &&  !empty($descripcion) && !empty($audio) && !empty($fecha) && !empty($duracion) && !empty($etiqueta)) {
             // inserta en la DB y redirige
             $this->modelPodcasts->insertPodcast($nombre, $columnista, $descripcion, $audio, $fecha, $duracion, $etiqueta, $invitado);
             header('Location: ' . BASE_URL . 'admin');
@@ -130,7 +130,7 @@ class AdminController{
         $invitado = $_POST['invitado'];
 
         // verifica los datos obligatorios
-        if (!empty($nombre) || !empty($columnista) ||  !empty($descripcion) || !empty($audio) || !empty($fecha) || !empty($duracion) || !empty($etiqueta)) {
+        if (!empty($nombre) && !empty($columnista) &&  !empty($descripcion) && !empty($audio) && !empty($fecha) && !empty($duracion) && !empty($etiqueta)) {
             // inserta en la DB y redirige
             $success = $this->modelPodcasts->updatePodcast($idPodcast, $nombre, $columnista, $descripcion, $audio, $fecha, $duracion, $etiqueta, $invitado);
             if ($success){
