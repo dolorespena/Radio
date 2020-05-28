@@ -27,6 +27,8 @@ class AdminView{
         $smarty->assign('old', $old);        
         $smarty->assign('url_columnist','columnistas/');
         $smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
+        $smarty->assign('username', $_SESSION['USERNAME']);
+        $smarty->assign('saludo', '¡Hola ');
             
         $smarty->display('editColumnist.tpl');
         
@@ -41,6 +43,8 @@ class AdminView{
         $smarty->assign('old', $old);  
         $smarty->assign('listColumnists', $listColumnists);
         $smarty->assign('esAdmin', !empty($_SESSION['ID_USER'])); 
+        $smarty->assign('username', $_SESSION['USERNAME']);
+        $smarty->assign('saludo', '¡Hola ');
      
         $smarty->display('editPodcast.tpl');
 
