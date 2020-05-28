@@ -151,7 +151,7 @@ class AdminController{
      private function checklogged(){
         session_start();
         if (!isset($_SESSION['ID_USER'])){
-            header('Locarion: ' . BASE_URL . 'login');
+            header('Location: ' . BASE_URL . 'login');
             die();
         }
     }
