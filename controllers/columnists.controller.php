@@ -19,4 +19,8 @@ class ColumnistsController{
         // Actualizo la VISTA
         $this->view->showColumnists($columnists);
     }
+
+    public function showError($error){
+        $this->view->showError($error);
+    }
 }

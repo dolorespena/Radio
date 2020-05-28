@@ -103,6 +103,11 @@
             $controller->verify();
 
         break;
+
+        default :
+            $controller = new ColumnistsController;
+            $controller->showError("Error 404 - Página no encontrada");
+    break;
     }
 
 ?>

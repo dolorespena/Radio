@@ -9,6 +9,7 @@ class AdminController{
     private $modelColumnists;
     private $modelPodcasts;
     private $view;
+    private $viewColumnists;
 
     public function __construct() {
 
@@ -16,6 +17,7 @@ class AdminController{
         $this->modelColumnists = new ColumnistsModel();
         $this->modelPodcasts = new PodcastsModel();
         $this->view = new AdminView();
+        $this->viewColumnists = new ColumnistsView();
     }
 
     public function showAdmin(){
@@ -38,7 +40,7 @@ class AdminController{
             $this->modelColumnists->insertColumnist($nombre, $profesion, $descripcion, $imagen);
             header('Location: ' . BASE_URL . 'admin');
         } else {
-            $this->view->showError("ERROR! Faltan datos obligatorios"); //FALTA HACER FUNCION
+            $this->viewColumnists->showError("ERROR! Faltan datos obligatorios"); 
         }
     
    }
@@ -51,7 +53,7 @@ class AdminController{
             header('Location: ' . BASE_URL . 'admin');
         }
         else {
-            $this->view->showError("Debes eliminar todos los podcasts de este columnista previamente"); //FALTA HACER FUNCION
+            $this->viewColumnists->showError("Debes eliminar todos los podcasts de este columnista previamente"); 
         }
       
    }
@@ -78,10 +80,10 @@ class AdminController{
                 header('Location: ' . BASE_URL . 'admin');
             }
             else {
-                $this->view->showError("Error al actualizar la tabla"); //FALTA HACER FUNCION
+                $this->viewColumnists->showError("Error al actualizar la tabla"); 
             }
         } else {
-            $this->view->showError("ERROR! Faltan datos obligatorios"); //FALTA HACER FUNCION
+            $this->viewColumnists->showError("ERROR! Faltan datos obligatorios"); 
         }
 
    }
@@ -104,7 +106,7 @@ class AdminController{
             $this->modelPodcasts->insertPodcast($nombre, $columnista, $descripcion, $audio, $fecha, $duracion, $etiqueta, $invitado);
             header('Location: ' . BASE_URL . 'admin');
         } else {
-            $this->view->showError("ERROR! Faltan datos obligatorios"); //FALTA HACER FUNCION
+            $this->viewColumnists->showError("ERROR! Faltan datos obligatorios"); 
         }
     }
 
@@ -135,10 +137,10 @@ class AdminController{
                 header('Location: ' . BASE_URL . 'admin');
             }
             else {
-                $this->view->showError("Error al actualizar la tabla"); //FALTA HACER FUNCION
+                $this->viewColumnists->showError("Error al actualizar la tabla"); 
             }
         } else {
-            $this->view->showError("ERROR! Faltan datos obligatorios"); //FALTA HACER FUNCION
+            $this->viewColumnists->showError("ERROR! Faltan datos obligatorios"); 
         }
     }
 
