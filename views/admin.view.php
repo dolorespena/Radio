@@ -10,6 +10,8 @@ class AdminView{
         $smarty->assign('columnists', $columnists);  
         $smarty->assign('podcasts', $podcasts); 
         $smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
+        $smarty->assign('username', $_SESSION['USERNAME']);
+        $smarty->assign('saludo', '¡Hola ');
         
       
             
@@ -44,9 +46,4 @@ class AdminView{
 
     }
 
-
-    public function showError($message){ // Ultra provisiorio - hay que hacer view del error
-        echo($message);
-    }
-    
 }

@@ -1,5 +1,10 @@
 {include 'header.tpl'}
 
+{if $esAdmin}
+<p>{$saludo}{$username}!</p>
+
+{/if}
+
 <h1>Área de administración</h1>
 <h2 class="title2">Columnistas</h2>
 
