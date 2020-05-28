@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{$title}</title>
-    <base href="{$base_url}"> {* Tuve que agregar el header por esta línea nomás*}
-</head>
-<body>
+{include 'header.tpl'}
 
 
 <h1>{$title}</h1>
@@ -56,3 +48,5 @@
         <button type='submit'>Editar Podcast</button>
     </fieldset>
 </form>
+
+{include 'footer.tpl'}

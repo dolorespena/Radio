@@ -15,6 +15,8 @@ Class PodcastsView{
        $smarty->assign('podcasts', $podcasts);
        $smarty->assign('columnista',$podcasts[0]->columnista);
 
+       $smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
+
        $smarty->display('podcasts.tpl');
     }
 

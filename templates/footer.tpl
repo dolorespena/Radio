@@ -1,9 +1,12 @@
-            <footer>
-                <img src="{$base_url}img/profile/logo.png">
-                <form method="post" action="admin.view.php" class="login-outlogin">
+        <footer>
+            <img src="{$base_url}img/profile/logo.png">
+            <form method="post" action="admin.view.php" class="login-outlogin">
+                {if $esAdmin}
+                    <a href="logout">Logout</a>
+                {else}
                     <a href="login">Login</a>
-                </form>
-            </footer>
-        </div>    
+                {/if}
+            </form>
+        </footer>    
     </body>
 </html>
