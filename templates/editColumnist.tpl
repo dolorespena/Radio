@@ -1,5 +1,9 @@
 {include 'header.tpl'}
 
+{if $esAdmin}
+<p>{$saludo}{$username}!</p>
+{/if}
+
 <h1>{$title}</h1>
 
 <form action="admin/update/columnist/{$old->id_columnista}" method="post" class="formEdit">

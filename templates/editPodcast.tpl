@@ -1,5 +1,8 @@
 {include 'header.tpl'}
 
+{if $esAdmin}
+<p>{$saludo}{$username}!</p>
+{/if}
 
 <h1>{$title}</h1>
 

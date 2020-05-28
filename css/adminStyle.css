@@ -17,9 +17,11 @@ h1, h2{
     padding: 10px;
     margin-right: 50px;
     box-shadow: 0px 10px 10px rgb(158, 158, 158);
+    background-color: white;
 }
 .addColumnist, .addPodcast{
     box-shadow: 0px 10px 10px rgb(158, 158, 158);
+    background-color: white;
 }
 table tr th{
     color: #0080ce;
@@ -30,6 +32,7 @@ table tr td{
 }
 .adminPodcast table{
     margin-bottom: 20px;
+    background-color: white;
 }
 .addPodcast select{
     padding: 5px;
@@ -45,4 +48,10 @@ tbody tr{
     padding: 10px;
     box-shadow: 0px 10px 10px rgb(158, 158, 158);
     
+}
+p{
+    width: 200px;
+    background-color: #ff4994;
+    padding: 10px;
+    color: white;
 }
