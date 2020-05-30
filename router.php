@@ -4,6 +4,7 @@
     require_once 'controllers/podcasts.controller.php';
     require_once 'controllers/auth.controller.php';
     require_once 'controllers/admin.controller.php';
+    require_once 'controllers/message.controller.php';
 
     // definimos la base url de forma dinamica
     define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -67,9 +68,7 @@
                         $controller = new AdminController;
                         $controller->updatePodcast($parametros[3]); 
                     }
-
                 }
-
             }
             
         break;
@@ -105,7 +104,7 @@
         break;
 
         default :
-            $controller = new ColumnistsController;
+            $controller = new MessageController;
             $controller->showError("Error 404 - Página no encontrada");
     break;
     }

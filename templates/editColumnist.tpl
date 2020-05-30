@@ -1,7 +1,7 @@
 {include 'header.tpl'}
 
 {if $esAdmin}
-<p>{$saludo}{$username}!</p>
+<p class="saludoUsuario">{$saludo}{$username}!</p>
 {/if}
 
 <h1>{$title}</h1>
@@ -35,7 +35,6 @@
         <button type='submit'>Editar</button>
     </fieldset>
 </form>
-
     
 </body>
 </html>

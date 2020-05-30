@@ -3,6 +3,7 @@
 include_once 'models/columnists.model.php';
 include_once 'models/podcasts.model.php';
 include_once 'views/admin.view.php';
+include_once 'views/message.view.php';
 
 class AdminController{
 
@@ -10,6 +11,7 @@ class AdminController{
     private $modelPodcasts;
     private $view;
     private $viewColumnists;
+    private $viewMessage;
 
     public function __construct() {
 
@@ -18,6 +20,7 @@ class AdminController{
         $this->modelPodcasts = new PodcastsModel();
         $this->view = new AdminView();
         $this->viewColumnists = new ColumnistsView();
+        $this->viewMessage = new MessageView();
     }
 
     public function showAdmin(){
@@ -40,9 +43,8 @@ class AdminController{
             $this->modelColumnists->insertColumnist($nombre, $profesion, $descripcion, $imagen);
             header('Location: ' . BASE_URL . 'admin');
         } else {
-            $this->viewColumnists->showError("ERROR! Faltan datos obligatorios"); 
+            $this->viewMessage->showError("ERROR! Faltan datos obligatorios"); 
         }
-    
    }
 
    public function deleteColumnist($idColumnist){
@@ -53,16 +55,14 @@ class AdminController{
             header('Location: ' . BASE_URL . 'admin');
         }
         else {
-            $this->viewColumnists->showError("Debes eliminar todos los podcasts de este columnista previamente"); 
+            $this->viewMessage->showError("Debes eliminar todos los podcasts de este columnista previamente"); 
         }
-      
    }
 
    public function editColumnist($idColumnist){
 
         $old = $this->modelColumnists->getColumnist($idColumnist);
         $this->view->showEditColumnist($old);
-
    }
 
    public function updateColumnist($idColumnist){
@@ -80,12 +80,11 @@ class AdminController{
                 header('Location: ' . BASE_URL . 'admin');
             }
             else {
-                $this->viewColumnists->showError("Error al actualizar la tabla"); 
+                $this->viewMessage->showError("Error al actualizar la tabla"); 
             }
         } else {
-            $this->viewColumnists->showError("ERROR! Faltan datos obligatorios"); 
+            $this->viewMessage->showError("ERROR! Faltan datos obligatorios"); 
         }
-
    }
 
     public function addPodcast(){
@@ -106,7 +105,7 @@ class AdminController{
             $this->modelPodcasts->insertPodcast($nombre, $columnista, $descripcion, $audio, $fecha, $duracion, $etiqueta, $invitado);
             header('Location: ' . BASE_URL . 'admin');
         } else {
-            $this->viewColumnists->showError("ERROR! Faltan datos obligatorios"); 
+            $this->viewMessage->showError("ERROR! Faltan datos obligatorios"); 
         }
     }
 
@@ -137,10 +136,10 @@ class AdminController{
                 header('Location: ' . BASE_URL . 'admin');
             }
             else {
-                $this->viewColumnists->showError("Error al actualizar la tabla"); 
+                $this->viewMessage->showError("Error al actualizar la tabla"); 
             }
         } else {
-            $this->viewColumnists->showError("ERROR! Faltan datos obligatorios"); 
+            $this->viewMessage->showError("ERROR! Faltan datos obligatorios"); 
         }
     }
 
@@ -148,10 +147,10 @@ class AdminController{
 
         $this->modelPodcasts->deletePodcast($idPodcast);
         header('Location: ' . BASE_URL . 'admin');
-
     }
-     //verifica que existe un usuario logueado
-     private function checklogged(){
+
+    //verifica que existe un usuario logueado
+    private function checklogged(){
         session_start();
         if (!isset($_SESSION['ID_USER'])){
             header('Location: ' . BASE_URL . 'login');

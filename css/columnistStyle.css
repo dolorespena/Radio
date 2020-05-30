@@ -27,15 +27,3 @@ td img{
     width: 250px;
     padding: 10px;
 }
-
-.msg-error{
-    font-weight: bold;
-    text-align: center;
-    font-size: 1.5em;
-    margin-bottom: 0;
-}
-
-.img-error{
-    display:block;
-    margin:auto;
-}

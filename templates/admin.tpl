@@ -1,8 +1,7 @@
 {include 'header.tpl'}
 
 {if $esAdmin}
-<p>{$saludo}{$username}!</p>
-
+<p class="saludoUsuario">{$saludo}{$username}!</p>
 {/if}
 
 <h1>Área de administración</h1>
@@ -22,6 +21,7 @@
                 <td>{$columnist->descripcion}</td>
                 <td class="editDelete"><a href="admin/edit/columnist/{$columnist->id_columnista}" >Editar</a></td>
                 <td class="editDelete"><a href="admin/delete/columnist/{$columnist->id_columnista}" >Eliminar</a></td>
+                <td class="editDelete"><a href="admin/delete/podcast/{$columnist->id_columnist}">Ver Podcast</a></td>
             </tr>      
         {/foreach}
     </table>
@@ -55,7 +55,6 @@
         </fieldset>
     </form>
 </div>
-
 <h2 class="title2">Podcasts</h2>
 <div class="adminPodcast">
     <table>

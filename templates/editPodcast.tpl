@@ -1,12 +1,12 @@
 {include 'header.tpl'}
 
 {if $esAdmin}
-<p>{$saludo}{$username}!</p>
+<p class="saludoUsuario">{$saludo}{$username}!</p>
 {/if}
 
 <h1>{$title}</h1>
 
-<form action="admin/update/podcast/{$old->id_podcast}" method="post">
+<form action="admin/update/podcast/{$old->id_podcast}" method="post" class="formEdit">
     
     <fieldset>
         <legend>Agregar Podcast</legend>

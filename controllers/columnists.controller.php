@@ -4,6 +4,7 @@ require_once 'models/columnists.model.php';
 require_once 'views/columnists.view.php';
 
 class ColumnistsController{
+    
     private $model;
     private $view;
 
@@ -18,9 +19,5 @@ class ColumnistsController{
 
         // Actualizo la VISTA
         $this->view->showColumnists($columnists);
-    }
-
-    public function showError($error){
-        $this->view->showError($error);
     }
 }

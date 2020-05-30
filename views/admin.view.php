@@ -1,7 +1,12 @@
 <?php
 
+require_once('libs/Smarty.class.php');
+
 class AdminView{
 
+    private $smarty;
+
+   
     public function showAdmin($columnists, $podcasts){
         $smarty = new Smarty();
 
