@@ -10,7 +10,6 @@ class AdminController{
     private $modelColumnists;
     private $modelPodcasts;
     private $view;
-    private $viewColumnists;
     private $viewMessage;
 
     public function __construct() {
@@ -19,7 +18,6 @@ class AdminController{
         $this->modelColumnists = new ColumnistsModel();
         $this->modelPodcasts = new PodcastsModel();
         $this->view = new AdminView();
-        $this->viewColumnists = new ColumnistsView();
         $this->viewMessage = new MessageView();
     }
 
