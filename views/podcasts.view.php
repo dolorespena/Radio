@@ -18,7 +18,7 @@ Class PodcastsView{
        $smarty->display('podcasts.tpl');
     }
 
-    public function showError($message){ // Ultra provisiorio - hay que hacer view del error
+    public function showError($message){ 
         echo($message);
     }
 
