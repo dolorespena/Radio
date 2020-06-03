@@ -6,7 +6,7 @@
 
 <h1>{$title}</h1>
 
-<form action="admin/update/columnist/{$old->id_columnista}" method="post" class="formEdit">
+<form action="admin/columnist/update/{$old->id_columnista}" method="post" class="formEdit">
     
     <fieldset>
         <legend>Agregar Columnista</legend>

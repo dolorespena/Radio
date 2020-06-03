@@ -21,7 +21,7 @@ class AdminView{
         $this->smarty->assign('columnists', $columnists);  
         $this->smarty->assign('podcasts', $podcasts); 
             
-        $this->smarty->display('admin.tpl');
+        $this->smarty->display('adminColumnist.tpl');
     }
 
     public function showEditColumnist($old){

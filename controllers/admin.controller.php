@@ -4,6 +4,7 @@ include_once 'models/columnists.model.php';
 include_once 'models/podcasts.model.php';
 include_once 'views/admin.view.php';
 include_once 'views/message.view.php';
+include_once 'views/podcasts.view.php';
 
 class AdminController{
 
@@ -11,6 +12,7 @@ class AdminController{
     private $modelPodcasts;
     private $view;
     private $viewMessage;
+    private $viewPodcasts;
 
     public function __construct() {
 
@@ -19,6 +21,7 @@ class AdminController{
         $this->modelPodcasts = new PodcastsModel();
         $this->view = new AdminView();
         $this->viewMessage = new MessageView();
+        $this->viewPodcasts = new PodcastsView();
     }
 
     public function showAdmin(){
@@ -147,6 +150,12 @@ class AdminController{
         header('Location: ' . BASE_URL . 'admin');
     }
 
+    public function viewPodcasts($idColumnist){
+        
+        $podcasts = $this->modelPodcasts->getPodcasts($idColumnist);
+        $this->viewPodcasts->showAdminPodcasts($podcasts);
+    }
+
     //verifica que existe un usuario logueado
     private function checklogged(){
         session_start();
@@ -155,4 +164,6 @@ class AdminController{
             die();
         }
     }
+
+  
 }
