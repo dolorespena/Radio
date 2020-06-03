@@ -26,47 +26,46 @@
             if (empty($parametros[1])){
                 $controller = new AdminController;
                 $controller->showAdmin();
-
             }
             else {
-                if ($parametros[1] == 'add'){
-                    if ($parametros[2] == 'columnist'){
+                if ($parametros[1] == 'columnist'){
+                    if ($parametros[2] == 'add'){
                         $controller = new AdminController;
                         $controller->addColumnist();
                     }
-                    if ($parametros[2] == 'podcast'){
+                    if ($parametros[2] == 'delete'){
                         $controller = new AdminController;
-                        $controller->addPodcast(); 
+                        $controller->deleteColumnist($parametros[3]); 
                     }
-                }
-                if ($parametros[1] == 'delete'){
-                    if ($parametros[2] == 'columnist'){
-                        $controller = new AdminController;
-                        $controller->deleteColumnist($parametros[3]);
-                    }
-                    if ($parametros[2] == 'podcast'){
-                        $controller = new AdminController;
-                        $controller->deletePodcast($parametros[3]); 
-                    }
-                }
-                if ($parametros[1] == 'edit'){
-                    if ($parametros[2] == 'columnist'){
+                    if ($parametros[2] == 'edit'){
                         $controller = new AdminController;
                         $controller->editColumnist($parametros[3]);
                     }
-                    if ($parametros[2] == 'podcast'){
-                        $controller = new AdminController;
-                        $controller->editPodcast($parametros[3]); 
-                    }
-                }
-                if ($parametros[1] == 'update'){
-                    if ($parametros[2] == 'columnist'){
+                    if ($parametros[2] == 'update'){
                         $controller = new AdminController;
                         $controller->updateColumnist($parametros[3]);
                     }
-                    if ($parametros[2] == 'podcast'){
+                }
+                if ($parametros[1] == 'podcast'){
+                    if ($parametros[2] == 'add'){
                         $controller = new AdminController;
-                        $controller->updatePodcast($parametros[3]); 
+                        $controller->addPodcast();
+                    }
+                    if ($parametros[2] == 'delete'){
+                        $controller = new AdminController;
+                        $controller->deletePodcast($parametros[3]); 
+                    }
+                    if ($parametros[2] == 'edit'){
+                        $controller = new AdminController;
+                        $controller->editPodcast($parametros[3]);
+                    }
+                    if ($parametros[2] == 'update'){
+                        $controller = new AdminController;
+                        $controller->updatePodcast($parametros[3]);
+                    }
+                    if ($parametros[2] == 'view'){
+                        $controller = new AdminController;
+                        $controller->viewPodcasts($parametros[3]);
                     }
                 }
             }
