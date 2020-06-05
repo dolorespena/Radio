@@ -1,9 +1,10 @@
 h1, h2{
     text-align: center;
 }
+
 .title2{
     background-color:  #f6f700;
-    width:150px;
+    max-width: 300px;
     padding: 7px;
     margin: 30px auto;
 }

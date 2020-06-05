@@ -51,5 +51,5 @@
         <button type='submit'>Editar Podcast</button>
     </fieldset>
 </form>
-
+<a href="admin">Volver</a>
 {include 'footer.tpl'}

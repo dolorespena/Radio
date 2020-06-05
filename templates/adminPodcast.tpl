@@ -6,7 +6,7 @@
 
 <h1>Área de administración</h1>
 
-<h2 class="title2">Podcasts</h2>
+<h2 class="title2">Podcasts de {$podcasts[0]->columnista}</h2>
 <div class="adminPodcast">
     <table>
         <tr>
@@ -19,7 +19,7 @@
                 <td>{$podcast->nombre}</td>
                 <td>{$podcast->fecha}</td>
                 <td>{$podcast->columnista}</td>
-                <td class="editDelete"><a href="admin/podcast/edit/{$podcast->id_podcast}-{$columnist->nombre}" >Editar</a></td>
+                <td class="editDelete"><a href="admin/podcast/edit/{$podcast->id_podcast}" >Editar</a></td>
                 <td class="editDelete"><a href="admin/podcast/delete/{$podcast->id_podcast}">Eliminar</a></td>
             </tr>      
         {/foreach}
