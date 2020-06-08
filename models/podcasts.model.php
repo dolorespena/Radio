@@ -1,12 +1,14 @@
 <?php
 
-Class PodcastsModel{
+include_once 'models/base.model.php';
+
+Class PodcastsModel extends Model{
     
     private $db;
 
     public function __construct(){
         // 1. abro la conexión con MySQL 
-        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_radio;charset=utf8', 'root', '');
+        $this->db = $this->createConection();
     }
 
     public function getAll(){
