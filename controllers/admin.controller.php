@@ -5,6 +5,7 @@ include_once 'models/podcasts.model.php';
 include_once 'views/admin.view.php';
 include_once 'views/message.view.php';
 include_once 'views/podcasts.view.php';
+include_once 'helpers/auth.helper.php';
 
 class AdminController{
 
@@ -16,7 +17,7 @@ class AdminController{
 
     public function __construct() {
 
-        $this->checklogged();
+        AuthHelper::checklogged();
         $this->modelColumnists = new ColumnistsModel();
         $this->modelPodcasts = new PodcastsModel();
         $this->view = new AdminView();
@@ -156,14 +157,7 @@ class AdminController{
         $this->viewPodcasts->showAdminPodcasts($podcasts);
     }
 
-    //verifica que existe un usuario logueado
-    private function checklogged(){
-        session_start();
-        if (!isset($_SESSION['ID_USER'])){
-            header('Location: ' . BASE_URL . 'login');
-            die();
-        }
-    }
+  
 
   
 }
