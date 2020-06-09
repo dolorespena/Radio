@@ -8,8 +8,11 @@ class AdminView extends View{
     public function __construct(){
         parent::__construct();
         
-         $this->getSmarty()->assign('esAdmin', !empty($_SESSION['ID_USER']));
-         $this->getSmarty()->assign('username', $_SESSION['USERNAME']);
+        $userName = AuthHelper::getUserLogged();
+        $isLogged = AuthHelper::isLogged();
+
+         $this->getSmarty()->assign('esAdmin', $isLogged);
+         $this->getSmarty()->assign('username', $userName);
          $this->getSmarty()->assign('saludo', '¡Hola ');
     }
    

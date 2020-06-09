@@ -1,4 +1,9 @@
 {include 'header.tpl'}
+
+{if $esAdmin}
+<p class="saludoUsuario">{$saludo}{$username}!</p>
+{/if}
+
     <table class="table_columnist">
         {foreach $columnists item=columnist}
             <tr>

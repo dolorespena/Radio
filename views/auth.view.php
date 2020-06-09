@@ -12,9 +12,11 @@ class AuthView extends View{
 
     public function showFormLogin($error = null) {
 
+        $isLogged = AuthHelper::isLogged();
+
         $this->getSmarty()->assign('title', 'Columnistas');
         $this->getSmarty()->assign('error', $error);
-        $this->getSmarty()->assign('esAdmin', !empty($_SESSION['ID_USER']));
+        $this->getSmarty()->assign('esAdmin', $isLogged);
         
         $this->getSmarty()->display('formLogin.tpl');
     }

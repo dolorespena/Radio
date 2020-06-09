@@ -28,9 +28,8 @@ class AuthController{
 
         if ($user && password_verify($password, $user->password)){
            //abro sesion y guardo al usuario
-           session_start();
-           $_SESSION['ID_USER'] = $user->id_user;
-           $_SESSION['USERNAME'] = $user->username;
+           
+           AuthHelper::login($user);
            header('Location: ' . BASE_URL . 'admin');
         }else{
             $this->view->showFormLogin("Datos ingresados inválidos");
@@ -38,8 +37,8 @@ class AuthController{
     }
 
     public function logout(){
-        session_start();
-        session_destroy();
+        
+        AuthHelper::logout();
         header('Location: ' . BASE_URL . 'login');
 
 
