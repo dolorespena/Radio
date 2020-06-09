@@ -1,19 +1,21 @@
 <?php
 
-require_once('libs/Smarty.class.php');
+require_once 'views/base.view.php';
 
-Class ColumnistsView{
+Class ColumnistsView extends View{
+
+    public function __construct(){
+        parent::__construct();
+        
+    }
 
     public function showColumnists($columnists){
 
-        $smarty = new Smarty();
-
-        $smarty->assign('title', 'Columnistas');
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->assign('columnists', $columnists);        
-        $smarty->assign('url_columnist','columnistas/');
-        $smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
+        $this->getSmarty()->assign('title', 'Columnistas');
+        $this->getSmarty()->assign('columnists', $columnists);        
+        $this->getSmarty()->assign('url_columnist','columnistas/');
+        $this->getSmarty()->assign('esAdmin', !empty($_SESSION['ID_USER']));
             
-        $smarty->display('columnist.tpl');
+        $this->getSmarty()->display('columnist.tpl');
     }
 }

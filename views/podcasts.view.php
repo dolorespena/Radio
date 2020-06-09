@@ -1,39 +1,35 @@
 <?php
 
-require_once('libs/Smarty.class.php');
+require_once 'views/base.view.php';
 
+Class PodcastsView extends View{
 
-Class PodcastsView{
+    public function __construct(){
+        parent::__construct();
+        
+    }
 
     public function showPodcasts($podcasts){
         
-       $smarty = new Smarty();
+       $this->getSmarty()->assign('title', 'Columnistas');
+       $this->getSmarty()->assign('podcasts', $podcasts);
+       $this->getSmarty()->assign('columnista',$podcasts[0]->columnista);
+       $this->getSmarty()->assign('esAdmin', !empty($_SESSION['ID_USER']));
 
-       $smarty->assign('base_url', BASE_URL);
-       $smarty->assign('title', 'Columnistas');
-       $smarty->assign('podcasts', $podcasts);
-       $smarty->assign('columnista',$podcasts[0]->columnista);
-       $smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
-
-       $smarty->display('podcasts.tpl');
+       $this->getSmarty()->display('podcasts.tpl');
     }
 
     public function showAdminPodcasts($podcasts){
-        
-        $smarty = new Smarty();
  
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->assign('title', 'Columnistas');
-        $smarty->assign('podcasts', $podcasts);
-        $smarty->assign('columnista',$podcasts[0]->columnista);
-        $smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
-        $smarty->assign('saludo', '¡Hola ');
-        $smarty->assign('username', $_SESSION['USERNAME']);
+        $this->getSmarty()->assign('title', 'Podcasts');
+        $this->getSmarty()->assign('podcasts', $podcasts);
+        $this->getSmarty()->assign('columnista',$podcasts[0]->columnista);
+        $this->getSmarty()->assign('esAdmin', !empty($_SESSION['ID_USER']));
+        $this->getSmarty()->assign('saludo', '¡Hola ');
+        $this->getSmarty()->assign('username', $_SESSION['USERNAME']);
  
-        $smarty->display('adminPodcast.tpl');
+        $this->getSmarty()->display('adminPodcast.tpl');
      }
-    public function showError($message){ 
-        echo($message);
-    }
+
 
 }

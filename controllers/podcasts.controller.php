@@ -5,12 +5,11 @@ require_once 'views/podcasts.view.php';
 
 class PodcastsController{
     
-    private $modelColumnists; //Chanchada que tendremos que corregir
     private $model;
     private $view;
 
     public function __construct() {
-        $this->modelColumnists = new ColumnistsModel(); // Parte de la chanchada a corregir
+        $this->modelColumnists = new ColumnistsModel(); 
         $this->model = new PodcastsModel();
         $this->view = new PodcastsView();
         

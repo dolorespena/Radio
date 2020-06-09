@@ -1,44 +1,42 @@
 <?php
 
-require_once('libs/Smarty.class.php');
+require_once 'views/base.view.php';
 
-class AdminView{
+class AdminView extends View{
 
-    private $smarty;
 
     public function __construct(){
-        $this->smarty = new Smarty();
+        parent::__construct();
         
-        $this->smarty->assign('base_url', BASE_URL);
-        $this->smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
-        $this->smarty->assign('username', $_SESSION['USERNAME']);
-        $this->smarty->assign('saludo', '¡Hola ');
+         $this->getSmarty()->assign('esAdmin', !empty($_SESSION['ID_USER']));
+         $this->getSmarty()->assign('username', $_SESSION['USERNAME']);
+         $this->getSmarty()->assign('saludo', '¡Hola ');
     }
    
     public function showAdmin($columnists, $podcasts){        
 
-        $this->smarty->assign('title', 'Administración');
-        $this->smarty->assign('columnists', $columnists);  
-        $this->smarty->assign('podcasts', $podcasts); 
+         $this->getSmarty()->assign('title', 'Administración');
+         $this->getSmarty()->assign('columnists', $columnists);  
+         $this->getSmarty()->assign('podcasts', $podcasts); 
             
-        $this->smarty->display('adminColumnist.tpl');
+         $this->getSmarty()->display('adminColumnist.tpl');
     }
 
     public function showEditColumnist($old){
         
-        $this->smarty->assign('title', 'Editar Columnista');
-        $this->smarty->assign('old', $old);        
-        $this->smarty->assign('url_columnist','columnistas/');
+         $this->getSmarty()->assign('title', 'Editar Columnista');
+         $this->getSmarty()->assign('old', $old);        
+         $this->getSmarty()->assign('url_columnist','columnistas/');
 
-        $this->smarty->display('editColumnist.tpl');
+         $this->getSmarty()->display('editColumnist.tpl');
     }
 
     public function showEditPodcast($old, $listColumnists){
 
-        $this->smarty->assign('title', 'Editar Podcast');
-        $this->smarty->assign('old', $old);  
-        $this->smarty->assign('listColumnists', $listColumnists);
+         $this->getSmarty()->assign('title', 'Editar Podcast');
+         $this->getSmarty()->assign('old', $old);  
+         $this->getSmarty()->assign('listColumnists', $listColumnists);
      
-        $this->smarty->display('editPodcast.tpl');
+         $this->getSmarty()->display('editPodcast.tpl');
     }
 }

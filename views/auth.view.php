@@ -1,20 +1,22 @@
 <?php
 
-require_once('libs/Smarty.class.php');
+require_once 'views/base.view.php';
 
 
-class AuthView{
+class AuthView extends View{
+
+    public function __construct(){
+        parent::__construct();
+        
+    }
 
     public function showFormLogin($error = null) {
 
-        $smarty = new Smarty();
-
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->assign('title', 'Columnistas');
-        $smarty->assign('error', $error);
-        $smarty->assign('esAdmin', !empty($_SESSION['ID_USER']));
+        $this->getSmarty()->assign('title', 'Columnistas');
+        $this->getSmarty()->assign('error', $error);
+        $this->getSmarty()->assign('esAdmin', !empty($_SESSION['ID_USER']));
         
-        $smarty->display('formLogin.tpl');
+        $this->getSmarty()->display('formLogin.tpl');
     }
     
 }
