@@ -7,7 +7,8 @@ require_once 'api/api-controllers/columnist-api.controller.php';
 $router = new Router();
 
 //creo la tabla de ruteo
-$router->addRoute('columnistas', 'GET', 'ColimnistApiController', 'getColumnists');
+$router->addRoute('columnistas', 'GET', 'ColumnistApiController', 'getColumnists');
+$router->addRoute('columnistas/:ID', 'GET', 'ColumnistApiController','getColumnist');
 
 //ruteo
 $router->route($_REQUEST['resource'], $_SERVER['REQUEST_METHOD']);

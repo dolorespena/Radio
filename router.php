@@ -81,31 +81,27 @@
                 $controller = new PodcastsController;
                 $controller->showPodcasts($parametros[1]);
             }
-
         break;
 
         case 'login': 
             $controller = new AuthController;
             $controller->showLogin();
-
         break;
 
         case 'logout':
             $controller = new AuthController;
             $controller->logout();
-
         break;
 
         case 'verify': 
             $controller = new AuthController;
             $controller->verify();
-
         break;
 
         default :
             $controller = new MessageController;
             $controller->showError("Error 404 - Página no encontrada");
-    break;
+        break;
     }
 
 ?>
