@@ -13,12 +13,12 @@ class ColumnistApiController{
         $this->view = new APIView();
     }
 
-    public function getColumnists(){
+    public function getColumnists($params = []){
         $columnists = $this->model->getAll(); //obtengo los columnistas
         $this->view->response($columnists, 200); //lo paso a la vista
     }
 
-    public function getColumnist($params){
+    public function getColumnist($params = []){
         //obtengo el id de los params
         $idColumnist = $params[':ID'];
 
@@ -29,7 +29,7 @@ class ColumnistApiController{
             $this->view->response("No existe ese Columnista", 404);
     }
 
-    public function deleteColumnist($params){
+    public function deleteColumnist($params = []){
         $idColumnist = $params[':ID'];
         $columnist = $this->model->getColumnist($idColumnist);// traigo el columnista con ese ID si existe
         
