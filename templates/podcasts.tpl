@@ -1,5 +1,9 @@
 {include 'header.tpl'}
 
+{if $esAdmin}
+<p class="saludoUsuario">{$saludo}{$username}!</p>
+{/if}
+
     <h1 class= "titulo-ppal-podcasts"> Todos los podcasts de {$columnista}</h1>
 
     <div class="contenedor-ppal-podcasts"> 
@@ -12,12 +16,7 @@
                 <audio controls ><source src= "{$base_url}{$podcast->url_audio}"
                 type='audio/ogg' codecs='vorbis'>Your browser does not support the element.</audio> 
             </div> {* cierre box-podcast *}
-            {if $esAdmin}
-                <div>
-                    <textarea name="textarea" class="coment"></textarea>
-                    <button type="submit">Enviar</button>
-                </div>
-            {/if}
+            
         {/foreach}
 
     </div> {* Cierre contenedor-principal*}

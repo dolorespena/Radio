@@ -25,7 +25,7 @@ class AuthController{
 
         //busco el usuario
         $user = $this->model->getUser($email);
-        if ($user && password_verify($password, $user->password)){
+            if ($user && password_verify($password, $user->password)){
                 //abro sesion y guardo al usuario
                 AuthHelper::login($user);
                 if($user->admin == 0){
@@ -34,7 +34,26 @@ class AuthController{
                     header('Location: ' . BASE_URL . 'admin');//redirecciono a admin
                 }
         }else{
-             $this->view->showFormLogin("Datos ingresados inválidos");
+            $this->view->showFormLogin("Datos ingresados inválidos");
+        }
+    }
+
+    public function showRegistration(){
+        $this->view->showRegistrationForm();
+    }
+
+    public function checkIn(){
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $admin = 0;
+
+        if(!empty($username) && !empty($email) && !empty($password)){
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $this->model->addUser($username, $email, $hash, $admin);
+            header('Location: ' . BASE_URL . 'columnistas' );
+        }else{
+            $this->view->showFormLogin("Debe ingresar todos los campos");
         }
     }
 

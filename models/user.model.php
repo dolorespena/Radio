@@ -15,4 +15,9 @@ class UserModel extends Model{
         $sentencia->execute([$email]);
         return $sentencia->fetch(PDO::FETCH_OBJ);
     }
+
+    public function addUser($username, $email, $password, $admin){
+        $sentencia = $this->db->prepare("INSERT INTO user (username, email, password, admin) VALUES (?, ?, ?, ?)");
+        $sentencia->execute([$username, $email, $password, $admin]);
+    }
 }

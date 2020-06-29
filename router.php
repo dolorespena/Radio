@@ -98,6 +98,16 @@
             $controller->verify();
         break;
 
+        case 'registration':
+            $controller = new AuthController;
+            $controller->showRegistration();
+        break;
+
+        case 'checkIn': 
+            $controller = new AuthController;
+            $controller->checkIn();
+        break;
+
         default :
             $controller = new MessageController;
             $controller->showError("Error 404 - Página no encontrada");
