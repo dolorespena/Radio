@@ -25,7 +25,7 @@
         {/foreach}
     </table>
 
-    <form action="admin/podcast/add/" method="post" class="addPodcast">
+    <form action="admin/podcast/add/" method="post" class="addPodcast" enctype="multipart/form-data">
         
         <fieldset>
             <legend>Agregar Podcast</legend>
@@ -35,7 +35,7 @@
 
             <label for="columnista">Columnista</label>
             <select name="columnista" id="columnista">
-            {foreach from=$columnists item=columnist}
+            {foreach from=$listColumnists item=columnist}
                 <option value={$columnist->id_columnista}>{$columnist->nombre}</option>         
             {/foreach} 
             </select>
@@ -44,15 +44,7 @@
             <textarea name="descripcion" id="descripcion"></textarea>
 
             <label for="audio">Audio</label>
-            <select name='audio'>
-                <option value='audio/muestra1.ogg'>Audio 1</option>
-                <option value='audio/muestra2.ogg'>Audio 2</option>
-                <option value='audio/muestra3.ogg'>Audio 3</option>
-                <option value='audio/muestra4.ogg'>Audio 4</option>
-                <option value='audio/muestra5.ogg'>Audio 5</option>
-                <option value='audio/muestra6.ogg'>Audio 6</option>
-                <option value='audio/muestra7.ogg'>Audio 7</option>  
-            </select><br>
+            <input type="file" name="audio" id="podcast">
 
             <label for="fecha">Fecha</label>
             <input type="date" name="fecha" id="fecha">

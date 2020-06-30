@@ -25,15 +25,5 @@ Class PodcastsView extends View{
        $this->getSmarty()->display('podcasts.tpl');
     }
 
-    public function showAdminPodcasts($podcasts){
- 
-        $this->getSmarty()->assign('title', 'Podcasts');
-        $this->getSmarty()->assign('podcasts', $podcasts);
-        $this->getSmarty()->assign('columnista',$podcasts[0]->columnista);
-        
- 
-        $this->getSmarty()->display('adminPodcast.tpl');
-     }
-
 
 }

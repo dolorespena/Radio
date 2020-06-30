@@ -95,17 +95,39 @@ class AdminController{
         $nombre = $_POST['nombre'];
         $columnista = $_POST['columnista'];
         $descripcion = $_POST['descripcion'];
-        $audio = $_POST['audio'];
+        $audio = $_FILES ['audio'];
         $fecha = $_POST['fecha'];
         $duracion = $_POST['duracion'];
         $etiqueta = $_POST['etiqueta'];
         $invitado = $_POST['invitado'];
 
+        //Datos del archivo ingresado
+        
+        $nombreOriginal =  $_FILES ['audio']['name'];
+        $nombreTemporal = $_FILES ['audio']['tmp_name'];
+        $tipoAudio = $_FILES['audio']['type'];
+        $isValid = $this->isValidType($tipoAudio);
+        
         // verifica los datos obligatorios
         if (!empty($nombre) && !empty($columnista) &&  !empty($descripcion) && !empty($audio) && !empty($fecha) && !empty($duracion) && !empty($etiqueta)) {
             // inserta en la DB y redirige
-            $this->modelPodcasts->insertPodcast($nombre, $columnista, $descripcion, $audio, $fecha, $duracion, $etiqueta, $invitado);
-            header('Location: ' . BASE_URL . 'admin');
+
+            if ($isValid){
+                $nombreFinal = "audio/" . uniqid("", true) . "." . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
+                $success = $this->modelPodcasts->insertPodcast($nombre, $columnista, $descripcion, $nombreFinal, $fecha, $duracion, $etiqueta, $invitado);
+                
+                if ($success){
+                move_uploaded_file($nombreTemporal, $nombreFinal);
+                header('Location: ' . BASE_URL . 'admin');
+                }
+                else{
+                    $this->viewMessage->showError("ERROR! Falló la carga del podcast"); 
+                } 
+            }
+            else{
+                $this->viewMessage->showError("ERROR! Tipo de archivo no soportado"); 
+            }
+            
         } else {
             $this->viewMessage->showError("ERROR! Faltan datos obligatorios"); 
         }
@@ -154,7 +176,19 @@ class AdminController{
     public function viewPodcasts($idColumnist){
         
         $podcasts = $this->modelPodcasts->getPodcasts($idColumnist);
-        $this->viewPodcasts->showAdminPodcasts($podcasts);
+        $listColumnists = $this->modelColumnists->getAll();
+        $this->view->showAdminPodcasts($podcasts, $listColumnists);
+    }
+
+    private function isValidType($audioType) {
+
+        if ($audioType == "audio/ogg" || $audioType == "audio/mpeg"){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 
   
