@@ -169,7 +169,11 @@ class AdminController{
 
     public function deletePodcast($idPodcast){
 
-        $this->modelPodcasts->deletePodcast($idPodcast);
+        //Rescatamos la dirección del archivo antes de eliminarlo
+        $path = $this->modelPodcasts->getPathPodcast($idPodcast)->url_audio;
+
+        //Pasamos como segundo parámetro la dirección para borrarlo de nuestro repositorio ademas de la DB
+        $this->modelPodcasts->deletePodcast($idPodcast, $path);
         header('Location: ' . BASE_URL . 'admin');
     }
 

@@ -55,11 +55,12 @@ Class PodcastsModel extends Model{
         return $success;
     }
 
-    public function deletePodcast($idPodcast){
+    public function deletePodcast($idPodcast, $path){
 
          // 2. enviamos la consulta
          $sentencia = $this->db->prepare("DELETE FROM podcast WHERE id_podcast = ?"); // prepara la consulta
          $sentencia->execute([$idPodcast]); // ejecuta
+         unlink($path);
     }
 
     /**
@@ -79,6 +80,15 @@ Class PodcastsModel extends Model{
         move_uploaded_file($nombreFisico, $nombreFinal); 
         
         return $nombreFinal;
+    }
+
+    public function getPathPodcast($idPodcast){
+        $sentencia = $this->db->prepare("SELECT p.url_audio FROM podcast p WHERE id_podcast = ?"); // prepara la consulta
+         $sentencia->execute([$idPodcast]); // ejecuta
+         $podcast = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
+         
+         return $podcast;   
+
     }
 
 }
