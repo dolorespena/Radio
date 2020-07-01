@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-06-2020 a las 21:56:08
+-- Tiempo de generación: 02-07-2020 a las 00:32:52
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.10
 
@@ -47,6 +47,21 @@ INSERT INTO `columnista` (`id_columnista`, `nombre`, `profesion`, `descripcion`,
 (9, 'Paulina Cocina', 'Cocinera', 'Receta en 30 minutos', 'img/profile/paulina.jpg'),
 (10, 'Darío Sztajnszrajber', 'Filósofo', 'Pienso luego existo', 'img/profile/sztajnszrajber.jpg'),
 (11, 'Eduardo Sacheri', 'Escritor', 'Libros que nos gustan', 'img/profile/sacheri.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id_comentario` int(11) NOT NULL,
+  `detalle` varchar(200) NOT NULL,
+  `fecha` date NOT NULL,
+  `valoracion` int(10) NOT NULL,
+  `id_podcast_fk` int(11) NOT NULL,
+  `id_usuario_fk` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -97,7 +112,8 @@ INSERT INTO `podcast` (`id_podcast`, `nombre`, `descripcion`, `url_audio`, `fech
 (26, 'Libertad y ambiguedad', 'Estoy convencido que el fituro está en la ambigüedad. En ambigüar, en disolver esos lugares supuestamentes tan estructurantes. Estamos entre la tensión del pensar y ser pensado; y en un respiro de ésta encontramos la libertad.', 'audio/sztajnszrajber-libertad.ogg', '2020-04-17', 1, 'Libertad', NULL, 10),
 (27, '¿Por que el Ser y no más bien la Nada?', 'Continuamos con el desarrollo de la filosofía presocrática, desarrollando el momento del pensamiento antes de Sócrates y Aristóteles. Hablaremos de Tales, Anaxímenes y Pitágoras, entre otros', 'audio/sztajnszrajber-elSerYLaNada.ogg', '2020-05-09', 11, 'Filosofía Presocrática', NULL, 10),
 (28, 'El origen de la filosofía', 'Vamos a tratar de ver el origen de la filosofía, la analizaremos etimologícamente, y a partir de ahí, un ejercicio continuo de preguntas incesante.', 'audio/sztajnszrajber-origen.ogg', '2020-05-08', 11, 'Filosofía', NULL, 10),
-(29, 'Los filósofos presocráticos', 'Observamos el perfil de los primeros pensadores, como Tales de Mileto, con la filosofía aún relacionada con el mito. Describiremos sus características que forjaron sun identidad.', 'audio/sztajnszrajber-presocratico.ogg', '2020-05-07', 10, 'Filosofía Presocrática', NULL, 10);
+(29, 'Los filósofos presocráticos', 'Observamos el perfil de los primeros pensadores, como Tales de Mileto, con la filosofía aún relacionada con el mito. Describiremos sus características que forjaron sun identidad.', 'audio/sztajnszrajber-presocratico.ogg', '2020-05-07', 10, 'Filosofía Presocrática', NULL, 10),
+(35, 'lksmfvls', 'lsldmfsdm', 'audio/5efb88a8748906.26334182.ogg', '2020-06-03', 10, 'djfgldjfl', '', 6);
 
 -- --------------------------------------------------------
 
@@ -119,7 +135,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `username`, `email`, `password`, `admin`) VALUES
 (1, 'Admin', 'admin1@admin.com', '$2y$10$1lwD7kKtOZKKRLLv.EbLseMhfQqfdkU7nCiCcAl5OjcBPoRwB33WK', 1),
-(2, 'User', 'user1@user.com', '$2y$10$nBROcHG6T2ac7CIZlVZ0iOkruCeOPjv3.NWOOMlO.MuNgGsPbVrGO', 0);
+(2, 'User', 'user1@user.com', '$2y$10$nBROcHG6T2ac7CIZlVZ0iOkruCeOPjv3.NWOOMlO.MuNgGsPbVrGO', 0),
+(8, 'Amadeo', 'amadeosou@gmail.com', '$2y$10$8yVahpu0sq7PWcD.wA6pmepgYP0KFsSngzGC9W3gPb.IkGR9dSq9e', 0);
 
 --
 -- Índices para tablas volcadas
@@ -130,6 +147,15 @@ INSERT INTO `user` (`id_user`, `username`, `email`, `password`, `admin`) VALUES
 --
 ALTER TABLE `columnista`
   ADD PRIMARY KEY (`id_columnista`);
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `valoracion` (`valoracion`),
+  ADD KEY `id_podcast_fk` (`id_podcast_fk`),
+  ADD KEY `id_usuario_fk` (`id_usuario_fk`);
 
 --
 -- Indices de la tabla `podcast`
@@ -155,16 +181,22 @@ ALTER TABLE `columnista`
   MODIFY `id_columnista` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `podcast`
 --
 ALTER TABLE `podcast`
-  MODIFY `id_podcast` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_podcast` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
