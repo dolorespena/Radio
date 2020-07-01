@@ -55,30 +55,27 @@ Class PodcastsModel extends Model{
         return $success;
     }
 
-    public function deletePodcast($idPodcast){
+    public function deletePodcast($idPodcast, $path){
 
          // 2. enviamos la consulta
          $sentencia = $this->db->prepare("DELETE FROM podcast WHERE id_podcast = ?"); // prepara la consulta
          $sentencia->execute([$idPodcast]); // ejecuta
+         unlink($path);
     }
 
     /**
      * Mueve el podcast subido y le asigna un nombre,
      * retorna ese nombre creado.
      */
-    public function copiarImagen()
-    {
-        // Nombre archivo original
-        $nombreOriginal = $_FILES['input_name']['name'];
-        // Nombre en el file system:
-        $nombreFisico = $_FILES['input_name']['tmp_name'];
-        
-        $nombreFinal = "images/". uniqid("", true) . "." 
-        . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
 
-        move_uploaded_file($nombreFisico, $nombreFinal); 
-        
-        return $nombreFinal;
+    public function getPathPodcast($idPodcast){
+        $sentencia = $this->db->prepare("SELECT p.url_audio FROM podcast p WHERE id_podcast = ?"); // prepara la consulta
+         $sentencia->execute([$idPodcast]); // ejecuta
+         $podcast = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
+         var_dump($podcast->url_audio); die();
+         
+         return $podcast;   
+
     }
 
 }
