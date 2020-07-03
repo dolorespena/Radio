@@ -35,7 +35,9 @@ Class ColumnistsModel extends Model{
 
         // 2. enviamos la consulta
         $sentencia = $this->db->prepare("INSERT INTO columnista (nombre, profesion, descripcion, url_imagen) VALUES(?, ?, ?, ?)"); // prepara la consulta
-        $sentencia->execute([$nombre, $profesion, $descripcion, $imagen]); // ejecuta
+        $success = $sentencia->execute([$nombre, $profesion, $descripcion, $imagen]); // ejecuta
+        return $success;
+
     }
 
     public function updateColumnist($idColumnist, $nombre, $profesion, $descripcion, $imagen){
@@ -52,5 +54,14 @@ Class ColumnistsModel extends Model{
         $sentencia = $this->db->prepare("DELETE FROM columnista WHERE id_columnista = ?"); // prepara la consulta
         $success = $sentencia->execute([$idColumnist]); // ejecuta
         return $success;
+    }
+
+    public function getPathColumnist($idColumnist){
+        $sentencia = $this->db->prepare("SELECT c.url_imagen FROM columnista c WHERE id_columnista = ?"); // prepara la consulta
+        $sentencia->execute([$idColumnist]); // ejecuta
+        $columnista = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
+         
+         return $columnista;   
+
     }
 }

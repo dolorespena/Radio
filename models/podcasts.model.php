@@ -62,19 +62,13 @@ Class PodcastsModel extends Model{
          $sentencia->execute([$idPodcast]); // ejecuta
          unlink($path);
     }
-
-    /**
-     * Mueve el podcast subido y le asigna un nombre,
-     * retorna ese nombre creado.
-     */
-
+    
     public function getPathPodcast($idPodcast){
         $sentencia = $this->db->prepare("SELECT p.url_audio FROM podcast p WHERE id_podcast = ?"); // prepara la consulta
-         $sentencia->execute([$idPodcast]); // ejecuta
-         $podcast = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
-         var_dump($podcast->url_audio); die();
-         
-         return $podcast;   
+        $sentencia->execute([$idPodcast]); // ejecuta
+        $podcast = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
+        
+        return $podcast;   
 
     }
 

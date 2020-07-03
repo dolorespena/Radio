@@ -44,7 +44,7 @@
             <textarea name="descripcion" id="descripcion"></textarea>
 
             <label for="audio">Audio</label>
-            <input type="file" name="audio" id="podcast">
+            <input type="file" name="audio" id="podcast" accept= audio/*>
 
             <label for="fecha">Fecha</label>
             <input type="date" name="fecha" id="fecha">

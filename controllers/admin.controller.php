@@ -39,23 +39,46 @@ class AdminController{
         $nombre = $_POST['nombre'];
         $profesion = $_POST['profesion'];
         $descripcion = $_POST['descripcion'];
-        $imagen = $_POST['imagen'];
+        $imagen = $_FILES ['imagen'];
+
+        //Datos del archivo ingresado
+        $nombreOriginal =  $_FILES ['imagen']['name'];
+        $nombreTemporal = $_FILES ['imagen']['tmp_name'];
+        $tipoAudio = $_FILES['imagen']['type'];
+        $isValid = $this->isValidType($tipoAudio, 'image');
+
 
         // verifica los datos obligatorios
         if (!empty($nombre) && !empty($profesion) &&  !empty($descripcion) && !empty($imagen)) {
-            // inserta en la DB y redirige
-            $this->modelColumnists->insertColumnist($nombre, $profesion, $descripcion, $imagen);
-            header('Location: ' . BASE_URL . 'admin');
+
+            if ($isValid){
+                $nombreFinal = "img/profile/" . uniqid("", true) . "." . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
+                $success = $this->modelColumnists->insertColumnist($nombre, $profesion, $descripcion, $nombreFinal);
+                
+                if ($success){
+                move_uploaded_file($nombreTemporal, $nombreFinal);
+                header('Location: ' . BASE_URL . 'admin');
+                }
+                else{
+                    $this->viewMessage->showError("ERROR! Falló la carga del columnista"); 
+                } 
+            }
+            else{
+                $this->viewMessage->showError("ERROR! Tipo de archivo no soportado"); 
+            }
         } else {
             $this->viewMessage->showError("ERROR! Faltan datos obligatorios"); 
         }
    }
 
    public function deleteColumnist($idColumnist){
-   
+        //Rescatamos la dirección del archivo antes de eliminarlo
+        $path = $this->modelColumnists->getPathColumnist($idColumnist)->url_imagen;
+
         $success = $this->modelColumnists->deleteColumnist($idColumnist);
 
         if ($success){
+            unlink($path);
             header('Location: ' . BASE_URL . 'admin');
         }
         else {
@@ -78,6 +101,7 @@ class AdminController{
 
         // verifica los datos obligatorios
         if (!empty($nombre) && !empty($profesion) &&  !empty($descripcion) && !empty($imagen)) {
+            
             // inserta en la DB y redirige
             $success = $this->modelColumnists->updateColumnist($idColumnist, $nombre, $profesion, $descripcion, $imagen);
             if ($success){
@@ -107,8 +131,8 @@ class AdminController{
         
         $nombreOriginal =  $_FILES ['audio']['name'];
         $nombreTemporal = $_FILES ['audio']['tmp_name'];
-        $tipoAudio = $_FILES['audio']['type'];
-        $isValid = $this->isValidType($tipoAudio);
+        $tipoArchivo = $_FILES['audio']['type'];
+        $isValid = $this->isValidType($tipoArchivo, 'audio');
         
         // verifica los datos obligatorios
         if (!empty($nombre) && !empty($columnista) &&  !empty($descripcion) && !empty($audio) && !empty($fecha) && !empty($duracion) && !empty($etiqueta)) {
@@ -173,7 +197,6 @@ class AdminController{
 
         //Rescatamos la dirección del archivo antes de eliminarlo
         $path = $this->modelPodcasts->getPathPodcast($idPodcast)->url_audio;
-        
 
         //Pasamos como segundo parámetro la dirección para borrarlo de nuestro repositorio ademas de la DB
         $this->modelPodcasts->deletePodcast($idPodcast, $path);
@@ -187,11 +210,26 @@ class AdminController{
         $this->view->showAdminPodcasts($podcasts, $listColumnists);
     }
 
-    private function isValidType($audioType) {
-        if ($audioType == "audio/ogg" || $audioType == "audio/mpeg"){
-            return true;
-        }else{
-            return false;
+    private function isValidType($audioType, $validFormat) {
+
+        switch ($validFormat) {
+            case 'audio':
+                if ($audioType == "audio/ogg" || $audioType == "audio/mpeg"){
+                    return true;
+                }else{
+                    return false;
+                }
+                break;
+            
+            case 'image':
+                if ($audioType == "image/gif" || $audioType == "image/jpg" ||
+                    $audioType == "image/png" || $audioType == "image/jpeg"){
+                    return true;
+                }else{
+                    return false;
+                }
+            break;
         }
+        
     } 
 }

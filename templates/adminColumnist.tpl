@@ -26,7 +26,7 @@
         {/foreach}
     </table>
 
-    <form action="admin/columnist/add/" method="post" class="addColumnist">
+    <form action="admin/columnist/add/" method="post" class="addColumnist"  enctype="multipart/form-data">
         
         <fieldset>
             <legend>Agregar Columnista</legend>
@@ -41,15 +41,7 @@
             <input type="text" name="descripcion">
 
             <label for="imagen"></label>
-            <select name='imagen'>
-                <option value='img/profile/muestra1.jpg'>Imagen 1</option>
-                <option value='img/profile/muestra2.jpg'>Imagen 2</option>
-                <option value='img/profile/muestra3.jpg'>Imagen 3</option>
-                <option value='img/profile/muestra4.jpg'>Imagen 4</option>
-                <option value='img/profile/muestra5.jpg'>Imagen 5</option>
-                <option value='img/profile/muestra6.jpg'>Imagen 6</option>
-                <option value='img/profile/muestra7.jpg'>Imagen 7</option>  
-            </select>
+            <input type="file" name="imagen" id="podcast" accept= image/*>
 
             <button type='submit'>Añadir</button>
         </fieldset>
