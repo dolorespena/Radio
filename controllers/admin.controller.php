@@ -14,6 +14,7 @@ class AdminController{
     private $view;
     private $viewMessage;
     private $viewPodcasts;
+    private $modelUser;
 
     public function __construct() {
 
@@ -23,6 +24,7 @@ class AdminController{
         $this->view = new AdminView();
         $this->viewMessage = new MessageView();
         $this->viewPodcasts = new PodcastsView();
+        $this->modelUser = new UserModel();
     }
 
     public function showAdmin(){
@@ -186,17 +188,10 @@ class AdminController{
     }
 
     private function isValidType($audioType) {
-
         if ($audioType == "audio/ogg" || $audioType == "audio/mpeg"){
             return true;
-        }
-        else{
+        }else{
             return false;
         }
-
-    }
-
-  
-
-  
+    } 
 }

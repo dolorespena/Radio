@@ -1,6 +1,6 @@
 {include 'header.tpl'}
 
-{if $esAdmin}
+{if $esUser}
 <p class="saludoUsuario">{$saludo}{$username}!</p>
 {/if}
 

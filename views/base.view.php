@@ -1,6 +1,6 @@
 <?php
-require_once('libs/smarty/Smarty.class.php');
 
+require_once('libs/smarty/Smarty.class.php');
 
 class View  {
 
@@ -9,12 +9,9 @@ class View  {
     public function __construct() {
         $this->smarty = new Smarty();
         $this->smarty->assign('base_url', BASE_URL);
-
     }    
 
-    public function getSmarty() {
-
+    public function getSmarty(){
         return $this->smarty;
-        
     }
 }

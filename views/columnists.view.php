@@ -15,9 +15,8 @@ Class ColumnistsView extends View{
         $userName = AuthHelper::getUserLogged();
 
         $this->getSmarty()->assign('username', $userName);
-        $this->getSmarty()->assign('esAdmin', $isLogged);
+        $this->getSmarty()->assign('esUser', $isLogged);
         $this->getSmarty()->assign('saludo', '¡Hola ');
-
         $this->getSmarty()->assign('title', 'Columnistas');
         $this->getSmarty()->assign('columnists', $columnists);        
         $this->getSmarty()->assign('url_columnist','columnistas/');

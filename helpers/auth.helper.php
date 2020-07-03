@@ -17,7 +17,6 @@ class AuthHelper{
         if (isset($_SESSION['USERNAME'])) {
             return $_SESSION['USERNAME'];
         }
-        
         return false;
     }
 

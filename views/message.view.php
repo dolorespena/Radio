@@ -16,7 +16,7 @@ class MessageView extends View{
         $this->getSmarty()->assign('title', 'Página no encontrada');
         $this->getSmarty()->assign('img_url', 'img/radio.png');
         $this->getSmarty()->assign('error', $message);
-        $this->getSmarty()->assign('esAdmin', $isLogged);
+        $this->getSmarty()->assign('esUser', $isLogged);
 
         $this->getSmarty()->display('error.tpl');
     }

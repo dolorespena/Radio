@@ -15,7 +15,7 @@ class AuthView extends View{
 
         $this->getSmarty()->assign('title', 'Iniciá Sesión');
         $this->getSmarty()->assign('error', $error);
-        $this->getSmarty()->assign('esAdmin', $isLogged);
+        $this->getSmarty()->assign('esUser', $isLogged);
         
         $this->getSmarty()->display('formLogin.tpl');
     }
@@ -25,7 +25,7 @@ class AuthView extends View{
         $isLogged = AuthHelper::isLogged();
 
         $this->getSmarty()->assign('title', 'Registrate');
-        $this->getSmarty()->assign('esAdmin', $isLogged);
+        $this->getSmarty()->assign('esUser', $isLogged);
         $this->getSmarty()->assign('error', $error);
 
         $this->getSmarty()->display('formRegistration.tpl');        
