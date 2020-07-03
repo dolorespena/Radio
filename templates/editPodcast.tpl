@@ -6,7 +6,7 @@
 
 <h1>{$title}</h1>
 
-<form action="admin/podcast/update/{$old->id_podcast}" method="post" class="formEdit">
+<form action="admin/podcast/update/{$old->id_podcast}" method="post" class="formEdit" enctype="multipart/form-data">
     
     <fieldset>
         <legend>Agregar Podcast</legend>
@@ -25,16 +25,10 @@
         <textarea name="descripcion" id="descripcion">{$old->descripcion}</textarea>
 
         <label for="audio">Audio</label>
-        <select name='audio'>
-            <option value='{$old->url_audio}'>Mismo audio</option>
-            <option value='audio/muestra1.ogg'>Audio 1</option>
-            <option value='audio/muestra2.ogg'>Audio 2</option>
-            <option value='audio/muestra3.ogg'>Audio 3</option>
-            <option value='audio/muestra4.ogg'>Audio 4</option>
-            <option value='audio/muestra5.ogg'>Audio 5</option>
-            <option value='audio/muestra6.ogg'>Audio 6</option>
-            <option value='audio/muestra7.ogg'>Audio 7</option>  
-        </select>
+        <input type="file" name="audio" id="podcast" accept= audio/*>
+
+        <input type="hidden" name="old_audio" value="{$old->url_audio}">
+        
 
         <label for="fecha">Fecha</label>
         <input type="date" name="fecha" id="fecha" value="{$old->fecha}">

@@ -172,22 +172,37 @@ class AdminController{
         $nombre = $_POST['nombre'];
         $columnista = $_POST['columnista'];
         $descripcion = $_POST['descripcion'];
-        $audio = $_POST['audio'];
+        $audio = $_FILES['audio'];
         $fecha = $_POST['fecha'];
         $duracion = $_POST['duracion'];
         $etiqueta = $_POST['etiqueta'];
         $invitado = $_POST['invitado'];
+        $url_audio = $_POST['old_audio']; // URL que se mantendrá si el usuario no cargó un nuevo archivo
 
         // verifica los datos obligatorios
-        if (!empty($nombre) && !empty($columnista) &&  !empty($descripcion) && !empty($audio) && !empty($fecha) && !empty($duracion) && !empty($etiqueta)) {
-            // inserta en la DB y redirige
-            $success = $this->modelPodcasts->updatePodcast($idPodcast, $nombre, $columnista, $descripcion, $audio, $fecha, $duracion, $etiqueta, $invitado);
+        if (!empty($nombre) && !empty($columnista) &&  !empty($descripcion) && !empty($fecha) && !empty($duracion) && !empty($etiqueta)) {
+            
+            if ($audio['error'] != 4){
+
+                $nombreOriginal =  $_FILES ['audio']['name'];
+                $nombreTemporal = $_FILES ['audio']['tmp_name'];
+                $tipoArchivo = $_FILES['audio']['type'];
+                $isValid = $this->isValidType($tipoArchivo, 'audio');
+
+                if ($isValid){
+                    $url_audio = "audio/" . uniqid("", true) . "." . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
+                    move_uploaded_file($nombreTemporal, $url_audio);
+                } else{
+                    $this->viewMessage->showError("ERROR! Tipo de archivo no soportado"); 
+                }     
+            }
+
+            $success = $this->modelPodcasts->updatePodcast($idPodcast, $nombre, $columnista, $descripcion, $url_audio, $fecha, $duracion, $etiqueta, $invitado);
             if ($success){
                 header('Location: ' . BASE_URL . 'admin');
-            }
-            else {
-                $this->viewMessage->showError("Error al actualizar la tabla"); 
-            }
+            } else{
+                $this->viewMessage->showError("ERROR! Falló la carga del podcast"); 
+            } 
         } else {
             $this->viewMessage->showError("ERROR! Faltan datos obligatorios"); 
         }
