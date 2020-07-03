@@ -10,10 +10,9 @@ Class PodcastsView extends View{
         $userName = AuthHelper::getUserLogged();
         $isLogged = AuthHelper::isLogged();
 
-        $this->getSmarty()->assign('esAdmin', $isLogged);
+        $this->getSmarty()->assign('esUser', $isLogged);
         $this->getSmarty()->assign('username', $userName);
-        $this->getSmarty()->assign('saludo', '¡Hola ');
-        
+        $this->getSmarty()->assign('saludo', '¡Hola ');  
     }
 
     public function showPodcasts($podcasts){
@@ -25,5 +24,10 @@ Class PodcastsView extends View{
        $this->getSmarty()->display('podcasts.tpl');
     }
 
-
+    public function onePodcast($podcast){
+        $this->getSmarty()->assign('podcast', $podcast);
+        $this->getSmarty()->assign('id_user', $_SESSION['ID_USER']);
+                        
+        $this->getSmarty()->display('podcastExtensor.tpl');
+    }
 }
