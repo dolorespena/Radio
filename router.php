@@ -68,8 +68,7 @@
                         $controller->viewPodcasts($parametros[3]);
                     }
                 }
-            }
-            
+            }            
         break;
 
         case 'columnistas': 
@@ -80,6 +79,16 @@
             else {
                 $controller = new PodcastsController;
                 $controller->showPodcasts($parametros[1]);
+            }
+        break;
+
+        case 'podcast':
+            if(!empty($parametros[1])){
+                $controller = new PodcastsController;
+                $controller->getPodcast($parametros[1]);
+            }else{
+                $controller = new MessageController;
+                $controller->showError("Error 404 - Página no encontrada");
             }
         break;
 
@@ -106,6 +115,11 @@
         case 'checkIn': 
             $controller = new AuthController;
             $controller->checkIn();
+        break;
+
+        case 'comentario':
+            $controller= new AuthController;
+            $controller->addComent($parametros[1], $parametros[2]);
         break;
 
         default :
