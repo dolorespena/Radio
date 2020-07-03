@@ -20,4 +20,10 @@ class UserModel extends Model{
         $sentencia = $this->db->prepare("INSERT INTO user (username, email, password, admin) VALUES (?, ?, ?, ?)");
         $sentencia->execute([$username, $email, $password, $admin]);
     }
+
+    public function insertComent($detalle, $value, $date, $idPodcast, $idUser){
+        $sentencia = $this->db->prepare("INSERT INTO comentario (detalle, fecha, valoracion, id_podcast_fk, id_usuario_fk) VALUES (?, ?, ?, ?, ?)"); // prepara la consulta
+        $success = $sentencia->execute([$detalle, $date, $value, $idPodcast, $idUser]); 
+        return $success;
+    }
 }

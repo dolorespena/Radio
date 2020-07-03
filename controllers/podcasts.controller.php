@@ -20,5 +20,10 @@ class PodcastsController{
         $this->view->showPodcasts($podcasts);
     }
 
+    public function getPodcast($idPodcast){
+        $podcast = $this->model->getPodcast($idPodcast);
+        $this->view->onePodcast($podcast);
+    }
+
     
 }
