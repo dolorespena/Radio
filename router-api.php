@@ -12,7 +12,7 @@ $router = new Router();
 $router->addRoute('comentarios', 'GET', 'CommentApiController', 'getComments');
 $router->addRoute('comentario/:ID', 'GET', 'CommentApiController', 'getComment');
 $router->addRoute('comentario/:ID', 'DELETE', 'CommentApiController', 'deleteComment');
-$router->addRoute('comentario', 'POST', 'CommentApiController', 'insertComment');
+$router->addRoute('comentario', 'POST', 'CommentApiController', 'addComment');
 
 //ruteo
 $router->route($_REQUEST['resource'], $_SERVER['REQUEST_METHOD']);

@@ -12,7 +12,7 @@ class ComentModel extends Model{
 
     public function insertComment($detalle, $value, $date, $idPodcast, $idUser){
         $sentencia = $this->db->prepare("INSERT INTO comentario (detalle, fecha, valoracion, id_podcast_fk, id_usuario_fk) VALUES (?, ?, ?, ?, ?)"); // prepara la consulta
-        $sentencia->execute([$detalle, $date, $value, $idPodcast, $idUser]); 
+        $sentencia->execute([$detalle, $value, $date, $idPodcast, $idUser]); 
         return $this->db->lastInsertId();
     }
 
