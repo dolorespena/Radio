@@ -20,6 +20,14 @@ class AuthHelper{
         return false;
     }
 
+    static public function getIdUser(){
+        self::start();
+        if (isset($_SESSION['ID_USER'])) {
+            return $_SESSION['ID_USER'];
+        }
+        return false;
+    }
+
     static public function login($user) {
         //Inicio la sesión y logueo al usuario
         
@@ -28,14 +36,13 @@ class AuthHelper{
         $_SESSION['ID_USER'] = $user->id_user;
         $_SESSION['USERNAME'] = $user->username;
     }
-
  
     static public function logout() {
         self::start();
         session_destroy();
     }
 
-      //verifica que existe un usuario logueado
+    //verifica que existe un usuario logueado
      public static function checklogged(){
         session_start();
         if (!isset($_SESSION['ID_USER'])){
