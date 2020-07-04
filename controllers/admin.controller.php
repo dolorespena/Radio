@@ -97,18 +97,30 @@ class AdminController{
         $nombre = $_POST['nombre'];
         $profesion = $_POST['profesion'];
         $descripcion = $_POST['descripcion'];
-        $imagen = $_POST['imagen'];
+        $imagen = $_FILES['imagen'];
+        $url_imagen = $_POST['old_imagen'];
 
-        // verifica los datos obligatorios
-        if (!empty($nombre) && !empty($profesion) &&  !empty($descripcion) && !empty($imagen)) {
-            
-            // inserta en la DB y redirige
-            $success = $this->modelColumnists->updateColumnist($idColumnist, $nombre, $profesion, $descripcion, $imagen);
+        if (!empty($nombre) && !empty($profesion) &&  !empty($descripcion)) {
+
+            if ($imagen['error'] != 4){
+                $nombreOriginal =  $_FILES ['imagen']['name'];
+                $nombreTemporal = $_FILES ['imagen']['tmp_name'];
+                $tipoArchivo = $_FILES['imagen']['type'];
+                $isValid = $this->isValidType($tipoArchivo, 'image');
+    
+                if ($isValid){
+                    $url_imagen = "img/profile/" . uniqid("", true) . "." . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
+                    move_uploaded_file($nombreTemporal, $url_imagen);
+                } else{
+                    $this->viewMessage->showError("ERROR! Tipo de archivo no soportado"); 
+                }     
+            }
+            $success = $this->modelColumnists->updateColumnist($idColumnist, $nombre, $profesion, $descripcion, $url_imagen);
             if ($success){
                 header('Location: ' . BASE_URL . 'admin');
             }
             else {
-                $this->viewMessage->showError("Error al actualizar la tabla"); 
+                $this->viewMessage->showError("Error al modificar el columnista"); 
             }
         } else {
             $this->viewMessage->showError("ERROR! Faltan datos obligatorios"); 

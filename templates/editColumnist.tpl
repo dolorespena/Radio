@@ -6,7 +6,7 @@
 
 <h1>{$title}</h1>
 
-<form action="admin/columnist/update/{$old->id_columnista}" method="post" class="formEdit">
+<form action="admin/columnist/update/{$old->id_columnista}" method="post" class="formEdit" enctype="multipart/form-data">
     
     <fieldset>
         <legend>Agregar Columnista</legend>
@@ -21,16 +21,9 @@
         <input type="text" name="descripcion" value="{$old->descripcion}">
 
         <label for="imagen"></label>
-        <select name='imagen'>
-            <option value={$old->url_imagen}>Misma imagen</option>
-            <option value='img/profile/muestra1.jpg'>Imagen 1</option>
-            <option value='img/profile/muestra2.jpg'>Imagen 2</option>
-            <option value='img/profile/muestra3.jpg'>Imagen 3</option>
-            <option value='img/profile/muestra4.jpg'>Imagen 4</option>
-            <option value='img/profile/muestra5.jpg'>Imagen 5</option>
-            <option value='img/profile/muestra6.jpg'>Imagen 6</option>
-            <option value='img/profile/muestra7.jpg'>Imagen 7</option>  
-        </select>
+        <input type="file" name="imagen" id="imagen" accept= image/*>
+
+        <input type="hidden" name="old_imagen" value="{$old->url_imagen}">
 
         <button type='submit'>Editar</button>
     </fieldset>

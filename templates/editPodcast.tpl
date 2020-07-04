@@ -29,7 +29,6 @@
 
         <input type="hidden" name="old_audio" value="{$old->url_audio}">
         
-
         <label for="fecha">Fecha</label>
         <input type="date" name="fecha" id="fecha" value="{$old->fecha}">
 
