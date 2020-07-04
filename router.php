@@ -117,11 +117,6 @@
             $controller->checkIn();
         break;
 
-        case 'comentario':
-            $controller= new AuthController;
-            $controller->addComent($parametros[1], $parametros[2]);
-        break;
-
         default :
             $controller = new MessageController;
             $controller->showError("Error 404 - Página no encontrada");
