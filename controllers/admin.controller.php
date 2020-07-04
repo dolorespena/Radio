@@ -109,6 +109,7 @@ class AdminController{
                 $isValid = $this->isValidType($tipoArchivo, 'image');
     
                 if ($isValid){
+                    unlink($url_imagen);
                     $url_imagen = "img/profile/" . uniqid("", true) . "." . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
                     move_uploaded_file($nombreTemporal, $url_imagen);
                 } else{
@@ -202,6 +203,7 @@ class AdminController{
                 $isValid = $this->isValidType($tipoArchivo, 'audio');
 
                 if ($isValid){
+                    unlink($url_audio);
                     $url_audio = "audio/" . uniqid("", true) . "." . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
                     move_uploaded_file($nombreTemporal, $url_audio);
                 } else{
