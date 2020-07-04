@@ -23,6 +23,14 @@ class ComentModel extends Model{
         return $comments;
     }
 
+    public function getCommentsByPodcast($idPodcast){
+        $sentencia = $this->db->prepare("SELECT coment.*, user.username FROM comentario coment JOIN user ON coment.id_usuario_fk = user.id_user WHERE coment.id_podcast_fk = ? "); 
+        $sentencia->execute([$idPodcast]); 
+        $comments = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        
+        return $comments;
+    }
+
     public function getComment($idComment){
         $sentencia = $this->db->prepare("SELECT * FROM comentario WHERE id_comentario = ? "); 
         $sentencia->execute([$idComment]); 

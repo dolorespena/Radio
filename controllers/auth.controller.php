@@ -57,27 +57,6 @@ class AuthController{
         }
     }
 
-    public function addComent($idPodcast, $idUser){
-        $detalle = $_POST['comentario'];
-        $value = (int) $_POST['valoracion'];
-        $date = $this->buildDate();
-        
-        if (!empty($detalle) && !empty($value)) {
-            $success = $this->model->insertComent($detalle, $value, $date, $idPodcast, $idUser);
-            if ($success){
-                header('Location: ' . BASE_URL . 'podcast/' . $idPodcast);
-            }else{
-                echo "chau";
-            }        
-        }
-    }
-
-    public function buildDate(){
-        $today = getdate();
-        $date = $today['year'] . '-' . $today['mon'] . '-' . $today['mday'];  
-        return $date;
-    }
-
     public function logout(){
         AuthHelper::logout();
         header('Location: ' . BASE_URL . 'login');// redirecciono a la pag de login

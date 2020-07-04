@@ -11,6 +11,7 @@ $router = new Router();
 //--------- Comment ----------
 $router->addRoute('comentarios', 'GET', 'CommentApiController', 'getComments');
 $router->addRoute('comentario/:ID', 'GET', 'CommentApiController', 'getComment');
+$router->addRoute('comentarios/:ID', 'GET', 'CommentApiController', 'getCommentsByPodcast');
 $router->addRoute('comentario/:ID', 'DELETE', 'CommentApiController', 'deleteComment');
 $router->addRoute('comentario', 'POST', 'CommentApiController', 'addComment');
 

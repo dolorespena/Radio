@@ -24,6 +24,13 @@ class CommentApiController {
         $this->view->response($comment, 200);
     }
 
+    public function getCommentsByPodcast($params = null) {
+        
+        $idPodcast = $params[':ID'];
+        $comment = $this->model->getCommentsByPodcast($idPodcast);
+        $this->view->response($comment, 200);
+    }
+
     public function getComment($params = null) {
         // obtiene el parametro de la ruta
         $idComment = $params[':ID'];
