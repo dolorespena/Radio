@@ -73,6 +73,14 @@
                         $controller = new AdminController;
                         $controller->viewUsers();
                     }
+                    if ($parametros[2] == 'delete'){
+                        $controller = new AdminController;
+                        $controller->deleteUser($parametros[3]); 
+                    }
+                    if ($parametros[2] == 'update'){
+                        $controller = new AdminController;
+                        $controller->updateUserPrivileges($parametros[3], $parametros[4]);
+                    }
                 }
             }            
         break;

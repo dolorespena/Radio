@@ -243,6 +243,25 @@ class AdminController{
         $users = $this->modelUser->getUsers();
         $this->view->showAdminUsers($users);
     }
+     
+    public function deleteUser($id_user){
+        $success = $this->modelUser->deleteUser($id_user);
+        header('Location: ' . BASE_URL . 'admin/users/view');
+    }
+
+    public function updateUserPrivileges($id_user, $esAdmin){
+        if (empty($esAdmin)){
+            $esAdmin = "1";
+        }else{
+            $esAdmin = "0";
+        }
+        $success = $this->modelUser->updateUserPrivileges($id_user, $esAdmin);
+        if ($success){
+            header('Location: ' . BASE_URL . 'admin/users/view');
+        } else{
+            $this->viewMessage->showError("ERROR! Falló la actualizacion de privilegios"); 
+        } 
+    }
 
     private function isValidType($audioType, $validFormat) {
 

@@ -27,9 +27,15 @@ class UserModel extends Model{
         $sentencia->execute([$username, $email, $password, $admin]);
     }
 
-    public function insertComent($detalle, $value, $date, $idPodcast, $idUser){
-        $sentencia = $this->db->prepare("INSERT INTO comentario (detalle, fecha, valoracion, id_podcast_fk, id_usuario_fk) VALUES (?, ?, ?, ?, ?)"); // prepara la consulta
-        $success = $sentencia->execute([$detalle, $date, $value, $idPodcast, $idUser]); 
+    public function deleteUser($id_user){
+        $sentencia = $this->db->prepare("DELETE FROM user WHERE id_user = ?"); 
+        $success = $sentencia->execute([$id_user]);
+        return $success;
+    }
+
+    public function updateUserPrivileges($id_user, $esAdmin){
+        $sentencia = $this->db->prepare("UPDATE user SET admin = ? WHERE user.id_user = ?");
+        $success = $sentencia->execute([$esAdmin, $id_user]);
         return $success;
     }
 }

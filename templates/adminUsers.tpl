@@ -23,8 +23,8 @@
                 <td>{$user->username}</td>
                 <td>{$user->email}</td>
                 <td>{$user->admin}</td>
-                <td class="editDelete"><a href="#">Hacer Admin</a></td>
-                <td class="editDelete"><a href="#" >Eliminar</a></td>
+                <td class="editDelete"><a href="admin/users/update/{$user->id_user}/{$user->admin}">Cambiar permiso</a></td>
+                <td class="editDelete"><a href="admin/users/delete/{$user->id_user}">Eliminar</a></td>
             </tr>      
         {/foreach}
     </table>

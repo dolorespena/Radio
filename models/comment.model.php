@@ -15,7 +15,7 @@ class ComentModel extends Model{
         $sentencia->execute([$detalle, $value, $date, $idPodcast, $idUser]); 
         return $this->db->lastInsertId();
     }
-
+    
     public function getComments(){
         $sentencia = $this->db->prepare("SELECT * FROM comentario"); 
         $sentencia->execute(); 
