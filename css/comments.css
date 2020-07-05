@@ -1,0 +1,14 @@
+.comentarios{
+    width: 60%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+#templateVueComments{
+    background-color: white;
+    border: solid 5px #f6f700;
+    padding: 20px;
+    width: 70%;
+    display: flex;
+    
+}

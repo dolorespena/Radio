@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{$base_url}css/podcastStyle.css" >
     <link rel="stylesheet" href="{$base_url}css/login.css" >
     <link rel="stylesheet" href="{$base_url}css/adminStyle.css" >
+    <link rel="stylesheet" href="{$base_url}css/comments.css" >
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>{$title}</title>
     <base href="{$base_url}">
