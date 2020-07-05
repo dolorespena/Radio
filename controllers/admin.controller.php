@@ -17,7 +17,7 @@ class AdminController{
 
     public function __construct() {
 
-        AuthHelper::checklogged();
+        AuthHelper::checkAdmin();
         $this->modelColumnists = new ColumnistsModel();
         $this->modelPodcasts = new PodcastsModel();
         $this->view = new AdminView();

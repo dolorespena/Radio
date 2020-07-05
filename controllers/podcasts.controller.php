@@ -22,7 +22,12 @@ class PodcastsController{
 
     public function getPodcast($idPodcast){
         $podcast = $this->model->getPodcast($idPodcast);
-        $this->view->onePodcast($podcast);
+        if(AuthHelper::isLogged()){
+            $id_user = AuthHelper::getIdUser();
+        } else{
+            $id_user = 0; //Aunque no haya usuario logueado, la variable llega con un valor para asignarla en smarty.
+        }
+        $this->view->onePodcast($podcast, $id_user);
     }
 
     

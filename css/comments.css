@@ -9,6 +9,7 @@
     border: solid 5px #f6f700;
     padding: 20px;
     width: 70%;
-    display: flex;
-    
+}
+#templateVueComments li{
+    list-style: none;
 }

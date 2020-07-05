@@ -24,6 +24,7 @@
                 <option value="5">5</option>
             </select>
             <button type="submit">Enviar</button>
+            <p id="msjError"></p>
         {/if}
         </form>
     </div>

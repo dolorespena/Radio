@@ -35,6 +35,7 @@ class AuthHelper{
         $_SESSION['IS_LOGGED'] = true;
         $_SESSION['ID_USER'] = $user->id_user;
         $_SESSION['USERNAME'] = $user->username;
+        $_SESSION['ADMIN'] = $user->admin;
     }
  
     static public function logout() {
@@ -43,9 +44,9 @@ class AuthHelper{
     }
 
     //verifica que existe un usuario logueado
-     public static function checklogged(){
+     public static function checkAdmin(){
         session_start();
-        if (!isset($_SESSION['ID_USER'])){
+        if ((!isset($_SESSION['ID_USER'])) || (empty($_SESSION['ADMIN']))){
             header('Location: ' . BASE_URL . 'login');
             die();
         }
