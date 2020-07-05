@@ -235,7 +235,8 @@ class AdminController{
         
         $podcasts = $this->modelPodcasts->getPodcasts($idColumnist);
         $listColumnists = $this->modelColumnists->getAll();
-        $this->view->showAdminPodcasts($podcasts, $listColumnists);
+        $nameColumnist = $this->modelColumnists->getNameColumnist($idColumnist)->nombre;
+        $this->view->showAdminPodcasts($podcasts, $listColumnists, $nameColumnist);
     }
 
     public function viewUsers(){

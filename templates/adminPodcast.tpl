@@ -6,7 +6,7 @@
 
 <h1>Área de administración</h1>
 
-<h2 class="title2">Podcasts de {$podcasts[0]->columnista}</h2>
+<h2 class="title2">Podcasts de {$columnista}</h2>
 <div class="adminPodcast">
     <table>
         <tr>

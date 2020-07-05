@@ -25,11 +25,11 @@ class AdminView extends View{
          $this->getSmarty()->display('adminColumnist.tpl');
      }
 
-     public function showAdminPodcasts($podcasts, $listColumnists){
- 
+     public function showAdminPodcasts($podcasts, $listColumnists, $nameColumnist){
+
           $this->getSmarty()->assign('title', 'Podcasts');
           $this->getSmarty()->assign('podcasts', $podcasts);
-          $this->getSmarty()->assign('columnista',$podcasts[0]->columnista);
+          $this->getSmarty()->assign('columnista', $nameColumnist);
           $this->getSmarty()->assign('listColumnists', $listColumnists);     
 
           $this->getSmarty()->display('adminPodcast.tpl');

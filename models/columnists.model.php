@@ -64,4 +64,13 @@ Class ColumnistsModel extends Model{
          return $columnista;   
 
     }
+
+    public function getNameColumnist($idColumnist){
+        $sentencia = $this->db->prepare("SELECT c.nombre FROM columnista c WHERE id_columnista = ?"); // prepara la consulta
+        $sentencia->execute([$idColumnist]); // ejecuta
+        $columnista = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
+         
+         return $columnista;   
+    }
+ 
 }
