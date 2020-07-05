@@ -1,7 +1,6 @@
 {include 'header.tpl'}
     <div class="divformLogin">
         <form method="POST" action="verify" class="formlogin">
-            <input type='username' name='username' placeholder = 'Usuario'>
             <input type='email' name='email' placeholder = 'E-mail'>
             <input type="password" name='password' placeholder = 'Contraseña'>
         
@@ -11,7 +10,8 @@
                 </div>
             {/if}
             <button type='submit'>Ingresar</button>
+            <a href='registration' class="link-registro">No eres usuario? Registrate!</a>
         </form>
-        <a href='registration'>No eres usuario? Registrate!</a>
+        
     </div>
 {include 'footer.tpl'}

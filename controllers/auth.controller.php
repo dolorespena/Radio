@@ -19,13 +19,15 @@ class AuthController{
     }
 
     public function verify(){
-        //hay q hacer la func de verificar que los campos no esten vacios
+
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        //busco el usuario
-        $user = $this->model->getUser($email);
+        if(!empty($email) && (!empty($password))){
+            //busco el usuario
+            $user = $this->model->getUser($email);
             if ($user && password_verify($password, $user->password)){
+                
                 //abro sesion y guardo al usuario
                 AuthHelper::login($user);
                 if($user->admin == 0){
@@ -33,8 +35,13 @@ class AuthController{
                 }else{
                     header('Location: ' . BASE_URL . 'admin');//redirecciono a admin
                 }
-        }else{
-            $this->view->showFormLogin("Datos ingresados inválidos");
+            } else if($user) {
+                $this->view->showFormLogin("La contraseña es incorrecta");
+            } else{
+                $this->view->showFormLogin("No reconocemos esta dirección de correo electrónico");
+            }
+        } else{
+            $this->view->showFormLogin("Faltan llenar campos obligatorios");
         }
     }
 
@@ -49,9 +56,20 @@ class AuthController{
         $admin = 0;
 
         if(!empty($username) && !empty($email) && !empty($password)){
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            $this->model->addUser($username, $email, $hash, $admin);
-            header('Location: ' . BASE_URL . 'columnistas' );
+            $user = $this->model->getUser($email);
+            if($user){
+                $this->view->showRegistrationForm("Ese email ya se encuentra registrado");
+            } else{
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $this->model->addUser($username, $email, $hash, $admin);
+                $user = $this->model->getUser($email);
+                AuthHelper::login($user);
+                header('Location: ' . BASE_URL . 'columnistas' );
+
+            }
+
+
+            
         }else{
             $this->view->showFormLogin("Debe ingresar todos los campos");
         }
