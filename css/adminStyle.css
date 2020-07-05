@@ -32,6 +32,7 @@ table tr th{
 }
 table tr td{
     padding: 5px;
+    text-align: center;
 }
 .adminPodcast table{
     margin-bottom: 20px;
@@ -79,4 +80,20 @@ tbody tr{
     display: flex;
     justify-content: center; 
 
+}
+
+.adminUsuario{
+    width: 200px;
+    background-color: darkslateblue;
+    padding: 10px;
+    color: white;
+    float: inline-end;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    text-decoration: none;
+}
+
+.cont-sup-admin{
+    display: flex;
+    justify-content: space-between;
 }

@@ -68,6 +68,12 @@
                         $controller->viewPodcasts($parametros[3]);
                     }
                 }
+                if ($parametros[1] == 'users'){
+                    if ($parametros[2] == 'view'){
+                        $controller = new AdminController;
+                        $controller->viewUsers();
+                    }
+                }
             }            
         break;
 

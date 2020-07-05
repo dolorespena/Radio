@@ -13,7 +13,6 @@ class AdminController{
     private $modelPodcasts;
     private $view;
     private $viewMessage;
-    private $viewPodcasts;
     private $modelUser;
 
     public function __construct() {
@@ -237,6 +236,11 @@ class AdminController{
         $podcasts = $this->modelPodcasts->getPodcasts($idColumnist);
         $listColumnists = $this->modelColumnists->getAll();
         $this->view->showAdminPodcasts($podcasts, $listColumnists);
+    }
+
+    public function viewUsers(){
+        $users = $this->modelUser->getUsers();
+        $this->view->showAdminUsers($users);
     }
 
     private function isValidType($audioType, $validFormat) {

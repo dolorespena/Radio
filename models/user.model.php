@@ -10,6 +10,12 @@ class UserModel extends Model{
         $this->db = $this->createConection();
     }
 
+    public function getUsers(){
+        $sentencia = $this->db->prepare("SELECT * FROM user");
+        $sentencia->execute();
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function getUser($email){
         $sentencia = $this->db->prepare("SELECT * FROM user WHERE email = ?");
         $sentencia->execute([$email]);

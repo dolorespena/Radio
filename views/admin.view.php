@@ -35,6 +35,15 @@ class AdminView extends View{
           $this->getSmarty()->display('adminPodcast.tpl');
      }
 
+     public function showAdminUsers($users){
+          
+          $this->getSmarty()->assign('title', 'Usuarios');
+          $this->getSmarty()->assign('users', $users);
+          $this->getSmarty()->display('adminUsers.tpl');
+
+
+     }
+
      public function showEditColumnist($old){
         
          $this->getSmarty()->assign('title', 'Editar Columnista');
