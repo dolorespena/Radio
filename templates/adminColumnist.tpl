@@ -21,7 +21,7 @@
                 <td>{$columnist->descripcion}</td>
                 <td class="editDelete"><a href="admin/columnist/edit/{$columnist->id_columnista}">Editar</a></td>
                 <td class="editDelete"><a href="admin/columnist/delete/{$columnist->id_columnista}" >Eliminar</a></td>
-                <td class="editDelete"><a href="admin/podcast/view/{$columnist->id_columnista}">Ver Podcast</a></td>
+                <td class="editDelete"><a href="admin/podcast/view/{$columnist->id_columnista}">Ver Podcasts</a></td>
             </tr>      
         {/foreach}
     </table>
