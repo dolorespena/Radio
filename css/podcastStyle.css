@@ -15,6 +15,12 @@
     margin-bottom: 1rem;
 }
 
+.ver-mas{
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #ff4994;
+    text-decoration: none;
+}
 .titulo-podcast{
     color: #8136a2;
     font-size: 1.6rem;

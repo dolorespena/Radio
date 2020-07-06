@@ -1,8 +1,12 @@
 {include 'header.tpl'}
 
-{if $esUser}
-<p class="saludoUsuario">{$saludo}{$username}!</p>
-{/if}
+<div class= "cont-sup-admin">
+    {if $esUser}
+    <p class="saludoUsuario">{$saludo}{$username}!</p>
+    {/if}
+
+    <a class= "adminUsuario" href="admin/"> Volver a 'Columnistas'</a>
+</div>
 
 <h1>Área de administración</h1>
 

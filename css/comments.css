@@ -1,15 +1,39 @@
-.comentarios{
+.box-podcast{
+    margin-top: 20px;
+}
+.total-valoracion{
+    display: flex;
+}
+.promedio{
+    padding-left: 5px;
+}
+.comentarios{ 
     width: 60%;
     padding: 10px;
     display: flex;
     justify-content: center;
 }
+#formComment{
+    margin: auto;
+}
 #templateVueComments{
     background-color: white;
-    border: solid 5px #f6f700;
+    border: solid 15px #f6f700;
     padding: 20px;
-    width: 70%;
+    max-width: 60%;
+    margin: auto;
+    margin-bottom: 15px;
 }
 #templateVueComments li{
     list-style: none;
+    border-bottom: solid 5px #f6f700;
 }
+#fecha-valor{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 14px;
+}
+span{
+    padding: 3px;
+}
+
