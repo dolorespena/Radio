@@ -35,7 +35,7 @@
             <legend>Agregar Podcast</legend>
 
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre">
+            <input type="text" name="nombre"><br>
 
             <label for="columnista">Columnista</label>
             <select name="columnista" id="columnista">
@@ -45,22 +45,22 @@
             </select>
 
             <label for="descripcion">Descripcion</label>
-            <textarea name="descripcion" id="descripcion"></textarea>
+            <textarea name="descripcion" id="descripcion"></textarea><br>
 
             <label for="audio">Audio</label>
-            <input type="file" name="audio" id="podcast" accept= audio/*>
+            <input type="file" name="audio" id="podcast" accept= audio/*><br>
 
             <label for="fecha">Fecha</label>
-            <input type="date" name="fecha" id="fecha">
+            <input type="date" name="fecha" id="fecha"><br>
 
             <label for="duracion">Duración</label>
-            <input type="number" name="duracion" id="duracion" min=1>
+            <input type="number" name="duracion" id="duracion" min=1><br>
 
             <label for="etiqueta">Etiqueta</label>
-            <input type="text" name="etiqueta">
+            <input type="text" name="etiqueta"><br>
 
             <label for="invitado">Invitado</label>
-            <input type="text" name="invitado" placeholder="(opcional)">
+            <input type="text" name="invitado" placeholder="(opcional)"><br>
 
             <button type='submit'>Añadir</button>
         </fieldset>

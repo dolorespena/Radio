@@ -36,16 +36,16 @@
             <legend>Agregar Columnista</legend>
 
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre">
+            <input type="text" name="nombre"><br>
 
             <label for="profesion">Profesión</label>
-            <input type="text" name="profesion">
+            <input type="text" name="profesion"><br>
 
             <label for="descripcion">Descripcion</label>
-            <input type="text" name="descripcion">
+            <input type="text" name="descripcion"><br>
 
-            <label for="imagen"></label>
-            <input type="file" name="imagen" id="podcast" accept= image/*>
+            <label for="imagen">Agregar imagen</label>
+            <input type="file" name="imagen" id="podcast" accept= image/*><br>
 
             <button type='submit'>Añadir</button>
         </fieldset>
