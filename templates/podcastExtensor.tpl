@@ -1,12 +1,10 @@
 {include 'header.tpl'}
-
-<div class= "cont-sup-admin">
-    {if $esUser}
-    <p class="saludoUsuario">{$saludo}{$username}!</p>
-    <a class= "adminUsuario" href="admin/">Área de Administración</a>
-    {/if}
-</div>
-
+    <div class= "cont-sup-admin">
+        {if $esUser}
+        <p class="saludoUsuario">{$saludo}{$username}!</p>
+        <a class= "adminUsuario" href="admin/">Área de Administración</a>
+        {/if}
+    </div>
     <div class= "box-podcast">
         <h2 class="titulo-podcast"> {$podcast->nombre} </h2> {* Título del Podcast*}
         <p class= "bajada-podcast"> {$podcast->fecha}  - {$podcast->duracion} min </p> {*Fecha y duración*}
@@ -17,6 +15,7 @@
         <form method="POST" class="comentario" id="formComment">
             <input type="hidden" id="id_podcast" value="{$podcast->id_podcast}" >
             <input type="hidden" id="id_user" value="{$id_user}">
+            <input type="hidden" id="esAdmin" value="{$esAdmin}">
             {if $esUser}
                 <textarea name="comentario" id="comentario"></textarea>
                 <select name="valoracion" id=valoracion>

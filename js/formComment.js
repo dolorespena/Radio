@@ -9,15 +9,13 @@ getComments();
 let app = new Vue({
     el: "#templateVueComments",
     data: {
-        isAdmin: document.querySelector('#id_user').value,
+        isAdmin: document.querySelector('#esAdmin').value,
         comments: [],
         borrar: function(id_comentario){
             borrar(id_comentario);
         }
     }
-
 });
-
 
 function getComments() {
     let id_podcast = document.querySelector("#id_podcast").value;

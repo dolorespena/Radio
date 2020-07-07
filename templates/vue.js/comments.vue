@@ -13,7 +13,6 @@
             </div>
             <button v-if="isAdmin != 0" v-on:click="borrar(comment.id_comentario)">Eliminar</button>
         </li> 
-        
     </section>
 {/literal}
 

@@ -24,9 +24,10 @@ Class PodcastsView extends View{
        $this->getSmarty()->display('podcasts.tpl');
     }
 
-    public function onePodcast($podcast, $id_user){
+    public function onePodcast($podcast, $id_user, $esAdmin){
         $this->getSmarty()->assign('podcast', $podcast);
         $this->getSmarty()->assign('id_user', $id_user);
+        $this->getSmarty()->assign('esAdmin', $esAdmin);
         $this->getSmarty()->display('podcastExtensor.tpl');
     }
 }

@@ -73,7 +73,6 @@ class AdminController{
    public function deleteColumnist($idColumnist){
         //Rescatamos la dirección del archivo antes de eliminarlo
         $path = $this->modelColumnists->getPathColumnist($idColumnist)->url_imagen;
-
         $success = $this->modelColumnists->deleteColumnist($idColumnist);
 
         if ($success){
@@ -106,7 +105,7 @@ class AdminController{
                 $nombreTemporal = $_FILES ['imagen']['tmp_name'];
                 $tipoArchivo = $_FILES['imagen']['type'];
                 $isValid = $this->isValidType($tipoArchivo, 'image');
-    
+
                 if ($isValid){
                     unlink($url_imagen);
                     $url_imagen = "img/profile/" . uniqid("", true) . "." . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
@@ -175,7 +174,6 @@ class AdminController{
 
         $old = $this->modelPodcasts->getPodcast($idPodcast);
         $listColumnists = $this->modelColumnists->getAll(); 
-
         $this->view->showEditPodcast($old,$listColumnists);
     }
 

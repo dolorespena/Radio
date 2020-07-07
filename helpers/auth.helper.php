@@ -28,6 +28,14 @@ class AuthHelper{
         return false;
     }
 
+    static public function getIsAdmin(){
+        self::start();
+        if (isset($_SESSION['ADMIN'])) {
+            return $_SESSION['ADMIN'];
+        }
+        return false;
+    }
+
     static public function login($user) {
         //Inicio la sesión y logueo al usuario
         

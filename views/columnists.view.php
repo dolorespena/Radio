@@ -20,7 +20,6 @@ Class ColumnistsView extends View{
         $this->getSmarty()->assign('title', 'Columnistas');
         $this->getSmarty()->assign('columnists', $columnists);        
         $this->getSmarty()->assign('url_columnist','columnistas/');
-      
         $this->getSmarty()->display('columnist.tpl');
     }
 }

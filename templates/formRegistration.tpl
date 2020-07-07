@@ -1,6 +1,5 @@
 {include 'header.tpl'}
     <div class="divformLogin">
-        
         <form method="POST" action="checkIn" class="formlogin">
             <p class="titulo-registro">Formulario de Registro</p>
             <input type='username' name='username' placeholder = 'Usuario' autocomplete="off">

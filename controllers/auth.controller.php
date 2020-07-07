@@ -18,16 +18,13 @@ class AuthController{
         $this->view->showFormLogin();
     }
 
-    public function verify(){
-
+    public function verify(){// Define si el usuario es también Administrador y redirecciona
         $email = $_POST['email'];
         $password = $_POST['password'];
-
         if(!empty($email) && (!empty($password))){
             //busco el usuario
             $user = $this->model->getUser($email);
             if ($user && password_verify($password, $user->password)){
-                
                 //abro sesion y guardo al usuario
                 AuthHelper::login($user);
                 if($user->admin == 0){
@@ -35,12 +32,12 @@ class AuthController{
                 }else{
                     header('Location: ' . BASE_URL . 'admin');//redirecciono a admin
                 }
-            } else if($user) {
+            }else if($user) {
                 $this->view->showFormLogin("La contraseña es incorrecta");
-            } else{
+            }else{
                 $this->view->showFormLogin("No reconocemos esta dirección de correo electrónico");
             }
-        } else{
+        }else{
             $this->view->showFormLogin("Faltan llenar campos obligatorios");
         }
     }
@@ -54,7 +51,6 @@ class AuthController{
         $email = $_POST['email'];
         $password = $_POST['password'];
         $admin = 0;
-
         if(!empty($username) && !empty($email) && !empty($password)){
             $user = $this->model->getUser($email);
             if($user){
@@ -65,14 +61,13 @@ class AuthController{
                 $user = $this->model->getUser($email);
                 AuthHelper::login($user);
                 header('Location: ' . BASE_URL . 'columnistas' );
-
             }
         }else{
             $this->view->showFormLogin("Debe ingresar todos los campos");
         }
     }
 
-    public function logout(){
+    public function logout(){//Cierra sesión
         AuthHelper::logout();
         header('Location: ' . BASE_URL . 'login');// redirecciono a la pag de login
     }
@@ -81,8 +76,7 @@ class AuthController{
         $this->view->recuperarPassword();
     }
 
-    public function checkemail(){
-       
+    public function checkemail(){// Verifica que el email exista y genera un token para recuperar contraseña
         $email = $_POST['email'];
         if(!empty($email)){
             $user = $this->model->getUser($email);
@@ -93,7 +87,6 @@ class AuthController{
                 $link = BASE_URL . "checkToken";   
                 echo ("<p> Para recuperar la contraseña debe ingresar en el siguiente enlace: " . $link . "</p>");
                 echo ("<p>E ingrese el siguiente token: " . $token . "</p>"); 
-            
             }else{
                 $this->view->recuperarPassword("No se reconoce ese Email");
             }
@@ -106,8 +99,7 @@ class AuthController{
         $this->view->confirmToken();
     }
 
-    public function verifyToken(){
-        
+    public function verifyToken(){//Verifica que los token sean iguales.
         $email = $_POST['email'];
         $tokenUser = $_POST['token'];
         $password = $_POST['password'];
@@ -126,5 +118,4 @@ class AuthController{
             }
         }
     }
-
 }

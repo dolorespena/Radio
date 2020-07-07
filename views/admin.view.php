@@ -21,7 +21,6 @@ class AdminView extends View{
          $this->getSmarty()->assign('title', 'Administración');
          $this->getSmarty()->assign('columnists', $columnists);  
          $this->getSmarty()->assign('podcasts', $podcasts); 
-            
          $this->getSmarty()->display('adminColumnist.tpl');
      }
 
@@ -30,8 +29,7 @@ class AdminView extends View{
           $this->getSmarty()->assign('title', 'Podcasts');
           $this->getSmarty()->assign('podcasts', $podcasts);
           $this->getSmarty()->assign('columnista', $nameColumnist);
-          $this->getSmarty()->assign('listColumnists', $listColumnists);     
-
+          $this->getSmarty()->assign('listColumnists', $listColumnists); 
           $this->getSmarty()->display('adminPodcast.tpl');
      }
 
@@ -40,8 +38,6 @@ class AdminView extends View{
           $this->getSmarty()->assign('title', 'Usuarios');
           $this->getSmarty()->assign('users', $users);
           $this->getSmarty()->display('adminUsers.tpl');
-
-
      }
 
      public function showEditColumnist($old){
@@ -49,7 +45,6 @@ class AdminView extends View{
          $this->getSmarty()->assign('title', 'Editar Columnista');
          $this->getSmarty()->assign('old', $old);        
          $this->getSmarty()->assign('url_columnist','columnistas/');
-
          $this->getSmarty()->display('editColumnist.tpl');
     }
 
@@ -58,7 +53,6 @@ class AdminView extends View{
          $this->getSmarty()->assign('title', 'Editar Podcast');
          $this->getSmarty()->assign('old', $old);  
          $this->getSmarty()->assign('listColumnists', $listColumnists);
-     
          $this->getSmarty()->display('editPodcast.tpl');
     }
 }

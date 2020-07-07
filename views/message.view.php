@@ -6,7 +6,6 @@ class MessageView extends View{
 
     public function __construct(){
         parent::__construct();
-        
     }
 
     public function showError($message){ 
@@ -17,7 +16,6 @@ class MessageView extends View{
         $this->getSmarty()->assign('img_url', 'img/radio.png');
         $this->getSmarty()->assign('error', $message);
         $this->getSmarty()->assign('esUser', $isLogged);
-
         $this->getSmarty()->display('error.tpl');
     }
 
