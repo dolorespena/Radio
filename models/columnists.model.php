@@ -14,7 +14,7 @@ Class ColumnistsModel extends Model{
     public function getAll(){
 
          // 2. enviamos la consulta (3 pasos)
-         $sentencia = $this->db->prepare("SELECT * FROM columnista"); // prepara la consulta
+         $sentencia = $this->db->prepare("SELECT c.*, i.path FROM columnista c JOIN imagen i ON c.id_columnista = i.fk_id_columnista GROUP BY c.id_columnista"); // prepara la consulta
          $sentencia->execute(); // ejecuta
          $columnists = $sentencia->fetchAll(PDO::FETCH_OBJ); // obtiene la respuesta
          
@@ -31,20 +31,20 @@ Class ColumnistsModel extends Model{
          return $columnist;  
     }
 
-    public function insertColumnist($nombre, $profesion, $descripcion, $imagen){
+    public function insertColumnist($nombre, $profesion, $descripcion){
 
         // 2. enviamos la consulta
-        $sentencia = $this->db->prepare("INSERT INTO columnista (nombre, profesion, descripcion, url_imagen) VALUES(?, ?, ?, ?)"); // prepara la consulta
-        $success = $sentencia->execute([$nombre, $profesion, $descripcion, $imagen]); // ejecuta
-        return $success;
+        $sentencia = $this->db->prepare("INSERT INTO columnista (nombre, profesion, descripcion) VALUES(?, ?, ?)"); // prepara la consulta
+        $sentencia->execute([$nombre, $profesion, $descripcion]); // ejecuta
+        return $this->db->lastInsertId();
 
     }
 
-    public function updateColumnist($idColumnist, $nombre, $profesion, $descripcion, $imagen){
+    public function updateColumnist($idColumnist, $nombre, $profesion, $descripcion){
 
         // 2. enviamos la consulta
-        $sentencia = $this->db->prepare("UPDATE columnista SET nombre = ?, profesion = ?, descripcion = ? , url_imagen = ? WHERE columnista.id_columnista = ?"); // prepara la consulta
-        $success = $sentencia->execute([$nombre, $profesion, $descripcion, $imagen, $idColumnist]); // ejecuta
+        $sentencia = $this->db->prepare("UPDATE columnista SET nombre = ?, profesion = ?, descripcion = ? WHERE columnista.id_columnista = ?"); // prepara la consulta
+        $success = $sentencia->execute([$nombre, $profesion, $descripcion, $idColumnist]); // ejecuta
         return $success;
     }
 
@@ -56,15 +56,6 @@ Class ColumnistsModel extends Model{
         return $success;
     }
 
-    public function getPathColumnist($idColumnist){
-        $sentencia = $this->db->prepare("SELECT c.url_imagen FROM columnista c WHERE id_columnista = ?"); // prepara la consulta
-        $sentencia->execute([$idColumnist]); // ejecuta
-        $columnista = $sentencia->fetch(PDO::FETCH_OBJ); // obtiene la respuesta
-         
-         return $columnista;   
-
-    }
-
     public function getNameColumnist($idColumnist){
         $sentencia = $this->db->prepare("SELECT c.nombre FROM columnista c WHERE id_columnista = ?"); // prepara la consulta
         $sentencia->execute([$idColumnist]); // ejecuta
@@ -72,5 +63,6 @@ Class ColumnistsModel extends Model{
          
          return $columnista;   
     }
+    
  
 }
