@@ -22,7 +22,6 @@
     switch ($parametros[0]) {
         
         case 'admin':
-
             if (empty($parametros[1])){
                 $controller = new AdminController;
                 $controller->showAdmin();
@@ -145,6 +144,7 @@
             $controller = new AuthController;
             $controller->checkToken();
         break;
+        
         case 'verifyToken':
             $controller = new AuthController;
             $controller->verifyToken();

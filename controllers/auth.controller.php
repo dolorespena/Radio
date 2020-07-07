@@ -45,11 +45,11 @@ class AuthController{
         }
     }
 
-    public function showRegistration(){
+    public function showRegistration(){ // Formulario de registro
         $this->view->showRegistrationForm();
     }
 
-    public function checkIn(){
+    public function checkIn(){ // Verifica que no haya otro email con el mismo nombre
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -84,7 +84,7 @@ class AuthController{
     public function checkemail(){
        
         $email = $_POST['email'];
-        if(isset($email)){
+        if(!empty($email)){
             $user = $this->model->getUser($email);
             if($user){
                 $userId = $user->id_user;
@@ -93,7 +93,12 @@ class AuthController{
                 $link = BASE_URL . "checkToken";   
                 echo ("<p> Para recuperar la contraseña debe ingresar en el siguiente enlace: " . $link . "</p>");
                 echo ("<p>E ingrese el siguiente token: " . $token . "</p>"); 
-            }  
+            
+            }else{
+                $this->view->recuperarPassword("No se reconoce ese Email");
+            }
+        }else{
+            $this->view->recuperarPassword("Debe ingresar un Email");
         }
     }
 
@@ -110,7 +115,7 @@ class AuthController{
             $user = $this->model->getUser($email);
             if($user){
                 $idUser = $user->id_user;
-                $token = $this->model->getToken($idUser);
+                $token = $this->model->getToken($idUser)->token;
                 if($token == $tokenUser){
                     $hash = password_hash($password, PASSWORD_DEFAULT);
                     $this->model->updatePassword($idUser, $hash);
