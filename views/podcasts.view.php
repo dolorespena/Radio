@@ -1,21 +1,32 @@
 <?php
 
-require_once('libs/Smarty.class.php');
+require_once 'views/base.view.php';
 
+Class PodcastsView extends View{
 
-Class PodcastsView{
+    public function __construct(){
+        parent::__construct();
 
-    public function showPodcasts($podcasts){
-        
-       $smarty = new Smarty();
+        $userName = AuthHelper::getUserLogged();
+        $isLogged = AuthHelper::isLogged();
 
-       $smarty->assign('base_url', BASE_URL);
-       $smarty->assign('title', 'Columnistas');
-
-       $smarty->assign('podcasts', $podcasts);
-       $smarty->assign('columnista',$podcasts[0]->columnista);
-
-       $smarty->display('podcasts.tpl');
+        $this->getSmarty()->assign('esUser', $isLogged);
+        $this->getSmarty()->assign('username', $userName);
+        $this->getSmarty()->assign('saludo', '¡Hola ');  
     }
 
+    public function showPodcasts($podcasts){
+ 
+       $this->getSmarty()->assign('title', 'Columnistas');
+       $this->getSmarty()->assign('podcasts', $podcasts);
+       $this->getSmarty()->assign('columnista',$podcasts[0]->columnista);
+
+       $this->getSmarty()->display('podcasts.tpl');
+    }
+
+    public function onePodcast($podcast, $id_user){
+        $this->getSmarty()->assign('podcast', $podcast);
+        $this->getSmarty()->assign('id_user', $id_user);
+        $this->getSmarty()->display('podcastExtensor.tpl');
+    }
 }

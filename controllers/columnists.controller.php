@@ -4,6 +4,7 @@ require_once 'models/columnists.model.php';
 require_once 'views/columnists.view.php';
 
 class ColumnistsController{
+    
     private $model;
     private $view;
 

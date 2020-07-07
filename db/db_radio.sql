@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-05-2020 a las 23:49:41
--- Versión del servidor: 10.1.33-MariaDB
--- Versión de PHP: 7.2.6
+-- Tiempo de generación: 02-07-2020 a las 00:32:52
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -51,6 +51,21 @@ INSERT INTO `columnista` (`id_columnista`, `nombre`, `profesion`, `descripcion`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id_comentario` int(11) NOT NULL,
+  `detalle` varchar(200) NOT NULL,
+  `fecha` date NOT NULL,
+  `valoracion` int(10) NOT NULL,
+  `id_podcast_fk` int(11) NOT NULL,
+  `id_usuario_fk` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `podcast`
 --
 
@@ -71,7 +86,6 @@ CREATE TABLE `podcast` (
 --
 
 INSERT INTO `podcast` (`id_podcast`, `nombre`, `descripcion`, `url_audio`, `fecha`, `duracion`, `tag`, `invitado`, `id_columnista_fk`) VALUES
-(1, 'No piensen por nosotros', 'Seguramente muchas veces hemos escuchado la palabra \"narcisita\". Analizaremos su origen y su historia de amor detrás. Para ver que no siempre pensar en uno mismo es pecado.', 'audio/no-piensen-por-nosotros.ogg', '2020-03-17', 8, 'narcisismo', NULL, 8),
 (2, 'Las llamas del amor', 'Los efectos de la pasión, ese encendido permanente, que ilumina nuestra vida pero a veces puede arder demasiado. ¿Cómo controlar esas llamas al punto justo?', 'audio/las-llamas-del-amor.ogg', '2020-03-24', 10, 'amor', NULL, 8),
 (3, 'Sufrir con dignidad', '¿Se puede ser digno en el sufrimiento? Gabriel habla sobre las fortalezas que tienen que resurgir en momentos de fragilidad. ¿Por qué no ser querido nos vuelve vulnerables?', 'audio/sufrir-con-dignidad.ogg', '2020-03-31', 9, 'sufrimiento', NULL, 8),
 (4, 'La felicidad', 'El lugar al que todos queremos llegar, y cuando lo conseguimos, no nos queremos ir. ¿Podemos concebir a la felicidad como algo finito sin entrar en la desesperación? ¿Puede ser un proceso más que una meta?', 'audio/la-felicidad.ogg', '2020-04-07', 10, 'felicidad', NULL, 8),
@@ -88,18 +102,41 @@ INSERT INTO `podcast` (`id_podcast`, `nombre`, `descripcion`, `url_audio`, `fech
 (15, 'Francis Drake', 'El más famoso pirata inglés, héroe en su país y demonio para los españoles a los que saqueó sin misericordia en el siglo XVI, nació en Tavistock, Devon, en una familia de granjeros protestantes. A los 13 años, Francis Drake zarpó a la mar en un carguero en el que aprendió a navegar y fue ascendiendo hasta convertirse en capitán con sólo 20 años.', 'audio/dolina-FrancisDrake.ogg', '2020-04-18', 19, 'Francis Drake', NULL, 7),
 (16, 'Dostoievski y la ruleta', 'El escritor ruso Fiódor Dostoievski descubrió en los balnearios europeos el placer de la ruleta. El juego le atrapó y con esta obsesión recorrió las ciudades termales preso de su adicción, un vicio que le llevó a la ruina y que él reflejó en su novela \"El jugador\"', 'audio/dolina-dostoievskiy.ogg', '2020-04-11', 11, 'Dostoievski', NULL, 7),
 (17, 'El origen de las cruzadas', 'Las cruzadas fueron un grupo de campañas militares y religiosas impulsadas por el cristianismo, llevadas a cabo entre los años 1096 y 1291, con el objetivo de recuperar territorios y unir a los pueblos bajo la misma religión. Estas fueron impulsadas principalmente por el papa Urbano II.', 'audio/dolina-cruzadas.ogg', '2020-04-04', 15, 'Cruzadas', NULL, 7),
-(18, 'Brownie en cuatro pasos', 'El chocolate de ser una de las mejores cosas que existen, te inyecta una cantidad increíble de endorfinas cuando lo comes. ¿Y alguien me puede explicar una sensación mejor que cuando se te derrite en la boca? ¡No! ¡Porque no la hay, loco! no la hay. Bueno, me descontrolé.', 'audio/paulina-brownie.ogg', '2020-05-10', 7, 'Brownie', NULL, 9),
+(18, 'Brownie en cuatro pasos', 'El chocolate de ser una de las mejores cosas que existen, te inyecta una cantidad increíble de endorfinas cuando lo comes. ¿Y alguien me puede explicar una sensación mejor que cuando se te derrite en la boca? ¡No! ¡Porque no la hay, loco! no la hay. Bueno, me descontrolé.', 'audio/paulina-brownie.ogg', '2020-05-10', 7, 'Brownie', '', 6),
 (19, 'Medialunas de manteca bien argentinas', 'Las medialunas son parte de las facturas argentinas, tal vez la mas tradicionales, paso a paso yo hago las medialunas dulces fáciles. Típicas para el desayuno, merienda, para tomar con el mate, en la hora del té o en un día de lluvia.', 'audio/paulina-medialunas.ogg', '2020-04-30', 12, 'medialunas', NULL, 9),
 (20, 'Postre de vainillas y dulce de leche', 'Para los amantes vagos de los postres, tenemos un postre que es tan fácil que lo podés hacer en un ratito que tengas libre. Y te queda ahí en la heladera, esperándote para darte mucho amor en forma de vainillas. Es esos postres que te saludan cuando abrís la puerta del freezer como un perro que espera que llegues a casa.', 'audio/paulina-postreVainillas.ogg', '2020-04-25', 10, 'Vainillas', NULL, 9),
 (21, 'Tarta de frutillas:¡Divina y riquísima!', 'Bienvenidos a Paulina Cocina! Hoy tenemos una tarta de frutillas que se van a volver recontra locos! Esta es una de las primeras tartas que hice en mi juventud, un octubre para el cumpleaños de mi hermano. Obvio que me quería levantar a un amigo (o a un par la verdad) y se me ocurrió que con esta tarta de frutillas iba a ganar un par de puntos. Si, también es la tarta favorita de mi hermano, pero eso no es lo importante.', 'audio/paulina-tartaFrutillas.ogg', '2020-04-20', 11, 'Frutillas', NULL, 9),
 (22, 'La fiesta del Chivo - Mario Vargas Llosa', 'El libro tiene lugar en República Dominicana y se centra en el asesinato del dictador Rafael Trujillo, y los hechos posteriores, desde dos puntos de vista con una diferencia generacional: durante la planificación y después del asesinato en sí mismo, en mayo de 1961; y treinta y cinco años después, en 1996.', 'audio/sacheri-laFiesta.ogg', '2020-05-08', 3, 'Mario Vargas LLosa', NULL, 11),
 (23, 'El túnel - Ernesto Sábato', 'Una novela corta argentina en la cual Juan Pablo Castel, personaje principal y narrador, cuenta desde la cárcel los motivos que lo llevaron a cometer un asesinato contra su amante María Iribarne.', 'audio/sacheri-elTunel.ogg', '2020-05-04', 2, 'Ernesto Sábato', NULL, 11),
 (24, 'Cuarteles de Invierno - Osvaldo Soriano', 'La historia transcurre en Colonia Vela, un pequeño pueblo provinciano argentino de ficción, durante la dictadura militar. Comienza cuando Andrés Galván, un cantor de tangos en decadencia y narrador de la historia, y Tony Rocha, un boxeador olvidado, se conocen en la estación de tren del pueblo y se hacen amigos.', 'audio/sacheri-cuarteles.ogg', '2020-04-10', 2, 'Osvaldo Soriano', NULL, 11),
-(25, 'Crónicas del ángel gris - Alejandro Dolina', 'Es fundamental rescatar el valor de estas crónicas en estos tiempos en los que tristemente abundan los Refutadores de Leyendas, deseando, en cambio, que los Hombres Sensibles no pierdan jamás su pasión por la vida, noble virtud del querido Alejandro.', 'audio/sacheri-elTunel.ogg', '2020-03-22', 2, 'Alejandro Dolina', NULL, 11),
 (26, 'Libertad y ambiguedad', 'Estoy convencido que el fituro está en la ambigüedad. En ambigüar, en disolver esos lugares supuestamentes tan estructurantes. Estamos entre la tensión del pensar y ser pensado; y en un respiro de ésta encontramos la libertad.', 'audio/sztajnszrajber-libertad.ogg', '2020-04-17', 1, 'Libertad', NULL, 10),
 (27, '¿Por que el Ser y no más bien la Nada?', 'Continuamos con el desarrollo de la filosofía presocrática, desarrollando el momento del pensamiento antes de Sócrates y Aristóteles. Hablaremos de Tales, Anaxímenes y Pitágoras, entre otros', 'audio/sztajnszrajber-elSerYLaNada.ogg', '2020-05-09', 11, 'Filosofía Presocrática', NULL, 10),
 (28, 'El origen de la filosofía', 'Vamos a tratar de ver el origen de la filosofía, la analizaremos etimologícamente, y a partir de ahí, un ejercicio continuo de preguntas incesante.', 'audio/sztajnszrajber-origen.ogg', '2020-05-08', 11, 'Filosofía', NULL, 10),
-(29, 'Los filósofos presocráticos', 'Observamos el perfil de los primeros pensadores, como Tales de Mileto, con la filosofía aún relacionada con el mito. Describiremos sus características que forjaron sun identidad.', 'audio/sztajnszrajber-presocratico.ogg', '2020-05-07', 10, 'Filosofía Presocrática', NULL, 10);
+(29, 'Los filósofos presocráticos', 'Observamos el perfil de los primeros pensadores, como Tales de Mileto, con la filosofía aún relacionada con el mito. Describiremos sus características que forjaron sun identidad.', 'audio/sztajnszrajber-presocratico.ogg', '2020-05-07', 10, 'Filosofía Presocrática', NULL, 10),
+(35, 'lksmfvls', 'lsldmfsdm', 'audio/5efb88a8748906.26334182.ogg', '2020-06-03', 10, 'djfgldjfl', '', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `username` text NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `admin` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id_user`, `username`, `email`, `password`, `admin`) VALUES
+(1, 'Admin', 'admin1@admin.com', '$2y$10$1lwD7kKtOZKKRLLv.EbLseMhfQqfdkU7nCiCcAl5OjcBPoRwB33WK', 1),
+(2, 'User', 'user1@user.com', '$2y$10$nBROcHG6T2ac7CIZlVZ0iOkruCeOPjv3.NWOOMlO.MuNgGsPbVrGO', 0),
+(8, 'Amadeo', 'amadeosou@gmail.com', '$2y$10$8yVahpu0sq7PWcD.wA6pmepgYP0KFsSngzGC9W3gPb.IkGR9dSq9e', 0);
 
 --
 -- Índices para tablas volcadas
@@ -112,11 +149,26 @@ ALTER TABLE `columnista`
   ADD PRIMARY KEY (`id_columnista`);
 
 --
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `valoracion` (`valoracion`),
+  ADD KEY `id_podcast_fk` (`id_podcast_fk`),
+  ADD KEY `id_usuario_fk` (`id_usuario_fk`);
+
+--
 -- Indices de la tabla `podcast`
 --
 ALTER TABLE `podcast`
   ADD PRIMARY KEY (`id_podcast`),
   ADD KEY `id_columnista_fk` (`id_columnista_fk`);
+
+--
+-- Indices de la tabla `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -126,13 +178,35 @@ ALTER TABLE `podcast`
 -- AUTO_INCREMENT de la tabla `columnista`
 --
 ALTER TABLE `columnista`
-  MODIFY `id_columnista` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_columnista` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `podcast`
 --
 ALTER TABLE `podcast`
-  MODIFY `id_podcast` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_podcast` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT de la tabla `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `podcast`
+--
+ALTER TABLE `podcast`
+  ADD CONSTRAINT `id_columinst_fk-id_columnist` FOREIGN KEY (`id_columnista_fk`) REFERENCES `columnista` (`id_columnista`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,0 +1,99 @@
+h1, h2{
+    text-align: center;
+}
+
+.title2{
+    background-color:  #f6f700;
+    max-width: 300px;
+    padding: 7px;
+    margin: 30px auto;
+}
+.adminColumnist, .adminPodcast{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.adminColumnist table, .adminPodcast table{
+    padding: 10px;
+    margin-right: 50px;
+    box-shadow: 0px 10px 10px rgb(158, 158, 158);
+    background-color: white;
+}
+.addColumnist, .addPodcast{
+    width: 335px;
+    box-shadow: 0px 10px 10px rgb(158, 158, 158);
+    background-color: white;
+}
+
+table tr th{
+    color: #0080ce;
+    font-size: 20px;
+}
+table tr td{
+    padding: 5px;
+    text-align: center;
+}
+.adminPodcast table{
+    margin-bottom: 20px;
+    background-color: white;
+}
+.addPodcast select{
+    padding: 5px;
+}
+td .editDelete :hover{
+    background-color: #ff4994;
+}
+tbody tr{
+    border:2px;
+}
+.formEdit{
+    margin: 40px auto;
+    padding: 10px;
+    box-shadow: 0px 10px 10px rgb(158, 158, 158);
+    background-color: white;
+}
+.saludoUsuario{
+    width: 200px;
+    background-color: #ff4994;
+    padding: 10px;
+    color: white;
+}
+.msg-error{
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+
+.img-error{
+    display:block;
+    margin:auto;
+}
+.btn-error{
+    margin: 10px auto;
+    width: 100px;
+    text-decoration: none;
+    background-color: #ff4994;
+    color:white;
+    padding: 5px;
+    display: flex;
+    justify-content: center; 
+
+}
+
+.adminUsuario{
+    width: 200px;
+    background-color: darkslateblue;
+    padding: 10px;
+    color: white;
+    float: inline-end;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    text-decoration: none;
+}
+
+.cont-sup-admin{
+    display: flex;
+    justify-content: space-between;
+}
