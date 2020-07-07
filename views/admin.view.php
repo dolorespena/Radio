@@ -44,10 +44,11 @@ class AdminView extends View{
 
      }
 
-     public function showEditColumnist($old){
+     public function showEditColumnist($old,$images){
         
          $this->getSmarty()->assign('title', 'Editar Columnista');
-         $this->getSmarty()->assign('old', $old);        
+         $this->getSmarty()->assign('old', $old);  
+         $this->getSmarty()->assign('images', $images);      
          $this->getSmarty()->assign('url_columnist','columnistas/');
 
          $this->getSmarty()->display('editColumnist.tpl');

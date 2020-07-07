@@ -2,10 +2,12 @@
 
 include_once 'models/columnists.model.php';
 include_once 'models/podcasts.model.php';
+include_once 'models/image.model.php';
 include_once 'views/admin.view.php';
 include_once 'views/message.view.php';
 include_once 'views/podcasts.view.php';
 include_once 'helpers/auth.helper.php';
+
 
 class AdminController{
 
@@ -14,6 +16,7 @@ class AdminController{
     private $view;
     private $viewMessage;
     private $modelUser;
+    private $modelImage;
 
     public function __construct() {
 
@@ -24,6 +27,7 @@ class AdminController{
         $this->viewMessage = new MessageView();
         $this->viewPodcasts = new PodcastsView();
         $this->modelUser = new UserModel();
+        $this->modelImage = new ImageModel();
     }
 
     public function showAdmin(){
@@ -38,47 +42,42 @@ class AdminController{
         $nombre = $_POST['nombre'];
         $profesion = $_POST['profesion'];
         $descripcion = $_POST['descripcion'];
-        $imagen = $_FILES ['imagen'];
-
-        //Datos del archivo ingresado
-        $nombreOriginal =  $_FILES ['imagen']['name'];
-        $nombreTemporal = $_FILES ['imagen']['tmp_name'];
-        $tipoAudio = $_FILES['imagen']['type'];
-        $isValid = $this->isValidType($tipoAudio, 'image');
-
+        $imagenes = $_FILES ['imagenes'];
 
         // verifica los datos obligatorios
-        if (!empty($nombre) && !empty($profesion) &&  !empty($descripcion) && !empty($imagen)) {
+
+        if (!empty($nombre) && !empty($profesion) &&  !empty($descripcion) && $imagenes['error'][0] != 4) {
+
+            $isValid = $this->isValidTypeAll($imagenes, 'image');
 
             if ($isValid){
-                $nombreFinal = "img/profile/" . uniqid("", true) . "." . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
-                $success = $this->modelColumnists->insertColumnist($nombre, $profesion, $descripcion, $nombreFinal);
-                
-                if ($success){
-                move_uploaded_file($nombreTemporal, $nombreFinal);
-                header('Location: ' . BASE_URL . 'admin');
+                $idColumnist = $this->modelColumnists->insertColumnist($nombre, $profesion, $descripcion);
+
+                for ($i = 0; $i <count($imagenes['tmp_name']); $i++) {
+                    $nombreTemporal = $imagenes['tmp_name'][$i];
+                    $nombreOriginal = $imagenes['name'][$i];
+                    $path = "img/profile/" . uniqid("", true) . "." . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
+                    $this->modelImage->insertImage($idColumnist, $path);
+                    move_uploaded_file($nombreTemporal, $path);
                 }
-                else{
-                    $this->viewMessage->showError("ERROR! Falló la carga del columnista"); 
-                } 
+                header('Location: ' . BASE_URL . 'admin');
             }
-            else{
-                $this->viewMessage->showError("ERROR! Tipo de archivo no soportado"); 
-            }
-        } else {
-            $this->viewMessage->showError("ERROR! Faltan datos obligatorios"); 
-        }
-   }
+        } else{
+            $this->viewMessage->showError("ERROR! Tipo de archivo no soportado"); 
+        } 
+    }
 
    public function deleteColumnist($idColumnist){
         //Rescatamos la dirección del archivo antes de eliminarlo
-        $path = $this->modelColumnists->getPathColumnist($idColumnist)->url_imagen;
+        $paths = $this->modelImage->getPathColumnist($idColumnist);
 
-        $success = $this->modelColumnists->deleteColumnist($idColumnist);
+        $success = $this->modelColumnists->deleteColumnist($idColumnist);    
 
         if ($success){
-            unlink($path);
-            header('Location: ' . BASE_URL . 'admin');
+            foreach ($paths as $path){;
+                unlink($path->path);
+                header('Location: ' . BASE_URL . 'admin');
+            }     
         }
         else {
             $this->viewMessage->showError("Debes eliminar todos los podcasts de este columnista previamente"); 
@@ -88,7 +87,8 @@ class AdminController{
    public function editColumnist($idColumnist){
 
         $old = $this->modelColumnists->getColumnist($idColumnist);
-        $this->view->showEditColumnist($old);
+        $images = $this->modelImage->getImages($idColumnist);
+        $this->view->showEditColumnist($old,$images);
    }
 
    public function updateColumnist($idColumnist){
@@ -96,34 +96,41 @@ class AdminController{
         $nombre = $_POST['nombre'];
         $profesion = $_POST['profesion'];
         $descripcion = $_POST['descripcion'];
-        $imagen = $_FILES['imagen'];
-        $url_imagen = $_POST['old_imagen'];
+        $imagenes = $_FILES;
+        $old_url = $_POST['old_url'];
+        $index = 0; // Indíce que indica el nro de iteración del foreach
+        
 
         if (!empty($nombre) && !empty($profesion) &&  !empty($descripcion)) {
 
-            if ($imagen['error'] != 4){
-                $nombreOriginal =  $_FILES ['imagen']['name'];
-                $nombreTemporal = $_FILES ['imagen']['tmp_name'];
-                $tipoArchivo = $_FILES['imagen']['type'];
-                $isValid = $this->isValidType($tipoArchivo, 'image');
-    
-                if ($isValid){
-                    unlink($url_imagen);
-                    $url_imagen = "img/profile/" . uniqid("", true) . "." . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
-                    move_uploaded_file($nombreTemporal, $url_imagen);
-                } else{
-                    $this->viewMessage->showError("ERROR! Tipo de archivo no soportado"); 
-                }     
+            $success = $this->modelColumnists->updateColumnist($idColumnist, $nombre, $profesion, $descripcion);
+            
+            foreach ($imagenes as $imagen){
+                $url_imagen = $old_url[$index];
+            
+                if ($imagen['error'] != 4){
+                    $nombreOriginal =  $imagen['name'];
+                    $nombreTemporal = $imagen['tmp_name'];
+                    $tipoArchivo = $imagen['type'];
+                    $isValid = $this->isValidType($tipoArchivo, 'image');
+        
+                    if ($isValid){
+                        unlink($url_imagen);
+                        $url_imagen = "img/profile/" . uniqid("", true) . "." . strtolower(pathinfo($nombreOriginal, PATHINFO_EXTENSION));
+                        move_uploaded_file($nombreTemporal, $url_imagen);
+                    } else{
+                       /*Habría que hacer algo si alguna de las imagenes que ingresaron no es de un formato valido, 
+                        pero hay que validar el conjunto de imagenes antes de empezar 
+                        con su administración una por una. Va en el próximo release :D  */
+                    }     
+                }
+                $this->modelImage->insertImage($idColumnist, $url_imagen);
+                $index++; 
             }
-            $success = $this->modelColumnists->updateColumnist($idColumnist, $nombre, $profesion, $descripcion, $url_imagen);
-            if ($success){
-                header('Location: ' . BASE_URL . 'admin');
-            }
-            else {
-                $this->viewMessage->showError("Error al modificar el columnista"); 
-            }
+            header('Location: ' . BASE_URL . 'admin');
+            
         } else {
-            $this->viewMessage->showError("ERROR! Faltan datos obligatorios"); 
+            $this->viewMessage->showError("ERROR! Faltan datos o archivos obligatorios"); 
         }
    }
 
@@ -263,11 +270,11 @@ class AdminController{
         } 
     }
 
-    private function isValidType($audioType, $validFormat) {
+    private function isValidType($fileType, $validFormat) {
 
         switch ($validFormat) {
             case 'audio':
-                if ($audioType == "audio/ogg" || $audioType == "audio/mpeg"){
+                if ($fileType == "audio/ogg" || $fileType == "audio/mpeg"){
                     return true;
                 }else{
                     return false;
@@ -275,8 +282,8 @@ class AdminController{
                 break;
             
             case 'image':
-                if ($audioType == "image/gif" || $audioType == "image/jpg" ||
-                    $audioType == "image/png" || $audioType == "image/jpeg"){
+                if ($fileType == "image/gif" || $fileType == "image/jpg" ||
+                    $fileType == "image/png" || $fileType == "image/jpeg"){
                     return true;
                 }else{
                     return false;
@@ -285,4 +292,15 @@ class AdminController{
         }
         
     } 
+
+    public function isValidTypeAll($imagenes, $validFormat){
+
+        foreach($imagenes["type"] as $key => $type){
+              if (!$this->isValidType($type, $validFormat)){ // Si esa imagen no es de un formato valido
+                  return false;
+              }
+        }
+        return true;
+    }
+
 }

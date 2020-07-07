@@ -45,7 +45,7 @@
             <input type="text" name="descripcion">
 
             <label for="imagen"></label>
-            <input type="file" name="imagen" id="podcast" accept= image/*>
+            <input type="file" name="imagenes[]" id="podcast" accept= image/* multiple>
 
             <button type='submit'>Añadir</button>
         </fieldset>

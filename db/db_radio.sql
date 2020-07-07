@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-07-2020 a las 00:32:52
--- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.10
+-- Tiempo de generación: 07-07-2020 a las 20:32:43
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,21 +31,20 @@ CREATE TABLE `columnista` (
   `id_columnista` int(10) NOT NULL,
   `nombre` varchar(30) NOT NULL,
   `profesion` varchar(100) NOT NULL,
-  `descripcion` varchar(300) NOT NULL,
-  `url_imagen` varchar(100) NOT NULL
+  `descripcion` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `columnista`
 --
 
-INSERT INTO `columnista` (`id_columnista`, `nombre`, `profesion`, `descripcion`, `url_imagen`) VALUES
-(6, 'Felipe Pigna', 'Historiador', 'Historias de nuestra historia', '/img/profile/pigna.jpg'),
-(7, 'Alejandro Dolina', 'Humorista', 'La venganza será terrible', '/img/profile/dolina.jpg'),
-(8, 'Gabriel Rolón', 'Psicólogo', 'Palabra Plena', 'img/profile/rolon.jpg'),
-(9, 'Paulina Cocina', 'Cocinera', 'Receta en 30 minutos', 'img/profile/paulina.jpg'),
-(10, 'Darío Sztajnszrajber', 'Filósofo', 'Pienso luego existo', 'img/profile/sztajnszrajber.jpg'),
-(11, 'Eduardo Sacheri', 'Escritor', 'Libros que nos gustan', 'img/profile/sacheri.jpg');
+INSERT INTO `columnista` (`id_columnista`, `nombre`, `profesion`, `descripcion`) VALUES
+(6, 'Felipe Pigna', 'Historiador', 'Historias de nuestra historia'),
+(7, 'Alejandro Dolina', 'Humorista', 'La venganza será terrible'),
+(8, 'Gabriel Rolón', 'Psicólogo', 'Palabra Plena'),
+(9, 'Paulina Cocina', 'Cocinera', 'Receta en 30 minutos'),
+(10, 'Darío Sztajnszrajber', 'Filósofo', 'Pienso luego existo'),
+(11, 'Eduardo Sacheri', 'Escritor', 'Libros que nos gustan');
 
 -- --------------------------------------------------------
 
@@ -62,6 +60,44 @@ CREATE TABLE `comentario` (
   `id_podcast_fk` int(11) NOT NULL,
   `id_usuario_fk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id_comentario`, `detalle`, `fecha`, `valoracion`, `id_podcast_fk`, `id_usuario_fk`) VALUES
+(1, 'Muy buena entrevista!', '2020-07-04', 5, 6, 9),
+(2, 'Hay temas de los que no se hablan', '2020-07-04', 3, 6, 9),
+(6, '¡Quiero mas notas así!', '2020-07-04', 4, 7, 9),
+(7, '¡Qué buenas medialunas!', '2020-07-04', 5, 19, 8),
+(9, '¿Se pueden hacer con grasa también?', '2020-07-04', 5, 19, 8),
+(10, '¡Fantasticas!', '2020-07-04', 4, 19, 8),
+(11, '¡Excelente audio!', '2020-06-04', 5, 7, 9),
+(12, 'Para pensar', '2020-07-04', 2, 2, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `imagen`
+--
+
+CREATE TABLE `imagen` (
+  `id_imagen` int(11) NOT NULL,
+  `path` varchar(200) NOT NULL,
+  `fk_id_columnista` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `imagen`
+--
+
+INSERT INTO `imagen` (`id_imagen`, `path`, `fk_id_columnista`) VALUES
+(9, 'img/profile/dolina.jpg', 7),
+(10, 'img/profile/paulina.jpg', 9),
+(11, 'img/profile/pigna.jpg', 6),
+(12, 'img/profile/rolon.jpg', 8),
+(13, 'img/profile/sacheri.jpg', 11),
+(14, 'img/profile/sztajnszrajber.jpg', 10);
 
 -- --------------------------------------------------------
 
@@ -136,7 +172,11 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `username`, `email`, `password`, `admin`) VALUES
 (1, 'Admin', 'admin1@admin.com', '$2y$10$1lwD7kKtOZKKRLLv.EbLseMhfQqfdkU7nCiCcAl5OjcBPoRwB33WK', 1),
 (2, 'User', 'user1@user.com', '$2y$10$nBROcHG6T2ac7CIZlVZ0iOkruCeOPjv3.NWOOMlO.MuNgGsPbVrGO', 0),
-(8, 'Amadeo', 'amadeosou@gmail.com', '$2y$10$8yVahpu0sq7PWcD.wA6pmepgYP0KFsSngzGC9W3gPb.IkGR9dSq9e', 0);
+(8, 'Amadeo', 'amadeosou@gmail.com', '$2y$10$8yVahpu0sq7PWcD.wA6pmepgYP0KFsSngzGC9W3gPb.IkGR9dSq9e', 0),
+(9, 'Mauricio', 'moruezabal@gmail.com', '$2y$10$Lywgzd6.rODsWWeJUoJJye6z6v1JT3tfjzm3NdAFUkBzOuV2r0ZiC', 1),
+(10, 'Iván', 'ivannoble@gmail.com', '$2y$10$.GXQfa7laAUb5uxHzFDXneMa2RkFa2yBUf82er8wtDNuVpiLnT3sa', 0),
+(11, 'Santiago', 'santiagosolari@gmail.com', '$2y$10$W37AYmv4WvundeLcceVlVOL6wBsD4fVMVv2fUGPeu4V4fQgYkmVyC', 0),
+(13, 'Sebastián', 'sebasosa@gmail.com', '$2y$10$2w90LobCbREIuZ7EZesoy.h/icKHzjo2.SUM/YUp9wVR2nHU.x1jq', 0);
 
 --
 -- Índices para tablas volcadas
@@ -156,6 +196,13 @@ ALTER TABLE `comentario`
   ADD KEY `valoracion` (`valoracion`),
   ADD KEY `id_podcast_fk` (`id_podcast_fk`),
   ADD KEY `id_usuario_fk` (`id_usuario_fk`);
+
+--
+-- Indices de la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  ADD PRIMARY KEY (`id_imagen`),
+  ADD KEY `fk_id_columnista` (`fk_id_columnista`);
 
 --
 -- Indices de la tabla `podcast`
@@ -178,13 +225,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `columnista`
 --
 ALTER TABLE `columnista`
-  MODIFY `id_columnista` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_columnista` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `podcast`
@@ -196,11 +249,24 @@ ALTER TABLE `podcast`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_podcast_fk`) REFERENCES `podcast` (`id_podcast`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `imagen`
+--
+ALTER TABLE `imagen`
+  ADD CONSTRAINT `imagen_ibfk_1` FOREIGN KEY (`fk_id_columnista`) REFERENCES `columnista` (`id_columnista`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `podcast`

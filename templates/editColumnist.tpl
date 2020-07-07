@@ -20,10 +20,11 @@
         <label for="descripcion">Descripcion</label>
         <input type="text" name="descripcion" value="{$old->descripcion}">
 
-        <label for="imagen"></label>
-        <input type="file" name="imagen" id="imagen" accept= image/*>
-
-        <input type="hidden" name="old_imagen" value="{$old->url_imagen}">
+        {foreach from=$images item=image}
+            <label for="imagen">Imagen</label>
+            <input type="file" name="{$image->id_imagen}" id="imagen" accept= image/*>
+            <input type="hidden" name="old_url[]" value="{$image->path}">   
+        {/foreach}
 
         <button type='submit'>Editar</button>
     </fieldset>
