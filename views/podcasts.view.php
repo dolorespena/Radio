@@ -15,11 +15,12 @@ Class PodcastsView extends View{
         $this->getSmarty()->assign('saludo', '¡Hola ');  
     }
 
-    public function showPodcasts($podcasts){
+    public function showPodcasts($podcasts, $images){
  
        $this->getSmarty()->assign('title', 'Columnistas');
        $this->getSmarty()->assign('podcasts', $podcasts);
        $this->getSmarty()->assign('columnista',$podcasts[0]->columnista);
+       $this->getSmarty()->assign('images', $images);
 
        $this->getSmarty()->display('podcasts.tpl');
     }

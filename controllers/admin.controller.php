@@ -273,7 +273,7 @@ class AdminController{
 
         switch ($validFormat) {
             case 'audio':
-                if ($fileType == "audio/ogg" || $fileType == "audio/mpeg"){
+                if ($fileType == "audio/ogg" || $fileType == "audio/mpeg" || $fileType == "video/ogg" ){
                     return true;
                 }else{
                     return false;

@@ -5,18 +5,21 @@ require_once 'views/podcasts.view.php';
 
 class PodcastsController{
     
+    private $imageModel;
     private $model;
     private $view;
 
     public function __construct() {
-        $this->modelColumnists = new ColumnistsModel(); 
+        
         $this->model = new PodcastsModel();
         $this->view = new PodcastsView();
+        $this->imageModel = new ImageModel();
     }
 
     public function showPodcasts($idColumnist){
         $podcasts = $this->model->getPodcasts($idColumnist);
-        $this->view->showPodcasts($podcasts);
+        $images = $this->imageModel->getImages($idColumnist);
+        $this->view->showPodcasts($podcasts, $images);
     }
 
     public function getPodcast($idPodcast){
@@ -29,4 +32,5 @@ class PodcastsController{
         }
         $this->view->onePodcast($podcast, $id_user, $esAdmin);
     }
+
 }

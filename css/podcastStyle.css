@@ -27,6 +27,14 @@
     margin-top: 0;
     line-height: 2rem;
 }
+.images{
+    display: flex;
+    justify-content: center;
+}
+.images img{
+    max-width: 200px;
+    border: solid 10px #f6f700;
+}
 
 .bajada-podcast{
     font-size: 0.9rem;
