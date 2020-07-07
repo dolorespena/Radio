@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-07-2020 a las 20:32:43
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.6
+-- Tiempo de generación: 07-07-2020 a las 22:52:00
+-- Versión del servidor: 10.4.8-MariaDB
+-- Versión de PHP: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -44,60 +45,8 @@ INSERT INTO `columnista` (`id_columnista`, `nombre`, `profesion`, `descripcion`)
 (8, 'Gabriel Rolón', 'Psicólogo', 'Palabra Plena'),
 (9, 'Paulina Cocina', 'Cocinera', 'Receta en 30 minutos'),
 (10, 'Darío Sztajnszrajber', 'Filósofo', 'Pienso luego existo'),
-(11, 'Eduardo Sacheri', 'Escritor', 'Libros que nos gustan');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `comentario`
---
-
-CREATE TABLE `comentario` (
-  `id_comentario` int(11) NOT NULL,
-  `detalle` varchar(200) NOT NULL,
-  `fecha` date NOT NULL,
-  `valoracion` int(10) NOT NULL,
-  `id_podcast_fk` int(11) NOT NULL,
-  `id_usuario_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `comentario`
---
-
-INSERT INTO `comentario` (`id_comentario`, `detalle`, `fecha`, `valoracion`, `id_podcast_fk`, `id_usuario_fk`) VALUES
-(1, 'Muy buena entrevista!', '2020-07-04', 5, 6, 9),
-(2, 'Hay temas de los que no se hablan', '2020-07-04', 3, 6, 9),
-(6, '¡Quiero mas notas así!', '2020-07-04', 4, 7, 9),
-(7, '¡Qué buenas medialunas!', '2020-07-04', 5, 19, 8),
-(9, '¿Se pueden hacer con grasa también?', '2020-07-04', 5, 19, 8),
-(10, '¡Fantasticas!', '2020-07-04', 4, 19, 8),
-(11, '¡Excelente audio!', '2020-06-04', 5, 7, 9),
-(12, 'Para pensar', '2020-07-04', 2, 2, 9);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `imagen`
---
-
-CREATE TABLE `imagen` (
-  `id_imagen` int(11) NOT NULL,
-  `path` varchar(200) NOT NULL,
-  `fk_id_columnista` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `imagen`
---
-
-INSERT INTO `imagen` (`id_imagen`, `path`, `fk_id_columnista`) VALUES
-(9, 'img/profile/dolina.jpg', 7),
-(10, 'img/profile/paulina.jpg', 9),
-(11, 'img/profile/pigna.jpg', 6),
-(12, 'img/profile/rolon.jpg', 8),
-(13, 'img/profile/sacheri.jpg', 11),
-(14, 'img/profile/sztajnszrajber.jpg', 10);
+(11, 'Eduardo Sacheri', 'Escritor', 'Libros que nos gustan'),
+(30, 'Susana Horia', 'Cheff', 'Saladito');
 
 -- --------------------------------------------------------
 
@@ -149,7 +98,8 @@ INSERT INTO `podcast` (`id_podcast`, `nombre`, `descripcion`, `url_audio`, `fech
 (27, '¿Por que el Ser y no más bien la Nada?', 'Continuamos con el desarrollo de la filosofía presocrática, desarrollando el momento del pensamiento antes de Sócrates y Aristóteles. Hablaremos de Tales, Anaxímenes y Pitágoras, entre otros', 'audio/sztajnszrajber-elSerYLaNada.ogg', '2020-05-09', 11, 'Filosofía Presocrática', NULL, 10),
 (28, 'El origen de la filosofía', 'Vamos a tratar de ver el origen de la filosofía, la analizaremos etimologícamente, y a partir de ahí, un ejercicio continuo de preguntas incesante.', 'audio/sztajnszrajber-origen.ogg', '2020-05-08', 11, 'Filosofía', NULL, 10),
 (29, 'Los filósofos presocráticos', 'Observamos el perfil de los primeros pensadores, como Tales de Mileto, con la filosofía aún relacionada con el mito. Describiremos sus características que forjaron sun identidad.', 'audio/sztajnszrajber-presocratico.ogg', '2020-05-07', 10, 'Filosofía Presocrática', NULL, 10),
-(35, 'lksmfvls', 'lsldmfsdm', 'audio/5efb88a8748906.26334182.ogg', '2020-06-03', 10, 'djfgldjfl', '', 6);
+(35, 'lksmfvls', 'lsldmfsdm', 'audio/5efb88a8748906.26334182.ogg', '2020-06-03', 10, 'djfgldjfl', '', 6),
+(36, 'asdasd', 'asdasdasdad', 'audio/5f04c92b5373a8.51969141.ogg', '2020-07-07', 1, 'adsdas', 'adasd', 30);
 
 -- --------------------------------------------------------
 
@@ -162,21 +112,22 @@ CREATE TABLE `user` (
   `username` text NOT NULL,
   `email` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `admin` tinyint(1) NOT NULL
+  `admin` tinyint(1) NOT NULL,
+  `token` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id_user`, `username`, `email`, `password`, `admin`) VALUES
-(1, 'Admin', 'admin1@admin.com', '$2y$10$1lwD7kKtOZKKRLLv.EbLseMhfQqfdkU7nCiCcAl5OjcBPoRwB33WK', 1),
-(2, 'User', 'user1@user.com', '$2y$10$nBROcHG6T2ac7CIZlVZ0iOkruCeOPjv3.NWOOMlO.MuNgGsPbVrGO', 0),
-(8, 'Amadeo', 'amadeosou@gmail.com', '$2y$10$8yVahpu0sq7PWcD.wA6pmepgYP0KFsSngzGC9W3gPb.IkGR9dSq9e', 0),
-(9, 'Mauricio', 'moruezabal@gmail.com', '$2y$10$Lywgzd6.rODsWWeJUoJJye6z6v1JT3tfjzm3NdAFUkBzOuV2r0ZiC', 1),
-(10, 'Iván', 'ivannoble@gmail.com', '$2y$10$.GXQfa7laAUb5uxHzFDXneMa2RkFa2yBUf82er8wtDNuVpiLnT3sa', 0),
-(11, 'Santiago', 'santiagosolari@gmail.com', '$2y$10$W37AYmv4WvundeLcceVlVOL6wBsD4fVMVv2fUGPeu4V4fQgYkmVyC', 0),
-(13, 'Sebastián', 'sebasosa@gmail.com', '$2y$10$2w90LobCbREIuZ7EZesoy.h/icKHzjo2.SUM/YUp9wVR2nHU.x1jq', 0);
+INSERT INTO `user` (`id_user`, `username`, `email`, `password`, `admin`, `token`) VALUES
+(1, 'Admin', 'admin1@admin.com', '$2y$10$1lwD7kKtOZKKRLLv.EbLseMhfQqfdkU7nCiCcAl5OjcBPoRwB33WK', 1, NULL),
+(2, 'User', 'user1@user.com', '$2y$10$nBROcHG6T2ac7CIZlVZ0iOkruCeOPjv3.NWOOMlO.MuNgGsPbVrGO', 0, NULL),
+(8, 'Amadeo', 'amadeosou@gmail.com', '$2y$10$8yVahpu0sq7PWcD.wA6pmepgYP0KFsSngzGC9W3gPb.IkGR9dSq9e', 0, NULL),
+(9, 'Mauricio', 'moruezabal@gmail.com', '$2y$10$Lywgzd6.rODsWWeJUoJJye6z6v1JT3tfjzm3NdAFUkBzOuV2r0ZiC', 1, NULL),
+(10, 'Iván', 'ivannoble@gmail.com', '$2y$10$.GXQfa7laAUb5uxHzFDXneMa2RkFa2yBUf82er8wtDNuVpiLnT3sa', 0, NULL),
+(14, 'Loli', 'loli@gmail.com', '$2y$10$Dn1S4LowpUO/H5I40Eid9.dRxXOO3NUx2BDw0yAn0hpjOFSv30kPm', 1, NULL),
+(15, 'Julian', 'julian@gmail.com', '$2y$10$3AYm4SsLlRsk/jEuPKC1gOewh5NgCb8YGJglPfgN5jdIo7EMWT.Rm', 0, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -187,22 +138,6 @@ INSERT INTO `user` (`id_user`, `username`, `email`, `password`, `admin`) VALUES
 --
 ALTER TABLE `columnista`
   ADD PRIMARY KEY (`id_columnista`);
-
---
--- Indices de la tabla `comentario`
---
-ALTER TABLE `comentario`
-  ADD PRIMARY KEY (`id_comentario`),
-  ADD KEY `valoracion` (`valoracion`),
-  ADD KEY `id_podcast_fk` (`id_podcast_fk`),
-  ADD KEY `id_usuario_fk` (`id_usuario_fk`);
-
---
--- Indices de la tabla `imagen`
---
-ALTER TABLE `imagen`
-  ADD PRIMARY KEY (`id_imagen`),
-  ADD KEY `fk_id_columnista` (`fk_id_columnista`);
 
 --
 -- Indices de la tabla `podcast`
@@ -225,48 +160,23 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `columnista`
 --
 ALTER TABLE `columnista`
-  MODIFY `id_columnista` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT de la tabla `comentario`
---
-ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT de la tabla `imagen`
---
-ALTER TABLE `imagen`
-  MODIFY `id_imagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_columnista` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `podcast`
 --
 ALTER TABLE `podcast`
-  MODIFY `id_podcast` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_podcast` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `comentario`
---
-ALTER TABLE `comentario`
-  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_usuario_fk`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`id_podcast_fk`) REFERENCES `podcast` (`id_podcast`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `imagen`
---
-ALTER TABLE `imagen`
-  ADD CONSTRAINT `imagen_ibfk_1` FOREIGN KEY (`fk_id_columnista`) REFERENCES `columnista` (`id_columnista`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `podcast`
