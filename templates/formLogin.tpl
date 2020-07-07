@@ -11,6 +11,7 @@
             {/if}
             <button type='submit'>Ingresar</button>
             <a href='registration' class="link-registro">No eres usuario? Registrate!</a>
+            <a href='passwordRecovery' class="link-registro">Olvidé mi contraseña</a>
         </form>
         
     </div>

@@ -38,4 +38,19 @@ class UserModel extends Model{
         $success = $sentencia->execute([$esAdmin, $id_user]);
         return $success;
     }
+
+    public function insertToken($userId, $token){
+        $sentencia = $this->db->prepare("UPDATE user SET token = ? WHERE user.id_user = ?");
+        $sentencia->execute([$token, $userId]);
+    }
+
+    public function getToken($idUser){
+        $sentencia = $this->db->prepare("SELECT user.token FROM user WHERE user.id_user = ?");
+        $sentencia->execute([$idUser]);
+        return $sentencia->fetch(PDO::FETCH_OBJ);
+    }
+    public function updatePassword($idUser, $password){
+        $sentencia = $this->db->prepare("UPDATE user SET password = ? WHERE user.id_user = ?");
+        $sentencia->execute([$password, $idUser]);
+    }
 }

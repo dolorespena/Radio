@@ -30,4 +30,24 @@ class AuthView extends View{
 
         $this->getSmarty()->display('formRegistration.tpl');        
     }
+
+    public function recuperarPassword($error = null){
+
+        $isLogged = AuthHelper::isLogged();
+
+        $this->getSmarty()->assign('title', 'Recuperar Contraseña');
+        $this->getSmarty()->assign('error', $error);
+        $this->getSmarty()->assign('esUser', $isLogged);
+        $this->getSmarty()->display('formRecuperarPassword.tpl');
+    }
+
+    public function confirmToken($error = null){
+        
+        $isLogged = AuthHelper::isLogged();
+        $this->getSmarty()->assign('title', 'Confirmar cambio de Contraseña');
+        $this->getSmarty()->assign('esUser', $isLogged);
+        $this->getSmarty()->assign('error', $error);
+
+        $this->getSmarty()->display('confirmPassword.tpl');
+    }
 }

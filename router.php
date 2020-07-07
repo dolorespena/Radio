@@ -131,6 +131,25 @@
             $controller->checkIn();
         break;
 
+        case 'passwordRecovery':
+            $controller = new AuthController;
+            $controller->recuperarPassword();
+        break;
+
+        case 'checkemail':
+            $controller = new AuthController;
+            $controller->checkemail();
+        break;
+
+        case 'checkToken':
+            $controller = new AuthController;
+            $controller->checkToken();
+        break;
+        case 'verifyToken':
+            $controller = new AuthController;
+            $controller->verifyToken();
+        break;
+
         default :
             $controller = new MessageController;
             $controller->showError("Error 404 - Página no encontrada");

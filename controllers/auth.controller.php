@@ -67,9 +67,6 @@ class AuthController{
                 header('Location: ' . BASE_URL . 'columnistas' );
 
             }
-
-
-            
         }else{
             $this->view->showFormLogin("Debe ingresar todos los campos");
         }
@@ -79,5 +76,50 @@ class AuthController{
         AuthHelper::logout();
         header('Location: ' . BASE_URL . 'login');// redirecciono a la pag de login
     }
-}
 
+    public function recuperarPassword(){
+        $this->view->recuperarPassword();
+    }
+
+    public function checkemail(){
+       
+        $email = $_POST['email'];
+        if(isset($email)){
+            $user = $this->model->getUser($email);
+            if($user){
+                $userId = $user->id_user;
+                $token = uniqid(5);
+                $this->model->insertToken($userId, $token);
+                $link = BASE_URL . "checkToken";   
+                echo ("<p> Para recuperar la contraseña debe ingresar en el siguiente enlace: " . $link . "</p>");
+                echo ("<p>E ingrese el siguiente token: " . $token . "</p>"); 
+            }  
+        }
+    }
+
+    public function checkToken(){
+        $this->view->confirmToken();
+    }
+
+    public function verifyToken(){
+        
+        $email = $_POST['email'];
+        $tokenUser = $_POST['token'];
+        $password = $_POST['password'];
+        if(isset($email) && isset($tokenUser) && isset($password)){
+            $user = $this->model->getUser($email);
+            if($user){
+                $idUser = $user->id_user;
+                $token = $this->model->getToken($idUser);
+                if($token == $tokenUser){
+                    $hash = password_hash($password, PASSWORD_DEFAULT);
+                    $this->model->updatePassword($idUser, $hash);
+                    $this->view->showFormLogin("La contraseña se ha restaurado exitosamente. Ingrese nuevamente");
+                }else{
+                    $this->view->confirmToken("Token inválido");
+                }
+            }
+        }
+    }
+
+}
